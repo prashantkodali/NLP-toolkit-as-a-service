@@ -1,0 +1,8 @@
+nltk
+re
+pickle
+sklearn
+numpy
+pandas
+textblob
+vaderSentimentAnalyzer
