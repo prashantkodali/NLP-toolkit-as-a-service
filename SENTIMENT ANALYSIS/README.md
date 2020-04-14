@@ -1,4 +1,4 @@
-> To run "Sentiment Analysis" model type below command
+## To run "Sentiment Analysis" model type below command
 	[python3] [SentimentAnalysis.py] [modelType] [Input Sentence]
 	* modelType: 1-NormalSentimentAnalysis 2-CodeMixedSentimentAnalysis
 
