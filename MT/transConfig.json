@@ -26,6 +26,19 @@
                 "beam_size": 10,
         "replace_unk": true
             }
+        },
+        {
+            "id": 102,
+            "model": "engBhoAtten.pt",
+            "timeout": 60000,
+            "on_timeout": "to_cpu",
+            "load": true,
+            "opt": {
+            "gpu":-1,
+                "batch_size": 1,
+                "beam_size": 10,
+        "replace_unk": true
+            }
         }
     ]
 }
