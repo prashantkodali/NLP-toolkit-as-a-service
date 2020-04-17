@@ -8,10 +8,23 @@
             "on_timeout": "to_cpu",
             "load": true,
             "opt": {
-		"gpu":-1,
+		     "gpu":-1,
                 "batch_size": 1,
                 "beam_size": 10,
 		"replace_unk": true
+            }
+        },
+        {
+            "id": 101,
+            "model": "nmtWithAttention.pt",
+            "timeout": 60000,
+            "on_timeout": "to_cpu",
+            "load": true,
+            "opt": {
+            "gpu":-1,
+                "batch_size": 1,
+                "beam_size": 10,
+        "replace_unk": true
             }
         }
     ]
