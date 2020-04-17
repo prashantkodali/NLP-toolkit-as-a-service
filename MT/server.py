@@ -10,7 +10,7 @@ import re
 import os
 
 
-ip = os.environ['ipVisibleToOutside']
+#ip = os.environ['ipVisibleToOutside']
 STATUS_OK = "ok"
 STATUS_ERROR = "error"
 
@@ -155,5 +155,6 @@ def _get_parser():
 if __name__ == '__main__':
     parser = _get_parser()
     args = parser.parse_args()
+    ip = args.ip
     start(args.config, url_root=args.url_root, host=args.ip, port=args.port,
           debug=args.debug)
