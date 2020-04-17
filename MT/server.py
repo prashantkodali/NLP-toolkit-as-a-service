@@ -8,7 +8,8 @@ from nltk import sent_tokenize
 from nltk.tokenize import word_tokenize
 import re
 import os
-
+from nltk.tokenize import word_tokenize
+from nltk.tokenize import sent_tokenize
 
 #ip = os.environ['ipVisibleToOutside']
 STATUS_OK = "ok"
@@ -24,57 +25,7 @@ def start(config_file,
     app = Flask(__name__,)
     translation_server = TranslationServer()
     translation_server.start(config_file)
- 
-    @app.route('/ttranslate', methods=['POST'])
-    def ttranslate():
-        #print(request)
-        inputs = request.get_json(force=True)
-        #tok_tgt={}
-        #tok_tgt['src']  <------ in case we want to keep tokenization hidden
-        # sentences=sent_tokenize(inputs[0]['src'])
-        sentences=[]
-        tok_src=[]
-        for sent in re.findall(u'[^!?。\.\!\?]+[!?。\.\!\?]?', inputs[0]['src'], flags=re.U):
-            tok_src.append(" ".join(list(" ".join(sent.split()).strip())))
-        #tok_src=[]
-        #for sent in sentences:
-            
-        #    #tok_src.append(" ".join([char for char in sent]))
-        #    tok_src.append(sent)
-        #inputs[0]['src']=tok_src
-        print ('input recieved')
-        #print(tok_src)
-        inputs[0]['id']=int(inputs[0]['id'])
-        tok_tgt={}
-        for sent in tok_src:
-            inputs[0]['src']=sent
-            out = {}
-            try:
-                  translation, scores, n_best, times = translation_server.run(inputs)
-                  assert len(translation) == len(inputs)
-                  assert len(scores) == len(inputs)
-                  out = [{"src": inputs[i]['src'], "tgt": translation[i],
-                        "n_best": n_best,
-                        "pred_score": scores[i]}
-                        for i in range(len(translation))]
-            except ServerModelError as e:
-                  out['error'] = str(e)
-                  out['status'] = STATUS_ERROR
-            #print(out[0]['tgt'])
-            print ('translation done')
-            if 'src' not in tok_tgt:
-                  tok_tgt['src']=[out[0]['src']]
-                  tok_tgt['tgt']=[out[0]['tgt']]
-            else:
-                  tok_tgt['src'].append(out[0]['src'])
-                  tok_tgt['tgt'].append(out[0]['tgt'])
-        tok_tgt['src']=" ".join(" ".join(tok_tgt['src']).strip().split())
-        tok_tgt['tgt']="\n".join(tok_tgt['tgt'])
-        tok_tgt['ipVisibleToOutside']=ip
-        #return jsonify(translation[0])
-        #return redirect(url_for(home, value=out[0]))
-        return tok_tgt['tgt']
-        #return out[0]['tgt']
+
 
     
     @app.route('/translate', methods=['POST'])
@@ -83,11 +34,11 @@ def start(config_file,
         inputs=[request.form.to_dict()]
         print(inputs)
         #tok_tgt['src']  <------ in case we want to keep tokenization hidden
-        # sentences=sent_tokenize(inputs[0]['src'])
-        sentences=[]
-        tok_src=[]
-        for sent in re.findall(u'[^!?。\.\!\?]+[!?。\.\!\?]?', inputs[0]['src'], flags=re.U):
-            tok_src.append(" ".join(list(" ".join(sent.split()).strip())))
+        sentences=sent_tokenize(inputs[0]['src'])
+        #sentences=[]
+        tok_src=[" ".join(word_tokenize(x.lower())) for x in sentences]
+        #for sent in re.findall(u'[^!?。\.\!\?]+[!?。\.\!\?]?', inputs[0]['src'], flags=re.U):
+        #    tok_src.append(" ".join(list(" ".join(sent.split()).strip())))
         #tok_src=[]
         #for sent in sentences:
             
