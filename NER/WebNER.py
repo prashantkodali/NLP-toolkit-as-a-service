@@ -69,4 +69,4 @@ def getNerTags(inputText):
     X = displacy.render(nlp(str(sentences)), jupyter=None, style='ent')
     return X
 	
-app.run(host='0.0.0.0', port = 8000, debug=True)
+app.run(host='0.0.0.0', port = 5000, debug=True)
