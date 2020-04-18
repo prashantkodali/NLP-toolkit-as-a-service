@@ -1,0 +1,21 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Login Successfull.</h1>
+</div>
+<p> Please choose one of the following applications.</p>
+
+
+
+<button type="button" class="btn"><a href="{{ url_for('services.tokenizer_page') }}">TokenizeButton</a></button>
+<button type="button" class="btn"><a>testRemote</a></button>
+
+
+<!-- <input type="button" class="btn" name="submit_button" value="TokenizeInput"> -->
+
+
+<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+
+{% endblock %}
