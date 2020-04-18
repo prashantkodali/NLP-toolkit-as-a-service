@@ -29,8 +29,8 @@ def start(config_file,
     
     @app.route('/translate', methods=['POST'])
     def translate():
-        #inputs = request.get_json(force=True)
-        inputs=[request.form.to_dict()]
+        inputs = request.get_json(force=True)
+        #inputs=[request.form.to_dict()]
         print(inputs)
         originalInput = inputs[0]['src']
         sentences=sent_tokenize(inputs[0]['src'])
@@ -67,9 +67,10 @@ def start(config_file,
         tok_tgt['src']=originalInput#" ".join(" ".join(tok_tgt['src']).strip().split())
         tok_tgt['tgt']="\n".join(tok_tgt['tgt'])
         tok_tgt['ipVisibleToOutside']=ip
-        #return jsonify(translation[0])
-        #return redirect(url_for(home, value=out[0]))
-        return render_template("index.html", value=tok_tgt)
+        #################return jsonify(translation[0])
+        #################return redirect(url_for(home, value=out[0]))
+        #return render_template("index.html", value=tok_tgt)
+        return jsonify(tok_tgt)
         #return out[0]['tgt']
     
     @app.route('/')
