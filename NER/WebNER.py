@@ -4,10 +4,11 @@ Created on Fri Apr 10 18:55:53 2020
 
 @author: Sushom-Dell
 """
-
+from collections import Counter
 from bs4 import BeautifulSoup
 import requests
 import re
+
 from spacy import displacy
 import en_core_web_sm
 from flask import Flask, jsonify, request,render_template,redirect, url_for
@@ -15,12 +16,8 @@ from flask import Flask, jsonify, request,render_template,redirect, url_for
 
 nlp = en_core_web_sm.load()
 
-#doc = nlp('European authorities fined Google a record $5.1 billion on Wednesday for abusing its power in the mobile phone market and ordered the company to alter its practices')
-#tags = [(X.text, X.label_) for X in doc.ents]
-
-
 app = Flask(__name__)
-app.config["DEBUG"] = True
+#app.config["DEBUG"] = True
  
 @app.route("/")
 def index():
@@ -44,8 +41,10 @@ def form():
 def getNerTagsFromURl(url):
     #retrieve article from url
     ny_bb = url_to_string(url)
-    #print("hi",ny_bb)
+    
     article = nlp(ny_bb)
+    labels = [x.label_ for x in article.ents]
+    cnt_dict = Counter(labels) #print the cardinality 
     
     X = displacy.render(article, jupyter=None, style='ent')
     print(len(article.ents))
@@ -64,9 +63,10 @@ def url_to_string(url):
     return " ".join(re.split(r'[\n\t]+', soup.get_text()))
 
 def getNerTags(inputText): 
-    print("text:", inputText)
+    #print("text:", inputText)
     doc1 = nlp(inputText)
     sentences = [x.text for x in doc1.sents]
     X = displacy.render(nlp(str(sentences)), jupyter=None, style='ent')
     return X
-app.run()
+	
+app.run(host='0.0.0.0', port = 5000, debug=True)
