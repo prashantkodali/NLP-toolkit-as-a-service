@@ -11,7 +11,6 @@ import os
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 
-#ip = os.environ['ipVisibleToOutside']
 STATUS_OK = "ok"
 STATUS_ERROR = "error"
 
