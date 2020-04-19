@@ -31,9 +31,9 @@ def start(config_file,
         return translatedInput
 
     def preprocessingInput(paragraphInput):
-		listOfTokenizedSentences = tokenizer(paragraphInput)
-        mtSystemID = int(paragraphInput[0]['id'])
-        return listOfTokenizedSentences, mtSystemID
+    	listOfTokenizedSentences = tokenizer(paragraphInput)
+    	mtSystemID = int(paragraphInput[0]['id'])
+    	return listOfTokenizedSentences, mtSystemID
 
     def tokenizer(paragraphInput):
         tokenizeParaIntoSentences = sent_tokenize(paragraphInput['src'])
