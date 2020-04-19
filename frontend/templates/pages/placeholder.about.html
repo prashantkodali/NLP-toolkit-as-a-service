@@ -1,14 +1,87 @@
 {% extends 'layouts/main.html' %}
-{% block title %}About{% endblock %}
+{% block title %}Abstract{% endblock %}
 {% block content %}
 
-<div class="page-header">
-  <h1>About Page</h1>
-</div>
-<p class="lead">This is just a placeholder page which should be replaced with real content.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tellus ligula, imperdiet id lobortis sit amet, scelerisque non sapien. Duis quis dui quis mauris dapibus fringilla. Pellentesque nec tellus ac diam volutpat malesuada.</p>
-<p>In quam arcu, interdum vel arcu viverra, vulputate convallis massa. Sed hendrerit velit a arcu euismod, sit amet consequat lacus imperdiet. Nullam quis dui sapien. Vestibulum placerat, justo non fringilla laoreet, dui ipsum posuere nisi, nec vestibulum eros leo ut sapien.</p>
-<p>Vivamus eu felis sed magna scelerisque semper in et libero. Curabitur sed convallis odio, quis venenatis sapien. In convallis a velit ac commodo. Donec sapien ligula, vestibulum ut nisi accumsan, facilisis pretium est. Fusce varius semper orci, et egestas nulla cursus a. Phasellus aliquam, mi ac adipiscing lobortis, ipsum augue aliquam ligula, quis fermentum mi augue vel ligula.</p>
-<p>Integer elementum malesuada dolor in aliquet.</p>
+<div id="mainblock" class="container-fluid" >
+
+                <div  class="col-lg-7 ">
+                  <div class=" centercolumn" style="height: 250px">
+                      <strong class=" h1" style="color: rgba(7, 78, 122, 0.74)">Abstract</strong>
+                      <hr>
+                    <p id="aboutcsi" class="modal-body"> &nbsp; &nbsp;
+					In the course of any NLP application development, there are many basic steps which are common across
+all NLP tools. These may be as basic as tokenization, Named Entity Recognition (NER), and extend to as
+complex tools as Sentiment Analysis, Machine Translation etc. <br>
+As different teams within an enterprise look at developing their own NLP applications, the initial parts of
+all their pipelines have same building blocks like sentence tokenizers, word tokenizers, NERs, parsers etc.
+Further, as we get deeper into these pipelines, we see complex tools: like sentiment analysis, Language
+Models or Machine Translation. In the context of resource poor languages, these complex tools are all
+the more important because of: <br>
+1. Pivoting: translate a low resource language to resource rich language (like English) and use the
+rich toolkit of resource rich language. <br>
+2. As you look at complex applications at discourse or pragmatics level, you need reliable outputs
+from these tools like sentiment analysis. <br>
+3. Provide baselines. <br>
+4. A shared knowledge repo for all implementations, allowing various teams to have look at the
+existing work, tools available to them, evaluated by other teams. So that multiple teams do not
+spend time in going through similar exercise.
+
+                     </p>
+					 </div>
+
+                </div>
+                <div  class="col-lg-1"  >
+                    <div class="span3 " style="height: 250px" >
+                    <img src = "static/img/team.jpg" style="height: 250px">
+					<div class="container">
+					<br>
+					<br>
+					<strong class="h3" style="color: rgba(7, 78, 122, 0.74)">Team</strong>
+        <div class="row">
+          <div class="col-sm-2">
+            <h5>Saumitra Yadav</h5>
+			<p>201507647<p>
+          </div>
+		  <div class="col-sm-2">
+            <h5>Neha Motlani</h5>
+			<p>20161004<p>
+          </div>
+		  <div class="col-sm-2">
+            <h5>Sunil Gundapu</h5>
+			<p>2018701022<p>
+          </div>
+        </div>
+		<div class="row">
+          <div class="col-sm-2">
+            <h5>Ananya Mukherjee</h5>
+			<p>2018801009<p>
+          </div>
+		  <div class="col-sm-2">
+            <h5>Prashant Kodali</h5>
+			<p>2018801011<p>
+
+          </div>
+		  <div class="col-sm-2">
+            <h5>Hiranmai Sri Adibhatla</h5>
+			<p>2018900044<p>
+
+          </div>
+
+
+        </div>
+
+					</div>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+ </div>
 
 {% endblock %}

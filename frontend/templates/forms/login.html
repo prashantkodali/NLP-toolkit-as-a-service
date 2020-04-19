@@ -1,12 +1,34 @@
 {% extends 'layouts/form.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
-  <form method="POST" action="/login" class="form">
-    <h3 class="form-heading">Login <a href="/" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">NLP Toolkit</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right">
+        <li><a href="{{ url_for('auth.signup') }}">Signup</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+
+<br><br><br.<br>
+
+
+  <form style="margin-top:3cm" method="POST" action="/login" class="form">
+    <h3 class="form-heading" style="text-align:center">Login <a href="/" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
     {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
     {{ form.password(class_ = 'form-control last-input', placeholder = form.password.label.text, required = true) }}
     <p class="pull-right"><a href="{{ url_for('auth.signup') }}">Register</a></p>
     <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
-    <p>You must add database as well as Flask-Login to enable user management. See the <a href="http://www.realpython.com">Real Python</a> course for more info!</p>
   </form>
 {% endblock %}
