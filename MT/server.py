@@ -36,13 +36,13 @@ def start(config_file,
     	return listOfTokenizedSentences, mtSystemID
 
     def tokenizer(paragraphInput):
-        tokenizeParaIntoSentences = sent_tokenize(paragraphInput['src'])
-        listOfTokenizedSentences = wordTokenizer(tokenizeParaIntoSentences,int(paragraphInput['id']))
+        tokenizeParaIntoSentences = sent_tokenize(paragraphInput[0]['src'])
+        listOfTokenizedSentences = wordTokenizer(tokenizeParaIntoSentences,int(paragraphInput[0]['id']))
         return listOfTokenizedSentences
     
     def wordTokenizer(tokenizeParaIntoSentences, mtSystemID):
         #Separate word tokenization scheme based on data preprocessing steps taken while training model.
-        if systemID==100:
+        if mtSystemID==100:
             listOfTokenizedSentences = [" ".join(word_tokenize(sentence.lower())) for sentence in tokenizeParaIntoSentences]
         else:
             listOfTokenizedSentences = [" ".join(word_tokenize(sentence)) for sentence in tokenizeParaIntoSentences]
