@@ -65,7 +65,7 @@ def start(config_file,
                   tok_tgt['tgt'].append(out[0]['tgt'])
         tok_tgt['src']=originalInput#" ".join(" ".join(tok_tgt['src']).strip().split())
         tok_tgt['tgt']="\n".join(tok_tgt['tgt'])
-        tok_tgt['ipVisibleToOutside']=ip
+        #tok_tgt['ipVisibleToOutside']=ip
         #################return jsonify(translation[0])
         #################return redirect(url_for(home, value=out[0]))
         #return render_template("index.html", value=tok_tgt)
@@ -77,7 +77,7 @@ def start(config_file,
         #if request.args.get('value'):
         #        out={'src':value['src'],'tgt':value['tgt']}
         #else:
-        out={'src':'','tgt':'', 'ipVisibleToOutside':ip}
+        out={'src':'','tgt':''}#, 'ipVisibleToOutside':ip}
         return render_template('index.html',value=out)
     app.run(debug=debug, host=host, port=port, use_reloader=False,
             threaded=True)

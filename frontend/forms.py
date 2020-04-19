@@ -30,8 +30,6 @@ class LoginForm(Form):
 class TokenizerForm(Form):
     text = TextField('Input Text', [DataRequired()])
 
-
-
 class ForgotForm(Form):
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]

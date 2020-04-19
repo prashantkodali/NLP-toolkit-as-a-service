@@ -1,20 +1,6 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
-# from app import db
-#
-engine = create_engine('sqlite:///database.db', echo=True)
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
-Base = declarative_base()
-Base.query = db_session.query_property()
+from . import db
 
-# Set your classes here.
-
-
-class User(Base):
+class User(db.Model):
     __tablename__ = 'Users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -22,8 +8,9 @@ class User(Base):
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(30))
 
-    def __init__(self, name=None, password=None):
+    def __init__(self, name=None, password=None, email=None):
         self.name = name
+        self.email = email
         self.password = password
 
 
