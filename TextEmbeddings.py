@@ -28,7 +28,7 @@ def TextEmbeddings():
 def form():
 	req_data = request.get_json() #req_data is a dict. 
 	text = req_data['text']
-    Sentence_Embeddings_Dict = getEmbeddings(text)
+	Sentence_Embeddings_Dict = getEmbeddings(text)
 	return jsonify(Sentence_Embeddings_Dict)
 
 def SentenceVector(encoded_layers):
@@ -37,21 +37,21 @@ def SentenceVector(encoded_layers):
 	return(sentence_embedding)
 
 def getEmbeddings(marked_text): 
-   	Sentence_Embeddings_Dict={}
+	Sentence_Embeddings_Dict={}
 	model = BertModel.from_pretrained('bert-base-uncased')
 	tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 	model.eval()
 	marked_text = "[CLS] " + text + " [SEP]"
-  	tokenized_text = tokenizer.tokenize(marked_text)
-  	indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
- 	segments_ids = [1] * len(tokenized_text)
-  	tokens_tensor = torch.tensor([indexed_tokens])
-  	segments_tensors = torch.tensor([segments_ids])
-  	with torch.no_grad():
-    	encoded_layers, _ = model(tokens_tensor, segments_tensors)
-    sentence_vec = SentenceVector(encoded_layers)
+	tokenized_text = tokenizer.tokenize(marked_text)
+	indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
+	segments_ids = [1] * len(tokenized_text)
+	tokens_tensor = torch.tensor([indexed_tokens])
+	segments_tensors = torch.tensor([segments_ids])
+	with torch.no_grad():
+		encoded_layers, _ = model(tokens_tensor, segments_tensors)
+	sentence_vec = SentenceVector(encoded_layers)
 	Sentence_Embeddings_Dict['Embedding']=sentence_vec.tolist()
-  	#print ("Our final sentence embedding vector of shape:", sentence_vec.size())
-    return Sentence_Embeddings_Dict
+	#print ("Our final sentence embedding vector of shape:", sentence_vec.size())
+	return Sentence_Embeddings_Dict
 	
 app.run(host='0.0.0.0', port = 5000, debug=True)
