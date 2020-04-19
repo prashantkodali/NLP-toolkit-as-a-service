@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import configargparse
 
-from flask import Flask, jsonify, request,render_template,redirect, url_for
-from onmt.translate import TranslationServer, ServerModelError
 import json
 import re
 import os
+from onmt.translate import TranslationServer, ServerModelError
+from flask import Flask, jsonify, request,render_template,redirect, url_for
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 
@@ -25,41 +25,56 @@ def start(config_file,
     
     @app.route('/translate', methods=['POST'])
     def translate():
-        inputs = request.get_json(force=True)
-        print(inputs)
-        originalInput = inputs[0]['src']
-        sentences=sent_tokenize(inputs[0]['src'])
-        if int(inputs[0]['id'])==100:
-          tok_src=[" ".join(word_tokenize(x.lower())) for x in sentences]
+        paragraphInput = request.get_json(force=True)
+        listOfTokenizedSentences, mtSystemID = preprocessingInput(paragraphInput)
+        translatedInput = translation(listOfTokenizedSentences, mtSystemID)
+        return translatedInput
+
+    def preprocessingInput(paragraphInput):
+		listOfTokenizedSentences = tokenizer(paragraphInput)
+        mtSystemID = int(paragraphInput[0]['id'])
+        return listOfTokenizedSentences, mtSystemID
+
+    def tokenizer(paragraphInput):
+        tokenizeParaIntoSentences = sent_tokenize(paragraphInput['src'])
+        listOfTokenizedSentences = wordTokenizer(tokenizeParaIntoSentences,int(paragraphInput['id']))
+        return listOfTokenizedSentences
+    
+    def wordTokenizer(tokenizeParaIntoSentences, mtSystemID):
+        #Separate word tokenization scheme based on data preprocessing steps taken while training model.
+        if systemID==100:
+            listOfTokenizedSentences = [" ".join(word_tokenize(sentence.lower())) for sentence in tokenizeParaIntoSentences]
         else:
-          tok_src=[" ".join(word_tokenize(x)) for x in sentences]
-        inputs[0]['id']=int(inputs[0]['id'])
-        tok_tgt={}
-        for sent in tok_src:
-            inputs[0]['src']=sent
-            out = {}
+            listOfTokenizedSentences = [" ".join(word_tokenize(sentence)) for sentence in tokenizeParaIntoSentences]
+        return listOfTokenizedSentences
+
+    def translation(listOfTokenizedSentences, mtSystemID):
+        inputToserver = [{'id':mtSystemID}]
+        outputFromServer={}
+        for sentence in listOfTokenizedSentences:
+            inputToserver[0]['src']=sentence
+            output = {}
             try:
-                  translation, scores, n_best, times = translation_server.run(inputs)
-                  assert len(translation) == len(inputs)
-                  assert len(scores) == len(inputs)
-                  out = [{"src": inputs[i]['src'], "tgt": translation[i],
+                  translation, scores, n_best, times = translation_server.run(inputToserver)
+                  assert len(translation) == len(inputToserver)
+                  assert len(scores) == len(inputToserver)
+                  output = [{"src": inputToserver[i]['src'], "tgt": translation[i],
                         "n_best": n_best,
                         "pred_score": scores[i]}
                         for i in range(len(translation))]
             except ServerModelError as e:
-                  out['error'] = str(e)
-                  out['status'] = STATUS_ERROR
-            print ('translation done')
-            if 'src' not in tok_tgt:
-                  tok_tgt['src']=[out[0]['src']]
-                  tok_tgt['tgt']=[out[0]['tgt']]
+                  output['error'] = str(e)
+                  output['status'] = STATUS_ERROR
+            if 'src' not in outputFromServer:
+                  outputFromServer['src']=[output[0]['src']]
+                  outputFromServer['tgt']=[output[0]['tgt']]
             else:
-                  tok_tgt['src'].append(out[0]['src'])
-                  tok_tgt['tgt'].append(out[0]['tgt'])
-        tok_tgt['src']=originalInput
-        tok_tgt['tgt']="\n".join(tok_tgt['tgt'])
-        return jsonify(tok_tgt)
-    
+                  outputFromServer['src'].append(output[0]['src'])
+                  outputFromServer['tgt'].append(output[0]['tgt'])
+        outputFromServer['src']="\n\n".join(outputFromServer['src'])
+        outputFromServer['tgt']="\n\n".join(outputFromServer['tgt'])
+        return jsonify(outputFromServer)
+
     @app.route('/')
     def home():
         out={'src':'','tgt':''}
