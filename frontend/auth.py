@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask_login import login_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models_db import User
 from . import db
@@ -26,14 +27,11 @@ def login_post():
 
     user = User.query.filter_by(name=name).first()
 
-    print(user)
-
-
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         return redirect(url_for('auth.login'))
 
-
+    login_user(user)
     return render_template('pages/loginSuccess.home.html')
 
 @auth.route('/signup', methods=['POST'])

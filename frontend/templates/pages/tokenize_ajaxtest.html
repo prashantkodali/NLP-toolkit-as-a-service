@@ -1,0 +1,33 @@
+{% extends 'layouts/services.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+
+<div class="page-header">
+  <h1>Tokenization</h1>
+  <p> <u>Description Of Our Tokenizer</u></p>
+</div>
+
+<form method="POST" action = "{{ url_for('services.tokenize_call') }}" id="input">
+  <div class="form-group">
+    <label for="text">Input text here:</label>
+    <textarea class="form-control" name="text" rows="3"> {{ input }}</textarea>
+    <hr>
+    <input type="submit" class="btn" name="submit_button" value="Tokenize Input">
+  </div>
+</form>
+
+
+<form id="output">
+  <label for="text">Output tokenized text:</label>
+  <textarea class="form-control" id="output_text" rows="3"> {{ output }}</textarea>
+</form>
+
+<hr>
+
+<div class="page-header">
+  <p><u>API Details:</u></p>
+</div>
+
+{% endblock %}
