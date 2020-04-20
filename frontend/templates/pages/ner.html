@@ -32,7 +32,7 @@ $(function() {
 </div>
 
 <div>
-<form action="/getNER/" method="post">     
+<form id="ner" method="post" action="{{ url_for('services.ner_call') }}">    
 <div>
 <h2> Choose your input</h2>
    <input type="radio" name="type" value="txt"> Enter Text
