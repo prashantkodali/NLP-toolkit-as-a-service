@@ -8,19 +8,19 @@
 <script>
 $(function() {
   $('input[name="type"]').on('click', function() {
-    if ($(this).val() == 'Experienced') {
+    if ($(this).val() == 'url') {
       $('#textboxes').show();
     } else {
       $('#textboxes').hide();
     }
-
-    if ($(this).val() == 'Fresher') {
+    
+    if ($(this).val() == 'txt') {
       $('#textboxes1').show();
     } else {
       $('#textboxes1').hide();
     }
   });
-
+  
 });
 
 </script>
@@ -32,16 +32,16 @@ $(function() {
 </div>
 
 <div>
-<form action="{{ url_for('services.ner_call') }}" method="post">     
+<form action="/getNER/" method="post">     
 <div>
 <h2> Choose your input</h2>
-   <input type="radio" name="type" value="Fresher"> Enter Text
-   <input type="radio" name="type" value="Experienced"> Enter URL
+   <input type="radio" name="type" value="txt"> Enter Text
+   <input type="radio" name="type" value="url"> Enter URL
 </div>
 
-
+    
 <div id="textboxes" style="display: none">
-URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/>
+URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/> 
 
 </div>
 
@@ -49,8 +49,8 @@ URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|h
 Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
 
 </textarea>
-</div>
-
+</div>  
+     
     <input type="submit" value="Get NER"/>
 </form>
 <br>
@@ -58,7 +58,7 @@ Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
                		<div id="translated" style="display: block;">
                			<div class="row desc">
                				<span id="outputLang">Output:</span>
-
+					
                			</div><br/>
                       		<div class="row">
                 	            	<div id="outputText" class="row">
