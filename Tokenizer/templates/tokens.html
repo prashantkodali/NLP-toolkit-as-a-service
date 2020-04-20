@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tokenization</title>
+<!-- <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function() {
+  $('input[name="type"]').on('click', function() {
+    // if ($(this).val() == 'url') {
+    //   $('#textboxes').show();
+    // } else {
+    //   $('#textboxes').hide();
+    // }
+    
+    if ($(this).val() == 'txt') {
+      $('#textboxes1').show();
+    } else {
+      $('#textboxes1').hide();
+    }
+  });
+  
+});
+
+</script>
+</head>
+ -->
+<body>
+<div>
+<h1>Tokenization</h1>
+
+</div>
+
+<div>
+<form action="/gettokenizer" method="post">     
+<!-- <div>
+<h2> Choose your input</h2>
+   <input type="radio" name="type" value="txt"> Enter Text
+</div>
+ -->
+<!-- <div id="textboxes1" style="display: none"> -->
+<p>Enter Text:</p> 
+<textarea id="txtarea" rows="4" cols="50" name="txt_ip">
+</textarea>
+</div>  
+     
+    <input type="submit" value="Get tokenizer"/>
+</form>
+<br>
+<div class="wrapper" id="output">
+               		<div id="translated" style="display: block;">
+               			<div class="row desc">
+               				<span id="outputLang">Output:</span>
+					
+               			</div><br/>
+                      		<div class="row">
+                	            	<div id="outputText" class="row">
+					 {{ tags | safe }}
+					</div>
+				</div>
+			</div>
+            	</div>
+        </div>
+
+</div>
+</body>
+</html>
