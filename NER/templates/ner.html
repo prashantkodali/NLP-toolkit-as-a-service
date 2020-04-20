@@ -8,13 +8,13 @@
 <script>
 $(function() {
   $('input[name="type"]').on('click', function() {
-    if ($(this).val() == 'Experienced') {
+    if ($(this).val() == 'url') {
       $('#textboxes').show();
     } else {
       $('#textboxes').hide();
     }
     
-    if ($(this).val() == 'Fresher') {
+    if ($(this).val() == 'txt') {
       $('#textboxes1').show();
     } else {
       $('#textboxes1').hide();
@@ -35,8 +35,8 @@ $(function() {
 <form action="/getNER/" method="post">     
 <div>
 <h2> Choose your input</h2>
-   <input type="radio" name="type" value="Fresher"> Enter Text
-   <input type="radio" name="type" value="Experienced"> Enter URL
+   <input type="radio" name="type" value="txt"> Enter Text
+   <input type="radio" name="type" value="url"> Enter URL
 </div>
 
     
