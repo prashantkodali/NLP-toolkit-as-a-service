@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import login_user
+from flask_login import login_user,logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models_db import User
 from . import db
 from .forms import *
+
 
 auth = Blueprint('auth', __name__)
 
@@ -58,6 +59,19 @@ def signup_post():
     # return redirect(url_for('auth.login'))
     return redirect(url_for('auth.login'))
 
+from . import login_manager
+
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    """Redirect unauthorized users to Login page."""
+    flash('You must be logged in to view that page.')
+    return redirect(url_for('auth.login'))
+
+
 @auth.route('/logout')
+@login_required
 def logout():
-    return 'Logout'
+    logout_user()
+    flash('You were logged out.')
+    return redirect(url_for('main.home'))

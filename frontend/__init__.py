@@ -4,6 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
+login_manager = LoginManager()
+
+
 
 def create_app():
     app = Flask(__name__)
@@ -14,8 +17,9 @@ def create_app():
     db.init_app(app)
 
 
-    login_manager = LoginManager()
     login_manager.init_app(app)
+    login_manager.login_view = "auth.login"
+
 
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
@@ -32,10 +36,9 @@ def create_app():
 
     from .models_db import User
 
-    login_manager.login_view = "auth.login"
 
     @login_manager.user_loader
-    def load_user(name):
-        return User.query.filter_by(name=name).first()
+    def load_user(id):
+        return User.query.get(int(id))
 
     return app

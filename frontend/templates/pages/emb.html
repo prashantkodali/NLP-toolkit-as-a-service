@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Text Embeddings</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function() {
+  $('input[name="type"]').on('click', function() {
+    if ($(this).val() == 'Experienced') {
+      $('#textboxes').show();
+    } else {
+      $('#textboxes').hide();
+    }
+
+    if ($(this).val() == 'Fresher') {
+      $('#textboxes1').show();
+    } else {
+      $('#textboxes1').hide();
+    }
+  });
+
+});
+
+</script>
+</head>
+<body>
+<div>
+<h1>Text Embeddings</h1>
+
+</div>
+
+<div>
+<form action="{{ url_for('services.emb_call') }}" method="post">
+<div>
+<h2> Choose your input</h2>
+   <input type="radio" name="type" value="Fresher"> Enter Text
+   <!--<input type="file" id="myFile" name="filename"> Choose File
+   <input type="submit">-->
+</div>
+<div id="textboxes1" style="display: none">
+Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
+
+</textarea>
+</div>
+
+<div class="row">
+
+		<select id="id" name="id">
+		<option value ="100" name ="pruned">Bert Embeddings</option>
+		<option value ="101" name ="pruned">Distil Bert Embeddings</option>
+		<option value ="102" name ="pruned">AlBert Embeddings</option>
+		</select>
+		<input id="generate"type="submit" value="GenerateEmbeddings"/>
+		</div>
+
+</form>
+<br>
+<div class="wrapper" id="output">
+               		<div id="translated" style="display: block;">
+               			<div class="row desc">
+               				<span id="outputLang">Output:</span>
+
+               			</div><br/>
+                      		<div class="row">
+                	            	<div id="outputText" class="row">
+					 {{ tags | safe }}
+					</div>
+				</div>
+			</div>
+            	</div>
+        </div>
+
+</div>
+</body>
+</html>

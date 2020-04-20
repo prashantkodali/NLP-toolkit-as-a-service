@@ -43,7 +43,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">NLP Toolkit</a>
+          <a class="navbar-brand" href="{{ url_for('main.loginSuccess') }}">NLP Toolkit</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -60,9 +60,13 @@
                 <li><a>Sentimental Analysis</a></li>
                 <li><a>Summarization</a></li>
                 <li><a href="{{ url_for('services.mt_page') }}">Machine Translation</a></li>
-
             </ul>
-          </ul>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        </ul>
 
         </div><!--/.nav-collapse -->
       </div>

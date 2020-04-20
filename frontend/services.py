@@ -41,3 +41,46 @@ def mt_call():
     return render_template('pages/mt.html', input= response.json()['src'], output=response.json()['tgt'])
     # return response.json()
     # return 'Tokenized text:
+
+@services.route('/ner_page',methods = ['GET'])
+def ner_page():
+    return render_template('pages/ner.html')
+
+@services.route('/ner_call',methods = ['POST'])
+def ner_call():
+
+    if(str(request.form["url_ip"])):
+        text = str(request.form["url_ip"])
+        type = "url"
+        td = {'text':text, 'type':type }
+        response = requests.post("http://45db40b2.ngrok.io/getNER", json = td)
+
+    elif(str(request.form["txt_ip"])):
+        text = str(request.form["txt_ip"])
+        type = "text"
+        td = {'text':text, 'type':type }
+
+        response = requests.post("http://45db40b2.ngrok.io/getNER", json = td)
+
+
+    # print(response.json())
+    return render_template('pages/ner.html', tags= response.json()['output_text'])
+
+
+
+@services.route('/emb_page',methods = ['GET'])
+def emb_page():
+    return render_template('pages/emb.html')
+
+@services.route('/emb_call',methods = ['POST'])
+def emb_call():
+
+    text = request.form['txt_ip']
+    id = request.form['id']
+
+    td = {'text':text, 'id':id}
+
+    response = requests.post("http://4063843b.ngrok.io/GenerateEmbeddings", json = td)
+    print(response.json()['embeddings'])
+    # print(response.json())
+    return render_template('pages/emb.html', tags= response.json()['embeddings'])
