@@ -1,6 +1,6 @@
-<p align="center">
-  <b>### Frontend</b><br>
-</p>
+## <div align="center">
+  <b>Frontend</b><br>
+</div>
 
 
 Frontend in our project is a Flask application. [Flask]((https://flask.palletsprojects.com/en/1.1.x/)) is a lightweight web application framework.
@@ -15,10 +15,11 @@ Broadly, our frontend has following Components:
 
 How to run:
 - To run flask app, export the following variables before calling "flask run" command. Port and other details can be changed as needed.
- $export FLASK_APP=frontend
+ ```$export FLASK_APP=frontend
  $export FLASK_RUN_PORT=5000
  $export FLASK_DEBUG=1
  $flask run
+ ```
 
 Each component is detailed in the following section.
 
