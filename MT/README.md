@@ -1,24 +1,17 @@
 # Machine Translation System
 
- early description 
-        attention
-        transformer
-    api call kaise karna
-    references
-        papers
-
-### Short Description
+### Short Description of Service
 
 Machine Translation system is a program/model for translating from source language (e.g. English) to target language (e.g. Hindi). There are multiple ways of making such a system e.g. rule based, data driven techniques which make use of ML algorithms, hybrid systems unifying both rule based and data driven based techniques. We are have used ML based models for building MT systems for translating English to Hindi or Bhojpuri. 
 
-### Resources Used to make MT systems
+### Resources Used to Make MT Systems
 
-#### For training Machine Translation system
+#### For Training Machine Translation system
 
-We used [Opennmt](https://github.com/OpenNMT/OpenNMT-py) package to train Neural Machine Translation models. 
+We used [Opennmt](https://github.com/OpenNMT/OpenNMT-py) package to train Neural Machine Translation models. And [Flask](https://github.com/pallets/flask) package for providing APIs for translation service.
 
 #### Data Resources
-Models were trained on 2 language pairs English --> {Hindi, Bhojpuri} using following datasets
+Models provided as serivce are trained on 2 language pairs English ==> {Hindi, Bhojpuri} using following datasets
 
 - [English Hindi Parallel Corpus v2.1](http://www.cfilt.iitb.ac.in/iitb_parallel/)
 
