@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sentiment Analysis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function() {
+  $('input[name="type"]').on('click', function() {
+    if ($(this).val() == 'Experienced') {
+      $('#textboxes').show();
+    } else {
+      $('#textboxes').hide();
+    }
+    
+    if ($(this).val() == 'Fresher') {
+      $('#textboxes1').show();
+    } else {
+      $('#textboxes1').hide();
+    }
+  });
+  
+});
+
+</script>
+</head>
+<body>
+<div>
+<h1>Sentiment Analysis</h1>
+
+</div>
+
+<div>
+<form action="/getSentiment/" method="post">     
+<div>
+<form action="/getSentiment" method="post">     
+
+<label for="text">Input text here:</label>
+<textarea id="txtarea" rows="4" cols="50" name="txt_ip"> {{ input | safe }}
+
+</textarea>
+</div>  
+
+<div class="row">        
+			 
+		<select id="id" name="id">
+		<option value ="100" name ="pruned">English Sentiment Analysis</option>
+		<option value ="101" name ="pruned">Code-Mixed Sentiment Analysis</option>
+		</select>
+		<input id="generate"type="submit" value="Get Sentiment"/>
+		</div>
+
+</form>
+<br>
+<div class="wrapper" id="output">
+               		<div id="translated" style="display: block;">
+               			<div class="row desc">
+               				<span id="outputLang">Output:</span>
+					
+               			</div><br/>
+                      		<div class="row">
+                	            	<div id="outputText" class="row">
+					 {{ tags | safe }}
+					</div>
+				</div>
+			</div>
+            	</div>
+        </div>
+
+</div>
+</body>
+</html>

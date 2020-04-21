@@ -55,10 +55,10 @@
               <ul class="dropdown-menu">
 
                 <li><a href="{{ url_for('services.tokenizer_page') }}">Tokenization</a></li>
-                <li><a>Text Representations</a></li>
-                <li><a>Named Entity Recognition</a></li>
-                <li><a>Sentimental Analysis</a></li>
-                <li><a>Summarization</a></li>
+                <li><a href="{{ url_for('services.emb_page') }}">Text Representations</a></li>
+                <li><a href="{{ url_for('services.ner_page') }}">Named Entity Recognition</a></li>
+                <li><a href="#">Sentimental Analysis</a></li>
+                <li><a href="{{ url_for('services.summarize_page') }}">Summarization</a></li>
                 <li><a href="{{ url_for('services.mt_page') }}">Machine Translation</a></li>
             </ul>
           </li>

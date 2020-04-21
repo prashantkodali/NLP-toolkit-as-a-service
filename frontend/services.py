@@ -15,8 +15,8 @@ def tokenize_call():
     text = request.form['text']
     # text = request.args.get('input_text', 0, type=int)
     print(text)
-    td = {'text':text }
-    response = requests.post("http://192.168.1.6:5000/ntlktokenize", json = td)
+    td = {'input_text':text }
+    response = requests.post("http://e0cd242b.ngrok.io/gettokenizer", json = td)
 
     print(response.json())
     print(type(response.json()))
@@ -80,7 +80,45 @@ def emb_call():
 
     td = {'text':text, 'id':id}
 
-    response = requests.post("http://4063843b.ngrok.io/GenerateEmbeddings", json = td)
+    response = requests.post("http://d794274c.ngrok.io/GenerateEmbeddings", json = td)
     print(response.json()['embeddings'])
     # print(response.json())
-    return render_template('pages/emb.html', tags= response.json()['embeddings'])
+    return render_template('pages/emb.html', output= response.json()['embeddings'])
+
+
+@services.route('/sentiment_page',methods = ['GET'])
+def sentiment_page():
+    return render_template('pages/sentiment.html')
+
+@services.route('/sentiment_call',methods = ['POST'])
+def sentiment_call():
+
+    text = request.form['txt_ip']
+    id = int(request.form['id'])
+
+    td = {'text':text, 'id':id,}
+
+    response = requests.post("http://8dc45a7f.ngrok.io/getSentiment", json = td)
+    # print(response.json()['embeddings'])
+    print(response.json())
+    return render_template('pages/sentiment.html', input = text,output= response.json()['label'])
+
+
+
+@services.route('/summarize_page',methods = ['GET'])
+def summarize_page():
+    return render_template('pages/summarization.html')
+
+@services.route('/summarize_call',methods = ['POST'])
+def summarize_call():
+
+    text = request.form['text']
+    num = int(request.form['num'])
+    option = request.form['input_type']
+
+    td = {'text':text, 'num':num, 'option':option}
+
+    response = requests.post("http://localhost:6000/summarize", json = td)
+    # print(response.json()['embeddings'])
+    print(response.json())
+    return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'])
