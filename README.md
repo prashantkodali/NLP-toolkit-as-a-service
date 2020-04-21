@@ -1,24 +1,21 @@
 <p align="center">
-  <b>### CSE 461 Software Engineering</b><br>
-  <a>#### Spring 2020</a> |
-  <a>#### IIIT Hyderabad</a> |
-  <a>### Course Project: NLP toolkit as a servic</a>
+  <b>CSE 461 Software Engineering</b><br>  
+  <a>Spring 2020</a><br>
+  <a>IIIT Hyderabad</a><br><br>
+  <b>Course Project: NLP toolkit as a service</b></a>
   <br><br>
+  <b>Team 8</b><br>
+  <a>Saumitra Yadav | </a><a>Neha Motlani | </a><a>Sunil Gundapu</a><br>
+  <a>Ananya Mukherjee | </a><a>Prashant Kodali | </a><a>Hiranmai Sri Adibhatla</a>  
 </p>
 
 
 
-### Team 8
-- Saumitra Yadav
-- Neha Motlani
-- Sunil Gundapu
-- Ananya Mukherjee
-- Prashant Kodali
-- Hiranmai Sri Adibhatla
 
-[Project Abstract](Team 8 SWE Project - Project Abstract.pdf)
 
-[Project High Level Design](Team 8 SWE Project - High Level Design.pdf)
+[Project Abstract](Team%208%20SWE%20Project%20-%20Project%20Abstract.pdf)
+
+[Project High Level Design](Team%208%20SWE%20Project%20-%20High%20Level%20Design.pdf)
 
 
 ### Project Overview:
@@ -40,7 +37,7 @@ To address this problem, our team set out on developing a platform which enables
     - [Tokenization](Tokenizer/)
     - [Text Representations](TextEmbeddings/)
     - [Named Entity Recongniation](NER/)
-    - [Sentiment Analysis](Sentiment Analysis/)
+    - [Sentiment Analysis](Sentiment%20Analysis/)
     - [Summarization](Summarization/)
     - [Machine Translation](MT/)
     Please access these individual pages for more details on each of these pages.
