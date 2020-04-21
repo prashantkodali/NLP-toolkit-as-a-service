@@ -2,20 +2,15 @@
   <b>CSE 461 Software Engineering</b><br>  
   <a>Spring 2020</a><br>
   <a>IIIT Hyderabad</a><br><br>
-  <b>Course Project: NLP toolkit as a service</b></a>
+  <b><u>Course Project: NLP toolkit as a service</u></b></a>
   <br><br>
   <b>Team 8</b><br>
   <a>Saumitra Yadav | </a><a>Neha Motlani | </a><a>Sunil Gundapu</a><br>
-  <a>Ananya Mukherjee | </a><a>Prashant Kodali | </a><a>Hiranmai Sri Adibhatla</a>  
+  <a>Ananya Mukherjee | </a><a>Prashant Kodali | </a><a>Hiranmai Sri Adibhatla</a>  <br>
+  
+  [Project Abstract](Team%208%20SWE%20Project%20-%20Project%20Abstract.pdf) | [Project High Level Design](Team%208%20SWE%20Project%20-%20High%20Level%20Design.pdf)
+
 </p>
-
-
-
-
-
-[Project Abstract](Team%208%20SWE%20Project%20-%20Project%20Abstract.pdf)
-
-[Project High Level Design](Team%208%20SWE%20Project%20-%20High%20Level%20Design.pdf)
 
 
 ### Project Overview:
@@ -40,6 +35,7 @@ To address this problem, our team set out on developing a platform which enables
     - [Sentiment Analysis](Sentiment%20Analysis/)
     - [Summarization](Summarization/)
     - [Machine Translation](MT/)
+    
     Please access these individual pages for more details on each of these pages.
 
 ### System Architecture
