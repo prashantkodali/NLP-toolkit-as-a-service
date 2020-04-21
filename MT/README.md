@@ -14,12 +14,13 @@ Machine Translation system is a program/model for translating from source langua
 ### Resources Used to make MT systems
 
 #### For training Machine Translation system
-	We used [https://github.com/OpenNMT/OpenNMT-py/](Opennmt) package to train Neural Machine Translation models. 
+
+We used [Opennmt](https://github.com/OpenNMT/OpenNMT-py) package to train Neural Machine Translation models. 
 
 #### Data Resources
-	Models were trained on 2 language pairs English --> {Hindi, Bhojpuri} using following datasets
-		- [English Hindi Parallel Corpus v2.1](http://www.cfilt.iitb.ac.in/iitb_parallel/)
-		- [English Bhojpuri Parallel Corpus](https://sites.google.com/view/loresmt)
+Models were trained on 2 language pairs English --> {Hindi, Bhojpuri} using following datasets
+	- [English Hindi Parallel Corpus v2.1](http://www.cfilt.iitb.ac.in/iitb_parallel/)
+	- [English Bhojpuri Parallel Corpus](https://sites.google.com/view/loresmt)
 
 #### System Architectures Used
 
