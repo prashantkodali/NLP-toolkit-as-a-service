@@ -1,39 +1,79 @@
 {% extends 'layouts/services.html' %}
-{% block title %}Home{% endblock %}
+{% block title %}Named Entity Recognition{% endblock %}
 {% block content %}
 
-<div class="page-header">
-  <h1>Named Entity Recognition</h1>
-  <p> <u>Description Of the service</u></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function() {
+  $('input[name="type"]').on('click', function() {
+    if ($(this).val() == 'url') {
+      $('#textboxes').show();
+    } else {
+      $('#textboxes').hide();
+    }
+    
+    if ($(this).val() == 'txt') {
+      $('#textboxes1').show();
+    } else {
+      $('#textboxes1').hide();
+    }
+  });
+  
+});
+
+</script>
+</head>
+<body>
+
+<div>
+<form action="/getNER/" method="post">     
+<div>
+<h1>Named Entity Recognition</h1>
+<p> <u>Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing. <br>
+<br>
+This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL. 
+<br> 
+Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.</p>
+<p> <u>Model:</u> SpaCy’s named entity recognition model is trained on OntoNotes5 corpus.</p>
+<p> <u>Service Architecture:</u> </p>
+<h3> Choose your input</h3>
+   <input type="radio" name="type" value="txt"> Enter Text
+   <input type="radio" name="type" value="url"> Enter URL
 </div>
 
+    
+<div id="textboxes" style="display: none">
+Input URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/> 
 
-<form action="{{ url_for('services.ner_call') }}" method="post">
+</div>
 
-<h2> Choose your input</h2>
-   <input type="radio" name="type" value="Fresher"> Enter Text
-   <input type="radio" name="type" value="Experienced"> Enter URL
-
-URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/>
-
-Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
+<div id="textboxes1" style="display: none">
+Input Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
 
 </textarea>
-
-<input type="submit" value="Get NER"/>
+</div>  
+     
+    <input type="submit" value="Get NER"/>
 </form>
-
-
 <br>
+<div class="wrapper" id="output">
+               		<div id="translated" style="display: block;">
+               			<div class="row desc">
+               				<span id="outputLang">Output:</span>
+					
+               			</div><br/>
+                      		<div class="row">
+                	            	<div id="outputText" class="row">
+									<textarea class="form-control" id="output_text" rows="3"> {{ tags | safe }}</textarea>
+					 
+					</div>
+				</div>
+			</div>
+            	</div>
+        </div>
 
-<form id="output">
-	<label for="text">Sentiment</label>
-  <textarea class="form-control" id="output_text" rows="3"> {{ tags | safe }}</textarea>
-</form>
-
+</div>
 <hr>
-
-
 
 <div class="page-header">
   <p><u>API Details:</u></p>
