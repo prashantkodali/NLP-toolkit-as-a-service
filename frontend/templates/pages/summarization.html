@@ -1,0 +1,38 @@
+{% extends 'layouts/services.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+
+<div class="page-header">
+  <h1>Summarization</h1>
+  <p> <u>Description Of Our Summarization Method</u></p>
+</div>
+
+<form method="POST" action = "{{ url_for('services.summarize_call') }}" id="input">
+  <div class="form-group">
+
+    <label for="text">Input text here:</label>
+    <textarea class="form-control" name="text" rows="3"> {{ input }}</textarea>
+    <br>
+    <label for="num">Input number of sentences in summary</label>
+    <textarea class="form-control" name="num" rows="1"> {{ sen_num }}</textarea>
+
+    <hr>
+    <input type="submit" class="btn" name="submit_button" value="Summarize Text">
+  </div>
+</form>
+
+
+<form id="output">
+  <label for="text">Summary</label>
+  <textarea class="form-control" id="output_text" rows="3"> {{ output }}</textarea>
+</form>
+
+<hr>
+
+<div class="page-header">
+  <p><u>API Details:</u></p>
+</div>
+
+{% endblock %}

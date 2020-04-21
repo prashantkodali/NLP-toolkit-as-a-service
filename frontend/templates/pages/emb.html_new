@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<HTML> 
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Generate Embeddings System</title>
+		<style>
+			ul {
+			    list-style-type: none;
+			    margin: 0;
+			    padding: 0;
+			    overflow: hidden;
+			    background-color: #222;
+			}
+
+			li {
+			    float: left;
+			}
+
+			li a {
+			    display: block;
+			    color: white;
+			    text-align: center;
+			    padding: 14px 16px;
+			    text-decoration: none;
+			}
+
+			li a:hover {
+			    background-color: #111;
+			}
+		</style>
+	</head> 
+         <script type = "text/javascript">
+        function clear_text(){
+        document.getElementById('src').value="";
+        document.getElementById('outputText').value="";
+        } 
+		</script>
+<body>
+<div>
+<form action="/getEmbeddings/" method="post">     
+<div>
+<h2> Choose your input</h2>
+   <input type="radio" name="type" value="Fresher"> Enter Text
+   <!--<input type="file" id="myFile" name="filename"> Choose File 
+   <input type="submit">-->
+</div>
+<div id="textboxes1" style="display: none">
+Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
+
+</textarea>
+</div>  
+
+<div class="row">        
+			 
+		<select id="id" name="id">
+		<option value ="100" name ="pruned">Bert Embeddings</option>
+		<option value ="101" name ="pruned">Distil Bert Embeddings</option>
+		<option value ="102" name ="pruned">AlBert Embeddings</option>
+		</select>
+		<input id="generate"type="submit" value="GenerateEmbeddings"/>
+		</div>
+
+	<div id="outputMod" class="column fr">
+		<div class="wrapper">
+               		<div id="translated" style="display: block;">
+               			<div class="row desc">
+               				<span id="outputLang">Translated:</span>
+					
+               			</div><br/>
+                      		<div class="row">
+                	            	<div id="outputText" class="row">
+					{{ value["tgt"] }}
+					</div>
+				</div>
+			</div>
+            	</div>
+        </div>
+     </body>
+</HTML>

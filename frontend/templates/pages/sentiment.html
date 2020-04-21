@@ -1,0 +1,41 @@
+{% extends 'layouts/services.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Sentiment Analysis</h1>
+  <p> <u>Description Of the service</u></p>
+</div>
+
+<form id="transForm" method="post" action="{{ url_for('services.sentiment_call') }}">
+		<div class="form-group">
+			<label for="text">Input text here:</label>
+			<!--<input type="reset" name="clear" value="Clear" onclick="clear_text()"/>-->
+			<textarea id="src" class="form-control" rows="3" name="txt_ip">{{ input }}</textarea>
+      <label for="text">Select Model type :</label>
+			<select style="margin-top:0.5cm" id="id" name="id">
+				<option value ="100" name ="pruned">English -> English Sentiment Analysis</option>
+				<option value ="101" name ="pruned">English -> Code-Mixed Sentiment Analysis</option>
+
+			</select>
+			<br>
+			<input style="margin-top:0.5cm" class="btn" id="translate"type="submit" value="Get Sentiment"/>
+
+		</div>
+	</form>
+
+
+
+<form id="output">
+	<label for="text">Sentiment</label>
+  <textarea class="form-control" id="output_text" rows="3"> {{ output }}</textarea>
+</form>
+
+<hr>
+
+<div class="page-header">
+  <p><u>API Details:</u></p>
+</div>
+
+
+{% endblock %}
