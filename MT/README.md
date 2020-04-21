@@ -19,8 +19,10 @@ We used [Opennmt](https://github.com/OpenNMT/OpenNMT-py) package to train Neural
 
 #### Data Resources
 Models were trained on 2 language pairs English --> {Hindi, Bhojpuri} using following datasets
-	- [English Hindi Parallel Corpus v2.1](http://www.cfilt.iitb.ac.in/iitb_parallel/)
-	- [English Bhojpuri Parallel Corpus](https://sites.google.com/view/loresmt)
+
+- [English Hindi Parallel Corpus v2.1](http://www.cfilt.iitb.ac.in/iitb_parallel/)
+
+- [English Bhojpuri Parallel Corpus](https://sites.google.com/view/loresmt)
 
 #### System Architectures Used
 
