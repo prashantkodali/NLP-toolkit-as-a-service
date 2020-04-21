@@ -8,11 +8,11 @@ from collections import Counter
 from bs4 import BeautifulSoup
 import requests
 import re
-
+from json2html import json2html
 from spacy import displacy
 import en_core_web_sm
 from flask import Flask, jsonify, request,render_template,redirect, url_for
-
+import requests
 
 nlp = en_core_web_sm.load()
 
@@ -27,16 +27,19 @@ def index():
 def NER():
     return render_template("ner.html")
 
-@app.route("/getNER/", methods=['POST','GET'])
+@app.route("/getNER", methods=['POST','GET'])
 def form():
-    
-    if(str(request.form["url_ip"])):
-        tags = getNerTagsFromURl(str(request.form["url_ip"]))
+    JsonInput = request.get_json(force=True)
+    inpTyp = JsonInput['type']
+    input = JsonInput['text']
+    print(inpTyp,input)
+    if(inpTyp == 'url'):
+        tags = getNerTagsFromURl(str(input))
         
-    elif(str(request.form["txt_ip"])):
-        tags = getNerTags(str(request.form["txt_ip"]))
-    
-    return render_template("ner.html", tags=tags)
+    elif(inpTyp == 'text'):
+        tags = getNerTags(str(input))
+
+    return jsonify({'output_text':tags})
 
 def getNerTagsFromURl(url):
     #retrieve article from url
@@ -69,4 +72,4 @@ def getNerTags(inputText):
     X = displacy.render(nlp(str(sentences)), jupyter=None, style='ent')
     return X
 	
-app.run(host='0.0.0.0', port = 5000, debug=True)
+app.run(host='0.0.0.0', port = 8080, debug=True)

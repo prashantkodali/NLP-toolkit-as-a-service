@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Named Entity Recognition</title>
-<meta charset="UTF-8">
+<title>Tokenization</title>
+<!-- <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function() {
   $('input[name="type"]').on('click', function() {
-    if ($(this).val() == 'url') {
-      $('#textboxes').show();
-    } else {
-      $('#textboxes').hide();
-    }
+    // if ($(this).val() == 'url') {
+    //   $('#textboxes').show();
+    // } else {
+    //   $('#textboxes').hide();
+    // }
     
     if ($(this).val() == 'txt') {
       $('#textboxes1').show();
@@ -25,33 +25,27 @@ $(function() {
 
 </script>
 </head>
+ -->
 <body>
 <div>
-<h1>Named Entity Recognition</h1>
+<h1>Tokenization</h1>
 
 </div>
 
 <div>
-<form action="/getNER/" method="post">     
-<div>
+<form action="/gettokenizer" method="post">     
+<!-- <div>
 <h2> Choose your input</h2>
    <input type="radio" name="type" value="txt"> Enter Text
-   <input type="radio" name="type" value="url"> Enter URL
 </div>
-
-    
-<div id="textboxes" style="display: none">
-URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/> 
-
-</div>
-
-<div id="textboxes1" style="display: none">
-Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
-
+ -->
+<!-- <div id="textboxes1" style="display: none"> -->
+<p>Enter Text:</p> 
+<textarea id="txtarea" rows="4" cols="50" name="txt_ip">
 </textarea>
 </div>  
      
-    <input type="submit" value="Get NER"/>
+    <input type="submit" value="Get tokenizer"/>
 </form>
 <br>
 <div class="wrapper" id="output">
