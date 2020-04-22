@@ -47,14 +47,14 @@ Example Usage:
 	
 	curl -i -X POST -H "Content-Type: application/json" -d '[{"src": "INSERT ENGLISH SENTENCE HERE", "id": MODEL_ID}]' http://8ea2b9ff.ngrok.io/translate
 	
-Input Parameters For Json (src,id)
+Input Parameters : Json (src,id)
 
 	| Field | Type    | Description                                                         |
 	|-------|---------|---------------------------------------------------------------------|
 	| src   | String  | Source sentence which has to be translated.                         |
 	| id    | Integer | Ids refer to each translation model which can be used to translate. |
 	
-Output in form of Json (src, tgt, errorMessage)
+Output : Json File (src, tgt, errorMessage)
 
 	| Field        | Type   | Description                                                                     |
 	|--------------|--------|---------------------------------------------------------------------------------|
@@ -62,22 +62,45 @@ Output in form of Json (src, tgt, errorMessage)
 	| tgt          | String | Sentence Translated from 'src' source sentence and translated using model 'id'. |
 	| errorMessage | String | Contains error message, if any.                                                 |
 
+Models available right now,
+
+	| Model ID | Model Description                                                    |
+	|----------|----------------------------------------------------------------------|
+	| 100      | English Hindi Translation System using NMT with Attention Network    |
+	| 101      | English Hindi Translation System using Transformer Network           |
+	| 102      | English Bhojpuri Translation System using NMT with Attention Network |
 
 ##### To add more translation systems
 
-	Add configuartion in transConfig.json
-
-
-#### MT service pipeline
-
+This translation system can be extended by adding more translation models. Models trained using opennmt package are saved with '.pt' extension. And these models are added to mtConfig.json configuration file in json dictionary format with following fields,
 	
-
-	A sequence diagram shows the dynamics of a system. So, if you want to show the flow of calls that will occur when clients call your API, then that's your choice.
-
-	A class diagram shows the structure of a system. So, if you want to show the method/function signatures of your API and how they are distributed across types, then this is what you should use.
-
-	Or you could use both to depict different views of your API.
-
+	| Field            | Field Description                                             |
+	|------------------|---------------------------------------------------------------|
+	| id               | Model id to be used to denote translation system              |
+	| model            | Path to model                                                 |
+	| timeout          | Seconds before freeing the GPU space                          |
+	| on_timeout       | Where to move server model                                    |
+	| opt[gpu]         | GPU id to be used for server, -1 for not using GPU            |
+	| opt[batch_size]  | Batch size of input                                           |
+	| opt[beam_size]   | Beam size for decoding                                        |
+	| opt[replace_unk] | Replace a token not translated by most attentive source token |
+	
+	e.g.
+```json
+	{
+	    "id": 100,
+	    "model": "nmtWithAttention.pt",
+	    "timeout": 60000,
+	    "on_timeout": "to_cpu",
+	    "load": true,
+	    "opt": {
+		"gpu":-1,
+		"batch_size": 1,
+		"beam_size": 10,
+		"replace_unk": true
+	    }
+	}
+```
 
 ### References
 
