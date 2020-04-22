@@ -7,6 +7,19 @@
 <div class="page-header">
   <h1>Summarization</h1>
   <p> <u>Description Of Our Summarization Method</u></p>
+  <p> This summarization service for english that employs a clustring approach to Extractive summarization. It uses FastText pretrained
+  embeddings to generate sentence embeddings, by summing vectors of all words in a sentence. Then we run a k-means clustring algorithm
+on the sentence vectors to get "n" centroids. This "n" is the number of sentences in the summary, which is taken as user input. Then we
+pick the nearest sentence to these "n" centroids to get the summary which has n sentences in it. </p>
+<p> <u>References</u></p>
+<p><a href="http://ijettjournal.org/volume-4/issue-8/IJETT-V4I8P120.pdf"> Anjali, D. R. & Lobo, L. M. R. J. (2013). Text Summarization using Clustering Technique.
+   International Journal of Engineering Trends and Technology (IJETT)</a>
+
+<p> <u>Libraries and Resources used</u></p>
+<p>1. FastText pretained embeddings for english<br />
+  2. k-means clustring from Sklearn library in Python</p>
+<p> <u>Author</u><br /> Prashant Kodali <br />prashant.kodali@research.iiit.ac.in</p>
+
 </div>
 
 <form method="POST" action = "{{ url_for('services.summarize_call') }}" id="input">
@@ -17,9 +30,9 @@
     <br>
     <label for="num">Input number of sentences in summary</label>
     <textarea class="form-control" name="num" rows="1"> {{ sen_num }}</textarea>
-
-    <hr>
+    <br>
     <input type="submit" class="btn" name="submit_button" value="Summarize Text">
+    <hr>
   </div>
 </form>
 
@@ -32,7 +45,17 @@
 <hr>
 
 <div class="page-header">
-  <p><u>API Details:</u></p>
+  <p ><u><b>API Details:</b></u></p>
+  <p style="text-indent: 2.5rem"><u>API end point</u></p>
+  <p style="text-indent: 5rem">http://localhost:6000/summarize/ <br />
+  <p style="text-indent: 2.5rem"><u>Input JSON format</u></p>
+  <p style="text-indent: 5rem">JSON should consist of two arguments :</p>
+    <p style="text-indent: 5rem">key: "text" , value: text for which summary is to be generated.</p>
+    <p style="text-indent: 5rem">key: "num", value: number of sentences the user wants in the summary </p>
+  <p style="text-indent: 2.5rem"><u>Output JSON format</u></p>
+  <p style="text-indent: 5rem">Service return a JSON with only one key </p>
+    <p style="text-indent: 5rem">key : "outputtext", value:  Summary of the sentence.</p>
+
 </div>
 
 {% endblock %}

@@ -1,3 +1,13 @@
+'''
+This file is a Blueprint consisting of all flask routes needed for calling services related pages and API endpoints.
+
+Each service has two routes:
+1. one for the frontend page, which when called will render the template page for that services. This template will have form for
+sourcing the necessary data from the user.
+2. another for calling the API end point of each endpoint. Reads the necessary input data from the user, puts it into json. Uses
+requests package to hit the api with necessary payload (json) and gets reponse from the service.
+'''
+
 from flask import Blueprint, render_template, request, jsonify
 import requests
 from . import db
@@ -5,6 +15,9 @@ from . import db
 
 services = Blueprint('services', __name__)
 
+
+####################################################################################################
+#Routes for Tokenization service.
 @services.route('/tokenizer_page',methods = ['GET'])
 def tokenizer_page():
     return render_template('pages/tokenize_ajaxtest.html')
@@ -13,17 +26,15 @@ def tokenizer_page():
 @services.route('/tokenize_call',methods = ['POST'])
 def tokenize_call():
     text = request.form['text']
-    # text = request.args.get('input_text', 0, type=int)
-    print(text)
-    td = {'input_text':text }
+    id = request.form['id']
+    td = {'input_text':text, 'id':id }
     response = requests.post("http://e0cd242b.ngrok.io/gettokenizer", json = td)
 
-    print(response.json())
-    print(type(response.json()))
-    print(type(jsonify(response.json())))
-
     return render_template('pages/tokenize_ajaxtest.html',input = text, output= response.json()['output_text'])
-    # return 'Tokenized text: {}'.format(word_tokenize(text))
+
+
+####################################################################################################
+#Routes for Machine Translation service.
 
 @services.route('/mt_page',methods = ['GET'])
 def mt_page():
@@ -37,10 +48,11 @@ def mt_call():
     td = [{'src':src, 'id':id }]
     response = requests.post("http://8ea2b9ff.ngrok.io/translate", json = td)
 
-    print(response.json())
     return render_template('pages/mt.html', input= response.json()['src'], output=response.json()['tgt'])
-    # return response.json()
-    # return 'Tokenized text:
+
+
+####################################################################################################
+#Routes for Named Entity Recognition service.
 
 @services.route('/ner_page',methods = ['GET'])
 def ner_page():
@@ -62,11 +74,11 @@ def ner_call():
 
         response = requests.post("http://45db40b2.ngrok.io/getNER", json = td)
 
-
-    # print(response.json())
     return render_template('pages/ner.html', tags= response.json()['output_text'])
 
 
+####################################################################################################
+#Routes for Text Representation service.
 
 @services.route('/emb_page',methods = ['GET'])
 def emb_page():
@@ -81,10 +93,12 @@ def emb_call():
     td = {'text':text, 'id':id}
 
     response = requests.post("http://d794274c.ngrok.io/GenerateEmbeddings", json = td)
-    print(response.json()['embeddings'])
-    # print(response.json())
+
     return render_template('pages/emb.html', output= response.json()['embeddings'])
 
+
+####################################################################################################
+#Routes for Sentiment Analysis service.
 
 @services.route('/sentiment_page',methods = ['GET'])
 def sentiment_page():
@@ -99,11 +113,11 @@ def sentiment_call():
     td = {'text':text, 'id':id,}
 
     response = requests.post("http://8dc45a7f.ngrok.io/getSentiment", json = td)
-    # print(response.json()['embeddings'])
-    print(response.json())
+
     return render_template('pages/sentiment.html', input = text,output= response.json()['label'])
 
-
+####################################################################################################
+#Routes for Summarization service.
 
 @services.route('/summarize_page',methods = ['GET'])
 def summarize_page():
@@ -114,11 +128,9 @@ def summarize_call():
 
     text = request.form['text']
     num = int(request.form['num'])
-    option = request.form['input_type']
 
-    td = {'text':text, 'num':num, 'option':option}
+    td = {'text':text, 'num':num}
 
     response = requests.post("http://localhost:6000/summarize", json = td)
-    # print(response.json()['embeddings'])
-    print(response.json())
+
     return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'])

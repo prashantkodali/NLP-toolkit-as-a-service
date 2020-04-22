@@ -1,3 +1,13 @@
+
+'''
+This file is used for base configurtion of the Flask app which runs the forntend service.
+
+Creates the base flask app,
+1. integrated with SQL-Alchemy for Database integration
+2. flask-login app for handling user login sessions in the init_app
+3. registers all the blueprints that consists routes to various services and pages.
+'''
+
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -5,7 +15,6 @@ from flask_sqlalchemy import SQLAlchemy
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
 login_manager = LoginManager()
-
 
 
 def create_app():

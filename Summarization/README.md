@@ -20,4 +20,6 @@ Following is the brief summary of the algorithm used for generating the summary:
   - sum up the embeddings of all words in a sentence to get the sentence embeddings.
 3. Run a k-means clustring algorithm to extract n clusters, where n is number of sentences in summary, which is taken as input.
 4. Centroids of each cluster are Representative of summary.
-5. Pick the nearest sentence to each of the Centroids. String these sentences together to get summary. 
+5. Pick the nearest sentence to each of the Centroids. String these sentences together to get summary.
+
+The code base for this service uses [Pymagnitue](https://github.com/plasticityai/magnitude) for handling the pretrained word embedding file. This ensures that query time for each word is very less and main memory footprint for these word embeddings is very less. 

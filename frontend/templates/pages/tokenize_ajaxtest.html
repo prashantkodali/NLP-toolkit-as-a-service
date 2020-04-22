@@ -13,7 +13,14 @@
   <div class="form-group">
     <label for="text">Input text here:</label>
     <textarea class="form-control" name="text" rows="3"> {{ input }}</textarea>
-    <hr>
+
+    <select style="margin-top:0.5cm" id="id" name="id">
+      <option value ="101" name ="pruned">Word Tokenization NLTK</option>
+      <option value ="102" name ="pruned">Word Tokenization Transformers</option>
+      <option value ="201" name ="pruned">Sentence Tokenization NLTK</option>
+      <option value ="201" name ="pruned">Sentence Tokenization deepsegment</option>
+    </select><br /> 
+    <br>
     <input type="submit" class="btn" name="submit_button" value="Tokenize Input">
   </div>
 </form>
