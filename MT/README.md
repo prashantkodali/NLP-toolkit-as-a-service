@@ -42,9 +42,14 @@ We made use of flask and opennmt to create RESTful API services which can be cal
 
 #### MT service pipeline
 
-	UML class diagram
-	UML Use case diagram
-	UML Flow chart diagram
+	
+
+	A sequence diagram shows the dynamics of a system. So, if you want to show the flow of calls that will occur when clients call your API, then that's your choice.
+
+	A class diagram shows the structure of a system. So, if you want to show the method/function signatures of your API and how they are distributed across types, then this is what you should use.
+
+	Or you could use both to depict different views of your API.
+
 
 ### References
 
