@@ -23,7 +23,7 @@ The table below compares them for what they are!
 2)AlBERT represents a new state of the art for NLP on several benchmarks and new state of the art for parameter efficiency.
 
 |                | BERT          | AlBERT|
-| -------------: |:-------------:| -----:| --------:|
+| -------------: |:-------------:|--------:|
 |Size(in millions)| Base : 110 | Large: 18 |
 |Performance |Outperforms sata-of-art in Oct 2018| 1- 5% increase from BERT|
 
