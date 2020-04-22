@@ -23,9 +23,9 @@ Two architectures were used for training translation models - Attention and Tran
 
 - Attention Architecture
 	![alt text](img/bahdanau.JPG)
-
+	* Bahdanau Attention for translation taken from here*
 	![alt text](img/luong.JPG)
-
+	* Luong Attention for translation taken from here*
 
 		figure1 and figure 2
 
