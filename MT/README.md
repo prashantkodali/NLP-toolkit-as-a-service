@@ -5,7 +5,7 @@
 To start server kindly use following command, 
 
 ```bash
- python startAPI.py --config CconfigFile --ip ipAddress --port portNumber
+ python startAPI.py --config configFile --ip ipAddress --port portNumber
 ```
 Small description of fields is given below,
 
