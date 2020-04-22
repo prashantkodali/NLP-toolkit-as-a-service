@@ -22,12 +22,11 @@ Models provided as serivce are trained on 2 language pairs English ==> {Hindi, B
 Two architectures were used for training translation models - Attention and Transformer model. For English to Hindi translation model we used both aforementioned models. And for English to Bhojpuri only Attention model was used, since its dataset was very small. And transformer requires more instance to learn translation when compared to attention. Given below is small description of these models, for more comprehensive literature kindly go through reference section.
 
 - Attention Architecture
-	![alt text](img/bahdanau.JPG)
-	* Bahdanau Attention for translation taken from here*
-	![alt text](img/luong.JPG)
-	* Luong Attention for translation taken from here*
-
-		figure1 and figure 2
+	
+	<img src="img/bahdanau.JPG" height="70%" width="70%">
+	<img src="img/luong.JPG" height="70%" width="70%">
+	
+	*These two images are taken from [here](https://blog.floydhub.com/attention-mechanism/)*
 
 	- Transformer Architecture
 		figure 3,4,5?????
