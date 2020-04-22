@@ -41,6 +41,9 @@ We made use of flask and opennmt to create RESTful API services which can be cal
 #### MT service pipeline
 
 	sequential flow of diagram (UML diagram)
+	UML class diagram
+	UML Use case diagram
+	
 
 ### References
 
