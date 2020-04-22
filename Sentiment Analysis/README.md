@@ -1,3 +1,8 @@
+### How to start the flask server?
+
+Use the following command line: python3 [filename.py] (example: python3 sentimentAnalysis.py). It return a host ip with port number (Note: Acc. to our convenience, we can change host ip in flask server code).
+
+
 ### Quick start about our service Sentiment Analysis
 
 Sentiment Analysis (SA) is the interpretation and classification of sentiment (positive, negative and neutral) within text data using text analysis techniques. A sentiment analysis system for text analysis combines natural language processing (NLP) and machine learning techniques to assign weighted sentiment scores to the entities, topics, themes and categories within a sentence or phrase.
@@ -25,7 +30,7 @@ For this text we built the Multilayer Perceptron model with word level TF-IDF ve
 
 ##### Examples
  | Input       | Actual Label      | Predicted Label  |
-  | ------------- |:-------------: -----------|
+  | ------------- |:-------------:| -----------|
   | Trailer dhannnsu hai bhai   | Positive | Positive |
   | abe kutte tere se kon baat karega |  Negative | Negative |
 
@@ -39,7 +44,10 @@ For this text we built the Multilayer Perceptron model with word level TF-IDF ve
 
 
 ### References
-    1. Datasets
-       a. [a link](https://github.com/user/repo/blob/branch/other_file.md)
-       b. [a link](https://github.com/user/repo/blob/branch/other_file.md)
-
+  1. Datasets
+     - [IIITH dataset](https://github.com/drimpossible/Sub-word-LSTM/tree/master/Data)
+     - [SentiMix dataset](https://competitions.codalab.org/competitions/20654)
+  2. Papers
+     - [Code-Mixed Sentiment Analysis Using Machine Learning andNeural Network Approaches](https://arxiv.org/pdf/1808.03299.pdf)
+     - [Sentiment Analysis for Code-Mixed Indian Social Media Text With Distributed Representation](https://ieeexplore.ieee.org/document/8554835)
+     - [SENTIMENT ANALYSIS OF MIXED CODE FOR THE TRANSLITERATED HINDI AND MARATHI TEXTS](https://aircconline.com/ijnlc/V7N2/7218ijnlc02.pdf)
