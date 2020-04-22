@@ -26,7 +26,7 @@ $(function() {
 <body>
 
 <div>
-<form action="/getNER/" method="post">     
+<form action="{{ url_for('services.ner_call') }}" method="post" id="ner">     
 <div>
 <h1>Named Entity Recognition</h1>
 <p> <u>Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing. <br>
