@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Named Entity Recognition</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'layouts/services.html' %}
+{% block title %}Named Entity Recognition{% endblock %}
+{% block content %}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function() {
@@ -26,27 +24,31 @@ $(function() {
 </script>
 </head>
 <body>
-<div>
-<h1>Named Entity Recognition</h1>
-
-</div>
 
 <div>
 <form action="/getNER/" method="post">     
 <div>
-<h2> Choose your input</h2>
+<h1>Named Entity Recognition</h1>
+<p> <u>Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing. <br>
+<br>
+This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL. 
+<br> 
+Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.</p>
+<p> <u>Model:</u> SpaCy’s named entity recognition model is trained on OntoNotes5 corpus.</p>
+<p> <u>Service Architecture:</u> </p>
+<h3> Choose your input</h3>
    <input type="radio" name="type" value="txt"> Enter Text
    <input type="radio" name="type" value="url"> Enter URL
 </div>
 
     
 <div id="textboxes" style="display: none">
-URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/> 
+Input URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/> 
 
 </div>
 
 <div id="textboxes1" style="display: none">
-Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
+Input Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
 
 </textarea>
 </div>  
@@ -62,7 +64,8 @@ Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
                			</div><br/>
                       		<div class="row">
                 	            	<div id="outputText" class="row">
-					 {{ tags | safe }}
+									<textarea class="form-control" id="output_text" rows="3"> {{ tags | safe }}</textarea>
+					 
 					</div>
 				</div>
 			</div>
@@ -70,5 +73,11 @@ Enter Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
         </div>
 
 </div>
-</body>
-</html>
+<hr>
+
+<div class="page-header">
+  <p><u>API Details:</u></p>
+</div>
+
+
+{% endblock %}
