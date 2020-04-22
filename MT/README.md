@@ -26,11 +26,11 @@ Two architectures were used for training translation models - Attention and Tran
 	<img src="img/bahdanau.JPG" height="70%" width="70%">
 	<img src="img/luong.JPG" height="70%" width="70%">
 	
-	*These two images are taken from [here](https://blog.floydhub.com/attention-mechanism/)*
+- Transformer Architecture
 
-	- Transformer Architecture
-		figure 3,4,5?????
+	<img src="img/transformer.JPG" height="50%" width="50%">
 
+*These three images are taken from [here](https://blog.floydhub.com/attention-mechanism/)*
 
 #### Results 
 
