@@ -1,5 +1,26 @@
 # Machine Translation System
 
+### To start the server 
+
+To start server kindly use following command, 
+
+```bash
+ python startAPI.py --config CconfigFile --ip ipAddress --port portNumber
+```
+Small description of fields is given below,
+
+| Field  | Field Description                                                                                                                                    |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| config | Json configuration file which contains path to translation model and values of hyper-parameters like using GPU, beamSize etc. Default: mtConfig.json |
+| ip     | ip Address which will be exposed as server. Default: 0.0.0.0                                                                                         |
+| port   | port used for handling translation request. Default: 5000                                                                                            |
+
+### Prerequisite for Server
+	
+	- Opennmt package
+	- Flask
+	
+
 ### Short Description of Service
 
 Machine Translation system is a program/model for translating from source language (e.g. English) to target language (e.g. Hindi). There are multiple ways of making such a system e.g. rule based, data driven techniques which make use of ML algorithms, hybrid systems unifying both rule based and data driven based techniques. We are have used ML based models for building MT systems for translating English to Hindi or Bhojpuri. 
