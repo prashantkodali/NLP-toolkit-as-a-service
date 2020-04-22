@@ -1,0 +1,5 @@
+Introduction About Sentiment Analysis
+
+Sentiment Analysis (SA) is the interpretation and classification of sentiment (positive, negative and neutral) within text data using text analysis techniques. A sentiment analysis system for text analysis combines natural language processing (NLP) and machine learning techniques to assign weighted sentiment scores to the entities, topics, themes and categories within a sentence or phrase.
+
+Our sentiment analysis model detect polarity score within a given text, based on the polarity score model assigns a sentiment label. Here for our model used the coarse-grained sentiment anaysis lables those are Positive, Negative, Neutral. In this NLP-as-a-toolkit service we are building the SA model for normal English text and Hinglish (Hindi and English Code-Mixed data) text. To build the model for nomal English text used the open-source libraries Textblob and NLTK's VADER (Valence Aware Dictionary and sEntiment Reasoner) and for Code-Mixed text used the Multi Layer Perceptron with TFIDF vectors.
