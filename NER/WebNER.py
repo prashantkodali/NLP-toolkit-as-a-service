@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 10 18:55:53 2020
-
-@author: Sushom-Dell
+@author: Ananya Mukherjee
+#***********************************************************************************************
+#Description : Server Side Program
+#Model : SpaCy’s named entity recognition model is trained on OntoNotes5 corpus. 
+#      : Assigns context-specific token vectors, POS tags, dependency parse and named entities.
+#***********************************************************************************************
 """
 from collections import Counter
 from bs4 import BeautifulSoup
@@ -14,18 +18,10 @@ import en_core_web_sm
 from flask import Flask, jsonify, request,render_template,redirect, url_for
 import requests
 
+#Loads the model trained on CNN 
 nlp = en_core_web_sm.load()
 
 app = Flask(__name__)
-#app.config["DEBUG"] = True
- 
-@app.route("/")
-def index():
-    return "<h1>To find NER, append /ner/</h1>"
- 
-@app.route("/ner/")
-def NER():
-    return render_template("ner.html")
 
 @app.route("/getNER", methods=['POST','GET'])
 def form():
@@ -42,7 +38,6 @@ def form():
     return jsonify({'output_text':tags})
 
 def getNerTagsFromURl(url):
-    #retrieve article from url
     ny_bb = url_to_string(url)
     
     article = nlp(ny_bb)
@@ -51,9 +46,6 @@ def getNerTagsFromURl(url):
     
     X = displacy.render(article, jupyter=None, style='ent')
     print(len(article.ents))
-   #sentences = [x for x in article.sents]
-   # print(str(sentences[20]))
-    #get ner tags
     print(url)
     return X
 
@@ -66,7 +58,6 @@ def url_to_string(url):
     return " ".join(re.split(r'[\n\t]+', soup.get_text()))
 
 def getNerTags(inputText): 
-    #print("text:", inputText)
     doc1 = nlp(inputText)
     sentences = [x.text for x in doc1.sents]
     X = displacy.render(nlp(str(sentences)), jupyter=None, style='ent')
