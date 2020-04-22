@@ -104,12 +104,19 @@ This translation system can be extended by adding more translation models. Model
 
 ### References
 
-	- Opennmt
-	- iit bombady enlgish hindi parallel corpus
-	- jointly learning to aligna and translation
-	- attention is all you need
-	- a3-108 system submission
-	- Bleu Score
-	- flask
-	- https://blog.floydhub.com/attention-mechanism/
-	- https://blog.floydhub.com/the-transformer-in-pytorch/
+- Packages
+	- [Opennmt](https://opennmt.net/OpenNMT-py/)
+	- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+- Datasets
+	- [The IIT Bombay English-Hindi parallel corpus](http://www.cfilt.iitb.ac.in/iitb_parallel/)
+	- [English Bhojpuri parallel corpus](https://sites.google.com/view/loresmt)
+- Papers
+	- [The IIT Bombay English-Hindi parallel corpus](https://arxiv.org/pdf/1710.02855.pdf)
+	- [Neural machine translation by jointly learning to align and translate](https://arxiv.org/pdf/1409.0473.pdf)
+	- [Attention Is All you Need](https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)
+	- [A3-108 Machine Translation System for LoResMT 2019](https://www.aclweb.org/anthology/W19-6810.pdf)
+	- [BLEU: a method for automatic evaluation of machine translation](http://www.cs.cmu.edu/~jeanoh/16-785/papers/papineni-acl2002-bleu.pdf)
+- Blogs
+	- [For NMT with Attention](https://blog.floydhub.com/attention-mechanism/)
+	- For Transformer [blog1](http://jalammar.github.io/illustrated-transformer/) and [blog2](https://blog.floydhub.com/the-transformer-in-pytorch/)
+
