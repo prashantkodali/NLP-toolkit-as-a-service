@@ -1,4 +1,4 @@
-### Introduction About Sentiment Analysis
+### Quick start about our service Sentiment Analysis
 
 Sentiment Analysis (SA) is the interpretation and classification of sentiment (positive, negative and neutral) within text data using text analysis techniques. A sentiment analysis system for text analysis combines natural language processing (NLP) and machine learning techniques to assign weighted sentiment scores to the entities, topics, themes and categories within a sentence or phrase.
 
@@ -21,10 +21,10 @@ We'll give the input text for TextBlob and VADER. Each model predict a sentiment
   
 #### Model for Code-Mixed Text
 
-For this text we built the Multilayer Perceptron model with word level TF-IDF vectors. And this model is trained on IIITH Hindi English code-mixed data which contains around 13000 tweets. First, We converted the each tweet in the dataset into a d-dimensional word level TF-IDF vector format. These vector representations fed to MLP to predict the label. 
+For this text we built the Multilayer Perceptron model with word level TF-IDF vectors. And this model is trained on IIITH and SentiMix Hindi English code-mixed datasets which contains around 13000 tweets. First, We converted the each tweet in the dataset into a d-dimensional word level TF-IDF vector format. These vector representations fed to MLP to predict the label. 
 
 ##### Examples
- | Input       | Actual Label      | Predicted Label  
+ | Input       | Actual Label      | Predicted Label  |
   | ------------- |:-------------: -----------|
   | Trailer dhannnsu hai bhai   | Positive | Positive |
   | abe kutte tere se kon baat karega |  Negative | Negative |
@@ -39,3 +39,7 @@ For this text we built the Multilayer Perceptron model with word level TF-IDF ve
 
 
 ### References
+    1. Datasets
+       a. [a link](https://github.com/user/repo/blob/branch/other_file.md)
+       b. [a link](https://github.com/user/repo/blob/branch/other_file.md)
+
