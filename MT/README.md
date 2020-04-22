@@ -21,8 +21,7 @@ Models provided as serivce are trained on 2 language pairs English ==> {Hindi, B
 
 Two architectures were used for training translation models - Attention and Transformer model. For English to Hindi translation model we used both aforementioned models. And for English to Bhojpuri only Attention model was used, since its dataset was very small. And transformer requires more instance to learn translation when compared to attention. Given below is small description of these models, for more comprehensive literature kindly go through reference section.
 
-- Attention Architecture
-	Attention network works in conjuction with sequence to sequence neural network architecture for translation. It identifies (paying attention to) and scores the most important word in source language to be used while decoding (translating) a particular word in target language. While scoring attention network takes in the source sentence and previous word generated in target sentence. There are mainly two flavours of this kind of attention which are named after first Authors of respective papers - Bahdanau Attention and Luong Attention. Main difference betweem two is how they decode after identifying and scoring most important word 
+- **Attention Architecture**: This works in conjuction with sequence to sequence neural network architecture for translation. It identifies (paying attention to) and scores the most important word in source language to be used while decoding (translating) a particular word in target language. While scoring attention network takes in the source sentence and previous word generated in target sentence. There are mainly two flavours of this kind of attention which are named after first Authors of respective papers - Bahdanau Attention and Luong Attention. Main difference betweem two is how they decode after identifying and scoring most important word 
 	
 	- Bahdanau Attention 
 	
@@ -32,8 +31,9 @@ Two architectures were used for training translation models - Attention and Tran
 	
 	<img src="img/luong.JPG" height="70%" width="70%">
 	
-- Transformer Architecture
-	Transformer Architecture make use of multiple attention networks for a source sentence, each of these attention network has same sentence sentence giving attention to all the words in it - self-attention. This architecture transforms each word in a sentence in different embedding space, where each transformation is contextualized based on other words in sentence.
+In models trained we made use of Luong Attention.
+	
+- **Transformer Architecture**: Makes use of multiple attention networks for a source sentence, each of these attention network has same sentence sentence giving attention to all the words in it - self-attention. This architecture transforms each word in a sentence in different embedding space, where each transformation is contextualized based on other words in sentence.
 
 	<img src="img/transformer.JPG" height="50%" width="50%">
 
