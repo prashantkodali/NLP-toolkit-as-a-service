@@ -41,7 +41,32 @@ In models trained we made use of Luong Attention.
 
 ### Usage of MT service
 
-We made use of flask and opennmt to create RESTful API services which can be called for translating a text in source language (english) into target language (hindi, bhojpuri).
+We made use of flask and opennmt to create [RESTful API](https://www.mulesoft.com/resources/api/what-is-rest-api-design) services which can be called for translating a text in source language (English) into target language (Hindi, Bhojpuri). API takes in a JSON object, which consist of source sentence ("src") and model ("id") to be used for translation. 
+
+Example Usage:
+	
+	curl -i -X POST -H "Content-Type: application/json" -d '[{"src": "INSERT ENGLISH SENTENCE HERE", "id": MODEL_ID}]' http://8ea2b9ff.ngrok.io/translate
+	
+Input Parameters For Json (src,id)
+
+	| Field | Type    | Description                                                         |
+	|-------|---------|---------------------------------------------------------------------|
+	| src   | String  | Source sentence which has to be translated.                         |
+	| id    | Integer | Ids refer to each translation model which can be used to translate. |
+	
+Output in form of Json (src, tgt, errorMessage)
+
+	| Field        | Type   | Description                                                                     |
+	|--------------|--------|---------------------------------------------------------------------------------|
+	| src          | String | Source sentence which has to be translated.                                     |
+	| tgt          | String | Sentence Translated from 'src' source sentence and translated using model 'id'. |
+	| errorMessage | String | Contains error message, if any.                                                 |
+
+
+##### To add more translation systems
+
+	Add configuartion in transConfig.json
+
 
 #### MT service pipeline
 
