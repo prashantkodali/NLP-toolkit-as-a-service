@@ -1,4 +1,4 @@
-Introduction About Sentiment Analysis
+##Introduction About Sentiment Analysis
 
 Sentiment Analysis (SA) is the interpretation and classification of sentiment (positive, negative and neutral) within text data using text analysis techniques. A sentiment analysis system for text analysis combines natural language processing (NLP) and machine learning techniques to assign weighted sentiment scores to the entities, topics, themes and categories within a sentence or phrase.
 
