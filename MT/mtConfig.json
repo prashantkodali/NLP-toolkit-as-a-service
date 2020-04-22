@@ -2,7 +2,7 @@
     "models_root": "/DATA1/USERS/saumitra/demo/e2h",
     "models": [
         {
-            "id": 100,
+            "id": 101,
             "model": "transmodel_step_800000.pt",
             "timeout": 60000,
             "on_timeout": "to_cpu",
@@ -15,7 +15,7 @@
             }
         },
         {
-            "id": 101,
+            "id": 100,
             "model": "nmtWithAttention.pt",
             "timeout": 60000,
             "on_timeout": "to_cpu",
