@@ -39,10 +39,6 @@ Two architectures were used for training translation models - Attention and Tran
 
 *These three images are taken from [here](https://blog.floydhub.com/attention-mechanism/)*
 
-#### Results 
-
-Translation systems are evaluated based on how well they perform translation. We are including BLEU scores evaluated off WMT14 newstestset for english hindi and loresmt 2019 testset for english bhojpuri. These scores again provide us a benchmark with whom we can compare future models while including them in translation service.
-
 ### Usage of MT service
 
 We made use of flask and opennmt to create RESTful API services which can be called for translating a text in source language (english) into target language (hindi, bhojpuri).
@@ -67,3 +63,5 @@ We made use of flask and opennmt to create RESTful API services which can be cal
 	- a3-108 system submission
 	- Bleu Score
 	- flask
+	- https://blog.floydhub.com/attention-mechanism/
+	- https://blog.floydhub.com/the-transformer-in-pytorch/
