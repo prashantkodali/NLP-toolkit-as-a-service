@@ -38,6 +38,7 @@ def start(config_file,
 		else:
 			output = {"src":"\n".join([sentence for sentence in preprocessedData]), "tgt":""}
 		output["error"] = inputError
+		output["src"] = inputData[0]["src"]
 
 		return jsonify(output)
 

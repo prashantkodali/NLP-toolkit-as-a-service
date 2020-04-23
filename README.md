@@ -40,6 +40,10 @@ To address this problem, our team set out on developing a platform which enables
 
 ### System Architecture
 
+#### UML Class Diagram
 
+UML class diagram for giving an abstract idea and describing static structure of 'NLP toolkit as a service' project is given below. It shows classes, their attributes, operations and relationships among objects.
 
-###
+![alt text](img/umlClassDiagram.jpeg)
+
+Normal User and Admin are inherited from class USER. whichService() method of Normal User is used to call objects of services as APIs to do certain jobs and these services have an association relationship with Normal User.

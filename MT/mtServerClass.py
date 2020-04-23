@@ -107,8 +107,8 @@ class translationPipeline(object):
 			else:
 				  outputFromServer['src'].append(output[0]['src'])
 				  outputFromServer['tgt'].append(output[0]['tgt'])
-		outputFromServer['src']="\n\n".join(outputFromServer['src'])
-		outputFromServer['tgt']="\n\n".join(outputFromServer['tgt'])
+		outputFromServer['src']="\n".join(outputFromServer['src'])
+		outputFromServer['tgt']="\n".join(outputFromServer['tgt'])
 		print ('Translation Output:', outputFromServer['tgt'])
 			
 		return outputFromServer
