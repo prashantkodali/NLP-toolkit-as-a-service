@@ -2,6 +2,8 @@ from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from onmt.translate import TranslationServer, ServerModelError
 from flask import jsonify
+from sacremoses import MosesPunctNormalizer
+mpn = MosesPunctNormalizer()
 
 class basicTokenizer(object):
 	"""docstring for basicTokenizer"""
@@ -13,7 +15,7 @@ class basicTokenizer(object):
 	def wordTokenizer(self,paragraphTokenizedInput):
 
 		if self.pathToWordTokModule =='wordNltk':
-			listOfTokenizedSentences = [" ".join(word_tokenize(sentence)) for sentence in paragraphTokenizedInput]
+			listOfTokenizedSentences = [mpn.normalize(" ".join(word_tokenize(sentence))) for sentence in paragraphTokenizedInput]
 		else:
 			# can extend tokenizer with another tokenizer class for 
 			listOfTokenizedSentences = [" ".join(self.pathToWordTokModule.wordTokenizer(sentence)) for sentence in paragraphTokenizedInput]
@@ -24,6 +26,7 @@ class basicTokenizer(object):
 		try:
 			sentence.encode('ascii')
 		except UnicodeEncodeError:
+			sentence.encode('utf-8')
 			return False
 		else:
 			return True
@@ -59,6 +62,7 @@ class translationPipeline(object):
 	
 	def preprocessingInput(self, inputText):
 		paragraphToTokenizedSent = self.tokenizer.sentTokenizer(inputText[0]['src'])
+		print('sent tokenization of full thing: ',paragraphToTokenizedSent)
 		listOfTokenizedSentences = self.tokenizer.wordTokenizer(paragraphToTokenizedSent)
 		mtSystemID = int(inputText[0]['id'])
 		listOfTokenizedSentences = self.specialPreprocessing(listOfTokenizedSentences, mtSystemID)
@@ -76,6 +80,7 @@ class translationPipeline(object):
 	def translate(self,listOfTokenizedSentences, mtSystemID):
 		inputToserver = [{'id':mtSystemID}]
 		outputFromServer={}
+		print ('after every tokenization: ',listOfTokenizedSentences)
 		for sentence in listOfTokenizedSentences:
 			inputToserver[0]['src']=sentence
 			output = {}
@@ -98,5 +103,6 @@ class translationPipeline(object):
 				  outputFromServer['tgt'].append(output[0]['tgt'])
 		outputFromServer['src']="\n\n".join(outputFromServer['src'])
 		outputFromServer['tgt']="\n\n".join(outputFromServer['tgt'])
+		print ( outputFromServer)
 			
 		return outputFromServer
