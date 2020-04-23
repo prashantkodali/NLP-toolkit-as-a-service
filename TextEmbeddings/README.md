@@ -36,8 +36,8 @@ The table below compares them for what they are!
 ### References
 	1. Flask 
 	   [Using and Deploying Flask](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
-    1. Papers
-       a. [BERT](https://arxiv.org/pdf/1810.04805v1.pdf)
-       b. [DistilBERT](https://arxiv.org/abs/1910.01108)
-	   c. [ALBERT](https://arxiv.org/pdf/1909.11942.pdf)
+    2. Papers
+       [BERT](https://arxiv.org/pdf/1810.04805v1)
+       [DistilBERT](https://arxiv.org/abs/1910.01108)
+	   [ALBERT](https://arxiv.org/pdf/1909.11942)
 
