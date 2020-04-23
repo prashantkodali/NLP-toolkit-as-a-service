@@ -33,7 +33,7 @@
           </div>
 		  <div class="col-md-4">
             <h2>Text Representation</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p>Word Embeddings are a distributed representation for text that allows words with similar meaning to have a similar representation.</p>
             <p><a class="btn btn-secondary" href="{{ url_for('services.emb_page') }}" role="button">Try it out  &raquo;</a></p>
           </div>
           <div class="col-md-4">
@@ -61,4 +61,73 @@
         <hr>
 
       </div>
+
+<div class="container" style="margin-top:2cm">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div align="center" class="panel-heading" style="font-size:2rem"><b>Tokenization</b></div>
+        <div class="panel-body">The first step in any NLP pipeline: splitting a string into sentences and tokens.</div>
+        <div align = "center" class="panel-footer"><a href="/tokenizer_page">Try it!</a></div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div align="center" class="panel-heading" style="font-size:2rem">Text Representation</div>
+        <div class="panel-body">Converting text into meaningful and rich representations (vectors) that can be processed by any downstream ML algorithm
+        for a particular task. </div>
+        <div align = "center" class="panel-footer"><a href="/emb_page">Try it!</a></div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div align="center" class="panel-heading" style="font-size:2rem">Named Entity Recognition</div>
+        <div class="panel-body">NER is probably the first step towards information extraction that seeks to
+          locate and classify named entities in text into pre-defined categories such as the names of persons,
+          organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER
+          is used in many fields in Natural Language Processing.</div>
+        <div align = "center" class="panel-footer"><a href="/ner_page">Try it!</a></div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div align="center" class="panel-heading" style="font-size:2rem">Sentiment Analysis</div>
+        <div class="panel-body">Ascertaining the sentiment embedded in a particular piece of text, weather it be a customer
+        review, or a tweet. </div>
+        <div align = "center" class="panel-footer"><a href="/sentiment_page">Try it!</a></div>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div align="center" class="panel-heading" style="font-size:2rem">Summarization</div>
+        <div class="panel-body">Clustering approach to Extractive summarization. Extrcating few sentences out of the given
+        document that capture the escense of the whole article. </div>
+        <div align = "center" class="panel-footer"><a href="/summarize_page">Try it!</a></div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div align="center" class="panel-heading" style="font-size:2rem">Machine Translation</div>
+        <div class="panel-body">Translating a piece of text from English to Hindi or Bhojpuri. </div>
+        <div align = "center" class="panel-footer"><a href="/mt_page">Try it!</a></div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
 {% endblock %}

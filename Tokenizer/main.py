@@ -3,13 +3,15 @@ from bs4 import BeautifulSoup
 import requests
 import re
 from json2html import json2html
-from spacy import displacy
 import en_core_web_sm
 from flask import Flask, jsonify, request,render_template,redirect, url_for
 import requests
 from tokenizers import ByteLevelBPETokenizer, SentencePieceBPETokenizer, BertWordPieceTokenizer
+import re
+from nltk.tokenize import word_tokenize
 
-nlp = en_core_web_sm.load()
+
+# nlp = en_core_web_sm.load()
 app = Flask(__name__)
 #app.config["DEBUG"] = True 
 
@@ -24,25 +26,32 @@ def tokens():
 @app.route("/gettokenizer", methods=['POST'])
 def form():
     inputjson = request.get_json()
-    input = inputjson['input_text']
-    # input = JsonInput["txt_ip"]
-    # input= request.form["txt_ip"]
-    print(input)
-    tokens= gettokens(str(input))
-    print(tokens)
+    print(inputjson)
+    inputt = inputjson['txt_ip']
+    value = int(inputjson['id'])
+    tokens = 1
+    if(value==100):
+        tokens = HuggingFace(str(input))
+    if(value==101):
+        tokens = SplitText(str(input))
+    if(value==102):
+        tokens = nltkt(str(input))
     return jsonify({'output_text':tokens})
 
-def gettokens(inputText): 
-    # Instantiate a Bert tokenizers
+def HuggingFace(inputText): 
     sentence = inputText
     WordPiece = BertWordPieceTokenizer(bertLargeUncased)
     WordPieceEncoder = WordPiece.encode(sentence)
-    # Print the ids, tokens and offsets
-    # print(WordPieceEncoder.ids)
-    # print(WordPieceEncoder.tokens)
-    # print(WordPieceEncoder.offsets)
-    # X = displacy.render(WordPieceEncoder.tokens, jupyter=None, style='ent')
     return WordPieceEncoder.tokens
+
+def SplitText(inputText): 
+    sentence = inputText
+    tokens = sentence.split()
+    return tokens
+
+def nltkt(inputText):
+    tokens = word_tokenize(inputText)
+    return tokens
 
 # Bert vocabularies
 bertBaseCased = "bert-base-cased-vocab.txt"

@@ -1,4 +1,21 @@
-#load word embeddnigs
+'''
+This file details two classes:
+WordVectors:  For handling pre-trained word embeddings. Has two methods :
+                1. for reading a word vector files;
+                2) generating sentences embeddings
+
+Summarizer: For orchestrating the complete summarization process.
+                Interacts with WordVectors to generate sentence vectors.
+            Exposes methods for :
+                1. Geting sentence vectors from WordVectors.
+                2. Running the clustering algorithm
+                3. extracting nearest sentences to the centroids of the clusters.
+                4. Orchestrator method to call these methods.
+
+Uses pymagnitude library for quick and memory efficient handling of large word embeddings file.
+'''
+
+
 from pymagnitude import *
 
 from sklearn.cluster import KMeans
@@ -60,9 +77,6 @@ class Summarizer:
                     cluster_sent_ids.append(minx)
                     break
 
-#            print(numpy.argmin(distances[c], 10))
-
-#        print(distances)
         return cluster_sent_ids
 
     def summarize(self, document, num_sents=10):

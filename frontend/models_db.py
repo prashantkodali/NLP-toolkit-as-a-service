@@ -1,3 +1,7 @@
+'''
+Class for User data in database. Inherits from SQL-Alchemy base model for enabling usage of database elements into python code.
+'''
+
 from . import db
 
 class User(db.Model):
@@ -27,7 +31,3 @@ class User(db.Model):
 
     def __repr__(self):
         return '<name - {}>'.format(self.name)
-
-
-# # Create tables.
-# Base.metadata.create_all(bind=engine)

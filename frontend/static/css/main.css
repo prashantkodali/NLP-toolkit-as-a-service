@@ -92,3 +92,7 @@ a {
  ****************************************************************************/
 
 /* Various other styles end */
+
+.panel-heading:hover {
+  background-color: #dfdfdf !important;
+}
