@@ -35,13 +35,10 @@ The table below compares them for what they are!
 
 ### References
 - Packages
-	- [Opennmt](https://opennmt.net/OpenNMT-py/)
+	- [Build and Deploy a web-application using Flask](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
 	- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-	
-	1. Flask 
-	   [Using and Deploying Flask](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
-    2. Papers
-       [BERT](https://arxiv.org/pdf/1810.04805v1)
-       [DistilBERT](https://arxiv.org/abs/1910.01108)
-	   [ALBERT](https://arxiv.org/pdf/1909.11942)
+- Papers
+      - [BERT](https://arxiv.org/pdf/1810.04805v1)
+      - [DistilBERT](https://arxiv.org/abs/1910.01108)
+	  - [ALBERT](https://arxiv.org/pdf/1909.11942)
 
