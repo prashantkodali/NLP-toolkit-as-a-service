@@ -22,9 +22,9 @@ def getNamedEntities():
     input = JsonInput['text']
 	
     ner_obj    = RetrieveNER(inpTyp,input)
-    OutputTags = ner_obj.getNER()
+    OutputTags = ner_obj.RetrieveNER()
     
-    return jsonify({'output_text':tags})
+    return jsonify({'output_text':OutputTags})
 
 
 app.run(host='0.0.0.0', port = 8080, debug=True)

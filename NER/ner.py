@@ -13,35 +13,38 @@ class RetrieveNER:
 
     def __init__(self,inpTyp,input):
         self.inpTyp = inpTyp
-        self.input  = input
+        self.input  = str(input)
 
-    def RetrieveNER(self):
-        if(self.inpTyp == 'url'):		
-            tags = getNerTagsFromURl(str(self.input))
-        
-        elif(self.inpTyp == 'text'):	
-            tags = getNerTagsFromText(str(self.input))
-	
-        return tags
-	
-    def getNerTagsFromURl(url):
-        ny_bb = url_to_string(url) 
-        return renderNerOutputFromText(nlp(ny_bb))
+    def renderNerOutputFromText(self,text):
+        return displacy.render(text, jupyter=None, style='ent')
 
-    def url_to_string(url):
+
+    def url_to_string(self,url):
         res = requests.get(url)
         html = res.text
         soup = BeautifulSoup(html, 'html5lib')
         for script in soup(["script", "style", 'aside']):
             script.extract()
         return " ".join(re.split(r'[\n\t]+', soup.get_text()))
+	
+    def getNerTagsFromURl(self,url):
+        ny_bb = url_to_string(url) 
+        return self.renderNerOutputFromText(nlp(ny_bb))
 
-    def getNerTagsFromText(inputText): 
+
+    def getNerTagsFromText(self,inputText): 
         doc1 = nlp(inputText)
         sentences = [x.text for x in doc1.sents]
         sentences = " ".join(sentences)
-        
-        return renderNerOutputFromText(nlp(str(sentences)))
+        return self.renderNerOutputFromText(nlp(str(sentences)))
 	
-    def renderNerOutputFromText(text):
-        return displacy.render(text, jupyter=None, style='ent')
+
+    def RetrieveNER(self):
+        input = self.input
+        if(self.inpTyp == 'url'):		
+            tags = self.getNerTagsFromURl(input)
+        
+        elif(self.inpTyp == 'text'):	
+            tags = self.getNerTagsFromText(input)
+	
+        return tags
