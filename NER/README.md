@@ -63,7 +63,6 @@ Note: In case of URL as input, output can be generated only if web-scrapping is 
 |QUANTITY	         |Measurements, as of weight or distance.	       	               |
 |ORDINAL	         |“first”, “second”, etc.	                     	                 |
 |CARDINAL          |Numerals that do not fall under another type.		               |
-|------------------|---------------------------------------------------------------|
 
 #### System Architectures Used
 
@@ -88,8 +87,7 @@ Output : Json File (src, tgt, errorMessage)
 	| Output Tags  | String | Output with entities marked in html                                             |
 	| tags         | String | Output with entities annotated.                                                 |
 	| errorMessage | String | Contains error message, if any.                                                 |
-  |--------------|--------|---------------------------------------------------------------------------------|
-
+	|--------------|--------|---------------------------------------------------------------------------------|
 
 
 
