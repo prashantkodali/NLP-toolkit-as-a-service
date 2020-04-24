@@ -7,12 +7,6 @@ To start server kindly use following command,
 ```bash
  python Server_Entry.py
 ```
-Small description of fields is given below,
-
-| Field  | Field Description                                                                                                                                    |
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ip     | ip Address which will be exposed as server. Default: 0.0.0.0                                                                                         |
-| port   | port used for handling translation request. Default: 5000                                                                                            |
 
 ### Prerequisite for Server
 	
