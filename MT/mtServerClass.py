@@ -64,7 +64,7 @@ class translationPipeline(object):
 	
 	def preprocessingInput(self, inputText):
 		print ('input Sentence ',inputText)
-		paragraphToTokenizedSent = self.tokenizer.sentTokenizer(inputText[0]['src'])
+		paragraphToTokenizedSent = self.tokenizer.sentTokenizer(str(inputText[0]['src']))
 		print('Sentence tokenization of input: ',paragraphToTokenizedSent)
 		listOfTokenizedSentences = self.tokenizer.wordTokenizer(paragraphToTokenizedSent)
 		print('Word Tokenization of sentence segmented input: ',listOfTokenizedSentences)
