@@ -27,7 +27,7 @@ Enchant </br>
 
 Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing.
 
-This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL.
+This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL. </br>
 Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.
 
 #### Trained Corpus 
