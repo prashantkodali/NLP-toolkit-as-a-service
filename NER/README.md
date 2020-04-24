@@ -18,16 +18,16 @@ Small description of fields is given below,
 	
 Spacy </br>
 ```bash
-    - pip install spacy </br>
-    - python -m spacy download en_core_web_sm </br>
+    - pip install spacy 
+    - python -m spacy download en_core_web_sm 
 ```
 Flask </br>
 ```bash
-     -pip install Flask </br>
+     -pip install Flask
 ```
 Enchant </br>
 ```bash
- -pip install pyenchant </br>
+ -pip install pyenchant 
 ```
 ### Short Description of Service
 
