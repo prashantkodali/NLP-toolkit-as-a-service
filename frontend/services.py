@@ -85,7 +85,7 @@ def ner_call():
 
         print(response.json()['output_text'])
 
-    return render_template('pages/ner.html', tags= response.json()['output_text'])
+    return render_template('pages/ner.html', tags= response.json()['output_text'], annotatedTags = response.json()['annotated_tags'] )
 
 
 ####################################################################################################
