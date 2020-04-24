@@ -94,7 +94,8 @@ Output : Json File (src, tgt, errorMessage)
 
 - Packages
 	- [Spacy](https://github.com/explosion/spacy-models/releases//tag/en_core_web_sm-2.2.5)
-  - [ngrok](https://ngrok.com/)
+	- [Enchant](http://pyenchant.github.io/pyenchant/)
+        - [ngrok](https://ngrok.com/)
 - Trained Corpus
 	- [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
 - Blogs
