@@ -23,10 +23,12 @@ Spacy </br>
 ```
 Flask </br>
 ```bash
-     -pip install Flask
+     -pip install Flask </br>
 ```
-	
-
+Enchant </br>
+```bash
+ -pip install pyenchant </br>
+```
 ### Short Description of Service
 
 Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing.
