@@ -4,7 +4,52 @@
 
 <div class="page-header">
   <h1>Machine Translation</h1>
-  <p> <u>Description Of the service</u></p>
+<p> <u>Description Of Our Machine Translation Service</u></p>
+  <p> Machine Translation system is a program/model for translating from source language (e.g. English) to target language (e.g. Hindi). There are multiple ways of making such a system e.g. rule based, data driven techniques which make use of ML algorithms, hybrid systems unifying both rule based and data driven based techniques. We are have used ML based models for building MT systems for translating English to Hindi or Bhojpuri.  </p>
+<p> <u>References</u></p>
+<ul>
+<li>Packages<ul>
+<li><a href="https://opennmt.net/OpenNMT-py/">Opennmt</a></li>
+<li><a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a></li>
+</ul>
+</li>
+<li>Datasets<ul>
+<li><a href="http://www.cfilt.iitb.ac.in/iitb_parallel/">The IIT Bombay English-Hindi parallel corpus</a></li>
+<li><a href="https://sites.google.com/view/loresmt">English Bhojpuri parallel corpus</a></li>
+</ul>
+</li>
+<li>Papers<ul>
+<li><a href="https://arxiv.org/pdf/1710.02855.pdf">The IIT Bombay English-Hindi parallel corpus</a></li>
+<li><a href="https://arxiv.org/pdf/1409.0473.pdf">Neural machine translation by jointly learning to align and translate</a></li>
+<li><a href="https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf">Attention Is All you Need</a></li>
+<li><a href="https://www.aclweb.org/anthology/W19-6810.pdf">A3-108 Machine Translation System for LoResMT 2019</a></li>
+<li><a href="http://www.cs.cmu.edu/~jeanoh/16-785/papers/papineni-acl2002-bleu.pdf">BLEU: a method for automatic evaluation of machine translation</a></li>
+</ul>
+</li>
+<li>Blogs<ul>
+<li><a href="https://blog.floydhub.com/attention-mechanism/">For NMT with Attention</a></li>
+<li>For Transformer <a href="http://jalammar.github.io/illustrated-transformer/">blog1</a> and <a href="https://blog.floydhub.com/the-transformer-in-pytorch/">blog2</a></li>
+</ul>
+</li>
+</ul>
+<p> <u>Libraries and Resources used</u></p>
+
+<h4 id="for-training-machine-translation-system">For Training Machine Translation system</h4>
+<p>We used <a href="https://github.com/OpenNMT/OpenNMT-py">Opennmt</a> package to train Neural Machine Translation models. And <a href="https://github.com/pallets/flask">Flask</a> package for providing APIs for translation service.</p>
+<h4 id="data-resources">Data Resources</h4>
+<p>Models provided as serivce are trained on 2 language pairs English ==&gt; {Hindi, Bhojpuri} using following datasets</p>
+<ul>
+<li><p><a href="http://www.cfilt.iitb.ac.in/iitb_parallel/">English Hindi Parallel Corpus v2.1</a></p>
+</li>
+<li><p><a href="https://sites.google.com/view/loresmt">English Bhojpuri Parallel Corpus</a></p>
+</li>
+</ul>
+
+
+<p> <u>Author</u><br /> Saumitra Yadav <br />saumitra.yadav@research.iiit.ac.in</p>
+
+
+
 </div>
 
 <form id="transForm" method="post" action="{{ url_for('services.mt_call') }}">
@@ -34,7 +79,33 @@
 <hr>
 
 <div class="page-header">
-  <p><u>API Details:</u></p>
+  <p ><u><b>API Details:</b></u></p>
+  <p style="text-indent: 2.5rem"><u>API end point</u></p>
+  <p style="text-indent: 5rem">http://localhost:5000/translate/ <br />
+  <p style="text-indent: 2.5rem"><u>Input JSON format</u></p>
+  <p style="text-indent: 5rem">JSON should consist of two arguments :</p>
+    <p style="text-indent: 5rem">key: "src" , value: text to be translated.</p>
+    <p style="text-indent: 5rem">key: "id", value: system to be used for translation, points towards what is source language and what is target language. </p>
+  <p style="text-indent: 2.5rem"><u>Output JSON format</u></p>
+  <p style="text-indent: 5rem">Service return a JSON with three keys </p>
+  <p style="text-indent: 5rem">key: "src" , value: text to be translated.</p>
+    <p style="text-indent: 5rem">key : "tgt", value:  translation of source sentence.</p>
+    <p style="text-indent: 5rem">key: "error", value: returns 'None' if there is no issue, otherwise error message is displayed. </p>
+    <br/>
+    <p>Example Usage:</p>
+<pre><code>curl -i -X POST -H <span class="hljs-string">"Content-Type: application/json"</span> -d <span class="hljs-string">'[{"</span>src<span class="hljs-string">": "</span>INSERT ENGLISH SENTENCE HERE<span class="hljs-string">", "</span>id<span class="hljs-string">": MODEL_ID}]'</span> http:<span class="hljs-comment">//8ea2b9ff.ngrok.io/translate</span>
+</code></pre>
+    <br/>
+    <p>Models available right now,</p>
+<pre><code>|<span class="hljs-string"> Model ID </span>|<span class="hljs-string"> Model Description                                                    </span>|
+|<span class="hljs-string">----------</span>|<span class="hljs-string">----------------------------------------------------------------------</span>|
+|<span class="hljs-string"> 100      </span>|<span class="hljs-string"> English Hindi Translation System using NMT with Attention Network    </span>|
+|<span class="hljs-string"> 101      </span>|<span class="hljs-string"> English Hindi Translation System using Transformer Network           </span>|
+|<span class="hljs-string"> 102      </span>|<span class="hljs-string"> English Bhojpuri Translation System using NMT with Attention Network </span>|
+|<span class="hljs-string">----------</span>|<span class="hljs-string">----------------------------------------------------------------------</span>|
+</code></pre>
+    
+
 </div>
 
 
