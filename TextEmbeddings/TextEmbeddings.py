@@ -15,11 +15,11 @@ class EmbeddingGenerator:
 		max_error_count = 4
 		min_text_length = 3
 		d = SpellChecker("en_US")
-  		d.set_text(self.marked_text)
-  		errors = [err.word for err in d]
+		d.set_text(self.marked_text)
+		errors = [err.word for err in d]
 		if ((len(errors) > max_error_count) or len(self.marked_text.split()) < min_text_length):
 			return("Input entered is not in English")
-		else 
+		else:
 			return("None")
 
 	def is_input_empty(self):
@@ -29,12 +29,13 @@ class EmbeddingGenerator:
 			return("None")
 
 	def getInputValidated(self):
-		result = self.is_in_english()
-		if (result!="None"):
-			return(result)
 		result = self.is_input_empty()
 		if (result!="None"):
 			return(result)
+		result = self.is_in_english()
+		if (result!="None"):
+			return(result)
+		
 		
 	def getSentenceVector(self,encoded_layers):
 		token_vecs = encoded_layers[11][0]
@@ -82,9 +83,16 @@ class EmbeddingGenerator:
 
 	def getEmbeddings(self,marked_text,SystemID):
 		Sentence_Embeddings_Dict={}
-		self.marked_text = "[CLS] " + marked_text + " [SEP]"
+		self.marked_text = marked_text
 		self.SystemID = SystemID
-		Sentence_Embeddings_Dict['error'] = self.getInputValidated()
+		errorReceived = self.getInputValidated()
+		if(errorReceived!="None"):
+			Sentence_Embeddings_Dict['error'] = errorReceived
+			Sentence_Embeddings_Dict['embeddings'] = "None"
+			return(Sentence_Embeddings_Dict)
+		else:
+			Sentence_Embeddings_Dict['error'] = "None"
+		self.marked_text = "[CLS] " + marked_text + " [SEP]"
 		if SystemID==100:
 			Sentence_Embeddings_Dict['embeddings']= self.getBertEmbeddings()
 		elif  SystemID == 101:
