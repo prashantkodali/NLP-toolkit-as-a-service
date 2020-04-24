@@ -79,7 +79,7 @@ class Summarizer:
 
         return cluster_sent_ids
 
-    def summarize(self, document, num_sents=10):
+    def summarize(self, document, num_sents):
         sentences = document.split('.')
         sentence_vectors = self.get_sentence_vectors(sentences)
         sentence_clusters = self.get_clusters(sentence_vectors, num_sents)

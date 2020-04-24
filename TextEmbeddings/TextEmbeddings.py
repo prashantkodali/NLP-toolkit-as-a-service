@@ -20,8 +20,22 @@ class EmbeddingGenerator:
 		if ((len(errors) > max_error_count) or len(self.marked_text.split()) < min_text_length):
 			return("Input entered is not in English")
 		else 
-			return("NULL")
+			return("None")
 
+	def is_input_empty(self):
+		if(not (self.marked_text and self.marked_text.strip())): 
+			return("Input Entered is empty")
+		else:
+			return("None")
+
+	def getInputValidated(self):
+		result = self.is_in_english()
+		if (result!="None"):
+			return(result)
+		result = self.is_input_empty()
+		if (result!="None"):
+			return(result)
+		
 	def getSentenceVector(self,encoded_layers):
 		token_vecs = encoded_layers[11][0]
 		sentence_embedding = torch.mean(token_vecs, dim=0)
@@ -42,7 +56,6 @@ class EmbeddingGenerator:
 		with torch.no_grad():
 			encoded_layers, _ = model(tokens_tensor, segments_tensors)
 		sentence_vec = self.getSentenceVector(encoded_layers)
-		#print("--",sentence_vec.tolist())
 		return(sentence_vec.tolist())
 
 	def getDistilBertEmbeddings(self):
@@ -70,7 +83,8 @@ class EmbeddingGenerator:
 	def getEmbeddings(self,marked_text,SystemID):
 		Sentence_Embeddings_Dict={}
 		self.marked_text = "[CLS] " + marked_text + " [SEP]"
-		Sentence_Embeddings_Dict['error'] = self.is_in_english()
+		self.SystemID = SystemID
+		Sentence_Embeddings_Dict['error'] = self.getInputValidated()
 		if SystemID==100:
 			Sentence_Embeddings_Dict['embeddings']= self.getBertEmbeddings()
 		elif  SystemID == 101:

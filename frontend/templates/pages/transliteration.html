@@ -1,0 +1,34 @@
+{% extends 'layouts/services.html' %}
+{% block title %}Transliteration{% endblock %}
+{% block content %}
+
+
+<div class="page-header">
+  <h1>Transliteration</h1>
+  <p> <u>Description Of Our Tokenizer</u></p>
+</div>
+
+<form method="POST" action = "{{ url_for('services.transliteration_call') }}" id="input">
+  <div class="form-group">
+    <label for="text">Input text here:</label>
+    <textarea class="form-control" name="text" rows="3"> {{ input }}</textarea>
+
+
+    <br>
+    <input type="submit" class="btn" name="submit_button" value="Transliterate">
+  </div>
+</form>
+
+
+<form id="output">
+  <label for="text">Transliterated Text:</label>
+  <textarea class="form-control" id="output_text" rows="3"> {{ output }}</textarea>
+</form>
+
+<hr>
+
+<div class="page-header">
+  <p><u>API Details:</u></p>
+</div>
+
+{% endblock %}

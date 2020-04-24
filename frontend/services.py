@@ -8,7 +8,7 @@ sourcing the necessary data from the user.
 requests package to hit the api with necessary payload (json) and gets reponse from the service.
 '''
 
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, flash
 import requests
 from . import db
 
@@ -48,6 +48,13 @@ def mt_call():
     td = [{'src':src, 'id':id }]
     response = requests.post("http://8ea2b9ff.ngrok.io/translate", json = td)
 
+    print("printing response:\n")
+    print(response.json())
+
+    if response.json()['error'] != 'None':
+        flash(response.json()['error'])
+        return render_template('pages/mt.html', input= response.json()['src'],)
+
     return render_template('pages/mt.html', input= response.json()['src'], output=response.json()['tgt'])
 
 
@@ -65,14 +72,18 @@ def ner_call():
         text = str(request.form["url_ip"])
         type = "url"
         td = {'text':text, 'type':type }
-        response = requests.post("http://45db40b2.ngrok.io/getNER", json = td)
+        response = requests.post("http://38892c1c.ngrok.io/getNER", json = td)
 
     elif(str(request.form["txt_ip"])):
         text = str(request.form["txt_ip"])
         type = "text"
-        td = {'text':text, 'type':type }
+        td = {"text":text, "type":type }
 
-        response = requests.post("http://45db40b2.ngrok.io/getNER", json = td)
+        print(td)
+
+        response = requests.post("http://38892c1c.ngrok.io/getNER", json = td)
+
+        print(response.json()['output_text'])
 
     return render_template('pages/ner.html', tags= response.json()['output_text'])
 
@@ -92,7 +103,9 @@ def emb_call():
 
     td = {'text':text, 'id':id}
 
-    response = requests.post("http://d794274c.ngrok.io/GenerateEmbeddings", json = td)
+    response = requests.post("https://7a7645ae.ngrok.io/GenerateEmbeddings", json = td)
+
+    print(response.json()['embeddings'])
 
     return render_template('pages/emb.html', output= response.json()['embeddings'])
 
@@ -134,3 +147,23 @@ def summarize_call():
     response = requests.post("http://localhost:6000/summarize", json = td)
 
     return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'])
+
+
+####################################################################################################
+#Routes for Transliteration service.
+
+
+@services.route('/transliteration_page',methods = ['GET'])
+def transliteration_page():
+    return render_template('pages/transliteration.html')
+
+@services.route('/transliteration_call',methods = ['POST'])
+def transliteration_call():
+
+    text = request.form['text']
+
+    td = {'text':text}
+
+    response = requests.post("http://localhost:7000/transliterate", json = td)
+
+    return render_template('pages/transliteration.html', input = text, output= response.json()['transliterated_text'])
