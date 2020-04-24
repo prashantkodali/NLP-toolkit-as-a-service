@@ -2,9 +2,16 @@ from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from onmt.translate import TranslationServer, ServerModelError
 from flask import jsonify
+from sacremoses import MosesPunctNormalizer
+mpn = MosesPunctNormalizer()
 
 class basicTokenizer(object):
-	"""docstring for basicTokenizer"""
+	"""
+	Class for basic tokenizer which either uses nltk sentence and word tokenizer or user defined tokenizer. Main function of this class is wordTokenizer and sentTokenizer, which as name suggest takes in text to normalize and then tokenize. isEnglish is check function to confirm if input doesn't have any non English characters. 
+
+	input: paragraph of text 
+	output: text which is word and sentence tokenized
+	"""
 	def __init__(self, pathToWordTokModule, pathToSentTokModule):
 
 		self.pathToWordTokModule = pathToWordTokModule
@@ -13,7 +20,7 @@ class basicTokenizer(object):
 	def wordTokenizer(self,paragraphTokenizedInput):
 
 		if self.pathToWordTokModule =='wordNltk':
-			listOfTokenizedSentences = [" ".join(word_tokenize(sentence)) for sentence in paragraphTokenizedInput]
+			listOfTokenizedSentences = [mpn.normalize(" ".join(word_tokenize(sentence))) for sentence in paragraphTokenizedInput]
 		else:
 			# can extend tokenizer with another tokenizer class for 
 			listOfTokenizedSentences = [" ".join(self.pathToWordTokModule.wordTokenizer(sentence)) for sentence in paragraphTokenizedInput]
@@ -24,6 +31,7 @@ class basicTokenizer(object):
 		try:
 			sentence.encode('ascii')
 		except UnicodeEncodeError:
+			sentence.encode('utf-8')
 			return False
 		else:
 			return True
@@ -35,21 +43,18 @@ class basicTokenizer(object):
 		return "None"
 
 	def sentTokenizer(self,paragraphInput):
-
-		#input is: paragraphInput = input[0]['src']
-		#model is: paragraphInput = input[0]['id']
 		if self.pathToSentTokModule =='sentNltk':
 			tokenizeParaIntoSentences = sent_tokenize(paragraphInput)
-
 		else:
 			# can extend tokenizer with another tokenizer class for 
 			tokenizeParaIntoSentences = self.pathToSentTokModule.sentTokenizer(paragraphInput)
-
 		return tokenizeParaIntoSentences
 	
 
 class translationPipeline(object):
-	"""docstring for basicTranslationServer"""
+	"""
+	This class represents basic translation pipeline - preprocessing, translation and return the translation. Functionality of methods is self-explainatory.
+	"""
 	def __init__(self,pathToWordTokModule, pathToSentTokModule, config):
 		self.config = config
 		self.tokenizer = basicTokenizer(pathToWordTokModule, pathToSentTokModule)
@@ -58,15 +63,20 @@ class translationPipeline(object):
 
 	
 	def preprocessingInput(self, inputText):
+		print ('input Sentence ',inputText)
 		paragraphToTokenizedSent = self.tokenizer.sentTokenizer(inputText[0]['src'])
+		print('Sentence tokenization of input: ',paragraphToTokenizedSent)
 		listOfTokenizedSentences = self.tokenizer.wordTokenizer(paragraphToTokenizedSent)
+		print('Word Tokenization of sentence segmented input: ',listOfTokenizedSentences)
 		mtSystemID = int(inputText[0]['id'])
-		listOfTokenizedSentences = self.specialPreprocessing(listOfTokenizedSentences, mtSystemID)
+		listOfTokenizedSentences = self.specialPreprocessingForModels(listOfTokenizedSentences, mtSystemID)
 		inputError = self.tokenizer.checkForErrors(listOfTokenizedSentences)
 		return listOfTokenizedSentences, mtSystemID, inputError
 
-	def specialPreprocessing(self,listOfTokenizedSentences, modelID):
-		#for special preprocessing text for a particular model
+	def specialPreprocessingForModels(self,listOfTokenizedSentences, modelID):
+		"""
+		There are models which uses slightly different preprocessing steps when dealing with text. These unique preprocessing steps for respective models can be included here.
+		"""
 		if modelID == 100:
 			listOfTokenizedSentences = [sentence.lower() for sentence in listOfTokenizedSentences]
 		else:
@@ -76,6 +86,7 @@ class translationPipeline(object):
 	def translate(self,listOfTokenizedSentences, mtSystemID):
 		inputToserver = [{'id':mtSystemID}]
 		outputFromServer={}
+		print ('after every tokenization: ',listOfTokenizedSentences)
 		for sentence in listOfTokenizedSentences:
 			inputToserver[0]['src']=sentence
 			output = {}
@@ -96,7 +107,8 @@ class translationPipeline(object):
 			else:
 				  outputFromServer['src'].append(output[0]['src'])
 				  outputFromServer['tgt'].append(output[0]['tgt'])
-		outputFromServer['src']="\n\n".join(outputFromServer['src'])
-		outputFromServer['tgt']="\n\n".join(outputFromServer['tgt'])
+		outputFromServer['src']="\n".join(outputFromServer['src'])
+		outputFromServer['tgt']="\n".join(outputFromServer['tgt'])
+		print ('Translation Output:', outputFromServer['tgt'])
 			
 		return outputFromServer

@@ -15,6 +15,15 @@ def start(config_file,
 		  host="0.0.0.0",
 		  port=5000,
 		  debug=True):
+	"""
+	Starting flask API server for mtSystem.
+	input: [{"src": "Input sentence here", "id":modelID}]
+		src: sentence in source language
+		id: informs translate in which language, using which particular model
+	output: {"src": "normalized and tokenized input sentence", 
+			"tgt": "translated sentence in target language",
+			"error": "Error Occurred if any." }
+	"""
 
 	app = Flask(__name__,)
 	mtSystem = translationPipeline('wordNltk','sentNltk',config_file)
@@ -29,6 +38,7 @@ def start(config_file,
 		else:
 			output = {"src":"\n".join([sentence for sentence in preprocessedData]), "tgt":""}
 		output["error"] = inputError
+		output["src"] = inputData[0]["src"]
 
 		return jsonify(output)
 

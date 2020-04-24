@@ -1,7 +1,12 @@
+### How to start the flask server?
+Use the following command line: python3 [filename.py] (example: python3 TextEmbeddings.py). It return a host ip with port number (Note: Acc. to our convenience, we can change host ip in flask server code).
+
+
+
 ### Text Representation as a Service
 
 Word Embeddings or Sentence Embeddings are a distributed way of representation for text that allows words and sentences with similar meaning to have a similar representation.The underlying hypothesis in linguistics is derived from the semantic theory of language usage, i.e. words that are used and occur in the same contexts tend to purport similar meanings.
-The correlation between distributional and semantic similarity can be operationalized in many ways. Word2Vec and Glove Vectors were based on these distributed semantics and they worked well. However ,many  words  are  semantically  ambiguous,  and  can  refer tomore than one concept.  For example,"bark" can refer either to a part of a tree, or to the sound made by a dog.  To understand such words, we must disambiguate between these different interpretations, normally on the basis of the context in which the word occurs.  
+The correlation between distributional and semantic similarity can be operationalized in many ways. Word2Vec and Glove Vectors were based on these distributed semantics and they worked well. However ,many  words  are  semantically  ambiguous,  and  can  refer tomore than one concept.  For example,"bark" can refer either to a part of a tree, or to the sound made by a dog.  To understand such words, we must disambiguate between these different interpretations, normally on the basis of the context in which the word occurs.
 
 BERT, or Bidirectional Encoder Representations from Transformers, is a method of pre-training language representations, meaning a general-purpose "language understanding" model is trained on a large text corpus (like Wikipedia), and then that model is used for downstream NLP tasks like Sentiment Analysis , Summarization etc. BERT outperforms previous methods because it is the first unsupervised, deeply bidirectional system for pre-training NLP and has also achieved  new  state-of-the-art  results  on Word Sense Disambiguation (WSD).
 
@@ -29,7 +34,12 @@ The table below compares them for what they are!
 
 
 ### References
-    1. Datasets
-       a. [a link](https://github.com/user/repo/blob/branch/other_file.md)
-       b. [a link](https://github.com/user/repo/blob/branch/other_file.md)
+- Packages
+	- [Build and Deploy a web-application using Flask](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
+	- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 
+- Papers
+	- [BERT](https://arxiv.org/pdf/1810.04805v1.pdf)
+	- [DistilBERT](https://arxiv.org/pdf/1910.01108.pdf)
+	- [ALBERT](https://arxiv.org/pdf/1909.11942.pdf)
+	
