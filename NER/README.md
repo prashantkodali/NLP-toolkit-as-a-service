@@ -58,17 +58,17 @@ Note: In case of URL as input, output can be generated only if web-scrapping (us
 |CARDINAL          |Numerals that do not fall under another type.		               |
 
 #### To Add New Enity Types
-For more details on [training](https://spacy.io/usage/training) and updating the named entity recognizer, see the usage guides on training or check out the runnable [training script] (https://github.com/explosion/spaCy/blob/master/examples/training/train_ner.py) on GitHub.
+For more details on [training](https://spacy.io/usage/training) and updating the named entity recognizer, see the usage guides on training or check out the runnable [training script](https://github.com/explosion/spaCy/blob/master/examples/training/train_ner.py) on GitHub.
 
 
 #### System Architectures Used
 
 ![Flow](https://spacy.io/training-73950e71e6b59678754a87d6cf1481f9.svg)
 
-Training data: Examples and their annotations.
-Text: The input text the model should predict a label for.
-Label: The label the model should predict.
-Gradient: Gradient of the loss function calculating the difference between input and expected output.
+<b>Training data: <b> Examples and their annotations. </br>
+Text: The input text the model should predict a label for. </br>
+Label: The label the model should predict. </br>
+Gradient: Gradient of the loss function calculating the difference between input and expected output. </br>
 
 Example Usage:
 	
