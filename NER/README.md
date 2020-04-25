@@ -82,8 +82,9 @@ Example Usage:
  	 "error": null,
  	 "output_text": "<div class=\"entities\" style=\"line-height: 2.5\">\n<mark class=\"entity\" style=\"background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    Amy\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">PERSON</span>\n</mark>\n is a good girl. She came to \n<mark class=\"entity\" style=\"background: #feca74; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    India\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">GPE</span>\n</mark>\n \n<mark class=\"entity\" style=\"background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    yesterday\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">DATE</span>\n</mark>\n. She works for google.</div>"
 	}
-	Visualising the JSON Output:
-	
+
+Visualising the JSON Output:
+![Flow](https://github.com/prashantkodali/NLP-toolkit-as-a-service/blob/master/NER/img/visualizeJSONOutput.png)	
 
 
 Input Parameters : Json (src,id)
