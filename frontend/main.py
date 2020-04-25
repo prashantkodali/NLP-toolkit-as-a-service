@@ -39,7 +39,7 @@ def loginSuccess():
 @main.route('/loggedinAdmin')
 @login_required
 def loginSuccessAdmin():
-    return render_template('pages/loginSuccess.Admin.home.html')
+    return render_template('pages/loginSuccess.Admin.home.html', services = getservices())
 
 @main.route('/addservice')
 def addservice():

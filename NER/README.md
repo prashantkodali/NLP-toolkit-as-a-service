@@ -31,7 +31,7 @@ This online NER service uses SpaCy’s trained model to identify the named entit
 Note: In case of URL as input, output can be generated only if web-scrapping (using Beautiful Soup) is permitted for that particular URL.
 
 #### Trained Corpus 
-- [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
+- [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19)
 
 #### Entity Types Supported by the Model
 
@@ -72,9 +72,21 @@ For more details on [training](https://spacy.io/usage/training) and updating the
 
 Example Usage:
 	
-	curl -i -H "Content-Type: application/json" -X POST -d "{\"type\":\"text\", \"text\":\"Amy is a good girl. She came to India yesterday. She works for google.\"}" 127.0.0.1:8080/getNER
+	curl -i -H "Content-Type: application/json" -X POST -d "{\"type\":\"text\", \"text\":\"Amy is a American. She came to India yesterday. She works for Google.\"}" 127.0.0.1:8080/getNER
 	127.0.0.1:8080 --> Local host server can be made publicly available using ngrok [https://ngrok.com/]
-  
+ 
+	JSON Output: 
+	
+	{
+  	"annotated_tags": "[(Amy, 'PERSON'), (is, ''), (a, ''), (American, 'NORP'), (., ''), (She, ''), (came, ''), (to, ''), (India, 'GPE'), (yesterday, 'DATE'), (., ''), (She, ''), (works, ''), (for, ''), (Google, 'ORG'), (., '')]",
+  	"error": null,
+  	"output_text": "<div class=\"entities\" style=\"line-height: 2.5\">\n<mark class=\"entity\" style=\"background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    Amy\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">PERSON</span>\n</mark>\n is a \n<mark class=\"entity\" style=\"background: #c887fb; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    American\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">NORP</span>\n</mark>\n. She came to \n<mark class=\"entity\" style=\"background: #feca74; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    India\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">GPE</span>\n</mark>\n \n<mark class=\"entity\" style=\"background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    yesterday\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">DATE</span>\n</mark>\n. She works for \n<mark class=\"entity\" style=\"background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    Google\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">ORG</span>\n</mark>\n.</div>"
+	}
+
+Visualising the JSON Output:
+![Flow](https://github.com/prashantkodali/NLP-toolkit-as-a-service/blob/master/NER/img/visualizeJSONOutput.png)	
+
+
 Input Parameters : Json (src,id)
 
 	| Field | Type    | Description                                                         |
@@ -101,6 +113,6 @@ Output : Json File (src, tgt, errorMessage)
 	- [Enchant](http://pyenchant.github.io/pyenchant/)
 	- [ngrok](https://ngrok.com/)
 - Trained Corpus
-	- [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
+	- [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19)
 - Blogs
 	- For Named Entity Recognition [blog](https://towardsdatascience.com/named-entity-recognition-with-nltk-and-spacy-8c4a7d88e7da) 

@@ -122,7 +122,7 @@ def ner_call():
             return render_template('pages/ner.html', input= text, services = getservices())
         print(response.json()['output_text'])
 
-        return render_template('pages/ner.html',services = getservices(), tags= response.json()['output_text'], annotatedTags = response.json()['annotated_tags'])
+        return render_template('pages/ner.html',services = getservices(), tags= response.json()['output_text'], annotatedTag = response.json()['annotated_tags'])
 
         # return render_template('pages/ner.html', input= text, tags= response.json()['output_text'], annotatedTag = str(response.json()['annotated_tags']))
 
@@ -144,8 +144,11 @@ def emb_call():
 
     td = {'text':text, 'id':id}
 
+    print(td)
     service = Service.query.filter_by(service_service_call = '/emb_call').first()
     apiendpoint = service.service_api_endpoint
+
+    print(apiendpoint)
 
     response = requests.post(apiendpoint, json = td)
 
@@ -158,11 +161,11 @@ def emb_call():
             return render_template('pages/emb.html', input= response.json()['embeddings'],services = getservices())
 
 
-        return render_template('pages/emb.html', output= response.json()['embeddings'],services = getservices())
+        return render_template('pages/emb.html', input_text= text,  output= response.json()['embeddings'],services = getservices())
 
     except :
         flash("There seems to be a issue with the service. Please contact the admin.")
-        return render_template('pages/emb.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/emb.html', input_text= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
 
 ####################################################################################################
@@ -178,13 +181,18 @@ def sentiment_call():
     text = request.form['txt_ip']
     id = int(request.form['id'])
 
-    td = {'text':text, 'id':id,}
+    td = {'text':text, 'id':id}
 
     service = Service.query.filter_by(service_service_call = '/sentiment_call').first()
     apiendpoint = service.service_api_endpoint
+    print(apiendpoint)
+
+    response = requests.post(apiendpoint, json = td)
+    print(response.json())
 
     try:
         response = requests.post(apiendpoint, json = td)
+        print(response.json())
         return render_template('pages/sentiment.html', input = text,output= response.json()['label'],services = getservices())
     except :
         flash("There seems to be a issue with the service. Please contact the admin.")
