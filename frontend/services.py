@@ -11,16 +11,28 @@ requests package to hit the api with necessary payload (json) and gets reponse f
 from flask import Blueprint, render_template, request, jsonify, flash
 import requests
 from . import db
+from .models_db import Service
 
 
 services = Blueprint('services', __name__)
 
 
+def getservices():
+
+    servicesall = Service.query.all()
+
+    services = []
+
+    for service in servicesall:
+        services.append([service.service_page_call, service.service_name])
+
+    return services
+
 ####################################################################################################
 #Routes for Tokenization service.
 @services.route('/tokenizer_page',methods = ['GET'])
 def tokenizer_page():
-    return render_template('pages/tokenize_ajaxtest.html')
+    return render_template('pages/tokenize_ajaxtest.html', services = getservices())
 
 
 @services.route('/tokenize_call',methods = ['POST'])
@@ -28,9 +40,13 @@ def tokenize_call():
     text = request.form['text']
     id = request.form['id']
     td = {'input_text':text, 'id':id }
-    response = requests.post("http://e0cd242b.ngrok.io/gettokenizer", json = td)
 
-    return render_template('pages/tokenize_ajaxtest.html',input = text, output= response.json()['output_text'])
+    service = Service.query.filter_by(service_service_call = '/tokenize_call').first()
+    apiendpoint = service.service_api_endpoint
+
+    response = requests.post(apiendpoint, json = td)
+
+    return render_template('pages/tokenize_ajaxtest.html',input = text, output= response.json()['output_text'], services = getservices())
 
 
 ####################################################################################################
@@ -38,7 +54,7 @@ def tokenize_call():
 
 @services.route('/mt_page',methods = ['GET'])
 def mt_page():
-    return render_template('pages/mt.html')
+    return render_template('pages/mt.html', services = getservices())
 
 
 @services.route('/mt_call',methods = ['POST'])
@@ -46,16 +62,22 @@ def mt_call():
     src = request.form['src']
     id = request.form['id']
     td = [{'src':src, 'id':id }]
-    response = requests.post("http://8ea2b9ff.ngrok.io/translate", json = td)
+
+    service = Service.query.filter_by(service_service_call = '/mt_call').first()
+    apiendpoint = service.service_api_endpoint
+
+    print(apiendpoint)
+
+    response = requests.post(apiendpoint, json = td)
 
     print("printing response:\n")
     print(response.json())
 
     if response.json()['error'] != 'None':
         flash(response.json()['error'])
-        return render_template('pages/mt.html', input= response.json()['src'],)
+        return render_template('pages/mt.html', input= response.json()['src'],services = getservices())
 
-    return render_template('pages/mt.html', input= response.json()['src'], output=response.json()['tgt'])
+    return render_template('pages/mt.html', input= response.json()['src'], output=response.json()['tgt'], services = getservices())
 
 
 ####################################################################################################
@@ -63,16 +85,19 @@ def mt_call():
 
 @services.route('/ner_page',methods = ['GET'])
 def ner_page():
-    return render_template('pages/ner.html')
+    return render_template('pages/ner.html', services = getservices())
 
 @services.route('/ner_call',methods = ['POST'])
 def ner_call():
+
+    service = Service.query.filter_by(service_service_call = '/ner_call').first()
+    apiendpoint = service.service_api_endpoint
 
     if(str(request.form["url_ip"])):
         text = str(request.form["url_ip"])
         type = "url"
         td = {'text':text, 'type':type }
-        response = requests.post("http://0aab87fb.ngrok.io/getNER", json = td)
+        response = requests.post(apiendpoint, json = td)
 
     elif(str(request.form["txt_ip"])):
         text = str(request.form["txt_ip"])
@@ -81,31 +106,28 @@ def ner_call():
 
         print(td)
 
-        response = requests.post("http://0aab87fb.ngrok.io/getNER", json = td)
+        response = requests.post(apiendpoint, json = td)
 
-<<<<<<< HEAD
     # print(response.json())
     try:
         if response.json()['error'] != None:
             flash(response.json()['error'])
-            return render_template('pages/ner.html', input= text)
-=======
+            return render_template('pages/ner.html', input= text, services = getservices())
         print(response.json()['output_text'])
 
-    return render_template('pages/ner.html', tags= response.json()['output_text'], annotatedTags = response.json()['annotated_tags'] )
->>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
+        return render_template('pages/ner.html',services = getservices(), tags= response.json()['output_text'], annotatedTags = response.json()['annotated_tags'])
 
-        return render_template('pages/ner.html', input= text, tags= response.json()['output_text'], annotatedTag = str(response.json()['annotated_tags']))
+        # return render_template('pages/ner.html', input= text, tags= response.json()['output_text'], annotatedTag = str(response.json()['annotated_tags']))
 
     except :
         flash("There seems to be a issue with the service. Please contact the admin.")
-        return render_template('pages/ner.html', input= text, flash = "There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/ner.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 ####################################################################################################
 #Routes for Text Representation service.
 
 @services.route('/emb_page',methods = ['GET'])
 def emb_page():
-    return render_template('pages/emb.html')
+    return render_template('pages/emb.html', services = getservices())
 
 @services.route('/emb_call',methods = ['POST'])
 def emb_call():
@@ -115,17 +137,20 @@ def emb_call():
 
     td = {'text':text, 'id':id}
 
-    response = requests.post("http://19584b76.ngrok.io/GenerateEmbeddings", json = td)
+    service = Service.query.filter_by(service_service_call = '/emb_call').first()
+    apiendpoint = service.service_api_endpoint
+
+    response = requests.post(apiendpoint, json = td)
 
     print(response.json())
     print(response.json()['embeddings'])
 
     if response.json()['error'] != 'None':
         flash(response.json()['error'])
-        return render_template('pages/emb.html', input= response.json()['embeddings'],)
+        return render_template('pages/emb.html', input= response.json()['embeddings'],services = getservices())
 
 
-    return render_template('pages/emb.html', output= response.json()['embeddings'])
+    return render_template('pages/emb.html', output= response.json()['embeddings'],services = getservices())
 
 
 ####################################################################################################
@@ -133,7 +158,7 @@ def emb_call():
 
 @services.route('/sentiment_page',methods = ['GET'])
 def sentiment_page():
-    return render_template('pages/sentiment.html')
+    return render_template('pages/sentiment.html', services = getservices())
 
 @services.route('/sentiment_call',methods = ['POST'])
 def sentiment_call():
@@ -143,16 +168,19 @@ def sentiment_call():
 
     td = {'text':text, 'id':id,}
 
-    response = requests.post("http://8dc45a7f.ngrok.io/getSentiment", json = td)
+    service = Service.query.filter_by(service_service_call = '/sentiment_call').first()
+    apiendpoint = service.service_api_endpoint
 
-    return render_template('pages/sentiment.html', input = text,output= response.json()['label'])
+    response = requests.post(apiendpoint, json = td)
+
+    return render_template('pages/sentiment.html', input = text,output= response.json()['label'],services = getservices())
 
 ####################################################################################################
 #Routes for Summarization service.
 
 @services.route('/summarize_page',methods = ['GET'])
 def summarize_page():
-    return render_template('pages/summarization.html')
+    return render_template('pages/summarization.html', services = getservices())
 
 @services.route('/summarize_call',methods = ['POST'])
 def summarize_call():
@@ -162,9 +190,12 @@ def summarize_call():
 
     td = {'text':text, 'num':num}
 
-    response = requests.post("http://localhost:6000/summarize", json = td)
+    service = Service.query.filter_by(service_service_call = '/summarize_call').first()
+    apiendpoint = service.service_api_endpoint
 
-    return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'])
+    response = requests.post(apiendpoint, json = td)
+
+    return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'], services = getservices())
 
 
 ####################################################################################################
@@ -173,15 +204,16 @@ def summarize_call():
 
 @services.route('/transliteration_page',methods = ['GET'])
 def transliteration_page():
-    return render_template('pages/transliteration.html')
+    return render_template('pages/transliteration.html', services = getservices())
 
 @services.route('/transliteration_call',methods = ['POST'])
 def transliteration_call():
-
     text = request.form['text']
 
+    service = Service.query.filter_by(service_service_call = '/transliteration_call').first()
+    apiendpoint = service.service_api_endpoint
+
     td = {'text':text}
+    response = requests.post(apiendpoint, json = td)
 
-    response = requests.post("http://localhost:7000/transliterate", json = td)
-
-    return render_template('pages/transliteration.html', input = text, output= response.json()['transliterated_text'])
+    return render_template('pages/transliteration.html', input = text, output= response.json()['transliterated_text'], services = getservices())

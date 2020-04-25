@@ -10,6 +10,18 @@ from .models_db import Service
 
 main = Blueprint('main', __name__)
 
+
+def getservices():
+
+    servicesall = Service.query.all()
+
+    services = []
+
+    for service in servicesall:
+        services.append([service.service_page_call, service.service_name])
+
+    return services
+
 @main.route('/')
 def home():
     return render_template('pages/placeholder.home.html')
@@ -17,7 +29,12 @@ def home():
 @main.route('/loggedin')
 @login_required
 def loginSuccess():
-    return render_template('pages/loginSuccess.home.html')
+    services = getservices()
+    if current_user.user_type == 'User':
+        return render_template('pages/loginSuccess.home.html', services = services)
+    elif current_user.user_type == 'Admin':
+        return render_template('pages/loginSuccess.Admin.home.html', services = services)
+
 
 @main.route('/loggedinAdmin')
 @login_required

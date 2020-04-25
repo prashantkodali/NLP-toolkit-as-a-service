@@ -5,7 +5,7 @@ This is a Blueprint consisting of all routes related to user authentication , li
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user,logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models_db import User
+from .models_db import User, Service
 from . import db
 from .forms import *
 
@@ -43,10 +43,18 @@ def login_post():
 
     login_user(user)
 
+
+    servicesall = Service.query.all()
+
+    services = []
+
+    for service in servicesall:
+        services.append([service.service_page_call, service.service_name])
+
     if user.user_type == "User":
-        return render_template('pages/loginSuccess.home.html', name = user.fullname)
+        return render_template('pages/loginSuccess.home.html', name = user.fullname, services = services)
     elif user.user_type == "Admin":
-        return render_template('pages/loginSuccess.Admin.home.html', name = user.fullname)
+        return render_template('pages/loginSuccess.Admin.home.html', name = user.fullname, services = services)
 
 
 @auth.route('/signup', methods=['POST'])
