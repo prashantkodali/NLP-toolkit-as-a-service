@@ -1,0 +1,39 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Add a service{% endblock %}
+{% block content %}
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/loggedinAdmin">NLP Toolkit</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right">
+        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+
+<br><br><br.<br>
+
+
+  <form style="margin-top:1cm" method="POST" action="/addservice" class="form">
+    <h3 class="form-heading" style="text-align:center">Add a service <a href="/" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    {{ form.serviceName(class_ = 'form-control first-input', placeholder = form.serviceName.label.text, required = true, autofocus = true) }}
+    {{ form.serviceAuthor(class_ = 'form-control first-input', placeholder = form.serviceAuthor.label.text, required = true, autofocus = true) }}
+    {{ form.servicePageCall(class_ = 'form-control first-input', placeholder = form.servicePageCall.label.text, required = true, autofocus = true) }}
+    {{ form.serviceServiceCall(class_ = 'form-control first-input', placeholder = form.serviceServiceCall.label.text, required = true, autofocus = true) }}
+    {{ form.serviceAPIEndpoint(class_ = 'form-control first-input', placeholder = form.serviceAPIEndpoint.label.text, required = true, autofocus = true) }}
+    {{ form.serviceTags(class_ = 'form-control first-input', placeholder = form.serviceTags.label.text, required = true, autofocus = true) }}
+
+    <p class="pull-right"><a href="{{ url_for('auth.signup') }}">Submit</a></p>
+    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+  </form>
+{% endblock %}

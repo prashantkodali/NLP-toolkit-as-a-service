@@ -2,13 +2,22 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
+
+
 <div class="page-header">
   <h1>Text Representations</h1>
-  <p> <u>Description Of the service</u></p>
-<p>In Text Representation module we find word / sentence embeddings where individual words are represented as real-valued vectors in a predefined vector space. Each word is mapped to one vector and the vector values are learned in a way that resembles a neural network. The main benefit of the dense representations is generalization power allowing words or sentences with similar meaning to have a similar representation.
-Google’s BERT and recent transformer-based methods hav outperformed the state-of-the-art on several tasks. Several models have been presented on Bert ,to  either improve its prediction metrics or computational speed, but not both. It is difficult to use such large models underlow latency constraints. Here we are providing pre-trained models of BERT and two variants of BERT - DistilBert and AlBert</u></p>
-</div>
+  <p> <u>Description Of Our Text Summarization Method</u></p>
+  <p> This Text Representation module helps us find word / sentence embeddings where individual words are represented as real-valued vectors in a predefined vector space. Each word is mapped to one vector and the vector values are learned in a way that resembles a neural network. The main benefit of the dense representations is generalization power allowing words or sentences with similar meaning to have a similar representation. Google’s BERT and recent transformer-based methods hav outperformed the state-of-the-art on several tasks. It has been trained on a large dataset (Wikipedia (2.5B words) + BookCorpus (800M words)). Several models have been presented on Bert ,to  either improve its prediction metrics or computational speed, but not both. It is difficult to use such large models underlow latency constraints. Here we are providing pre-trained models of BERT and two variants of BERT - DistilBert and AlBert </p>
+<p> <u>References</u></p>
+<p><a href="https://arxiv.org/pdf/1810.04805.pdf"> Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: Pre-training of deep bidirectionaltransformers for language understanding. InNAACL-HLT, 2018.</a>
+<p><a href=https://arxiv.org/pdf/1910.01108.pdf> Victor Sanh, Lysandre Debut, Julien Chaumond, and Thomas Wolf. Distilbert, a distilled version of bert:smaller, faster, cheaper and lighter.arXiv preprint arXiv:1910.01108, 2019.</a>
+<p><a href=https://arxiv.org/pdf/1909.11942.pdf> Zhenzhong Lan, Sebastian Goodman, Piyush Sharma, and Radu Soricut. ALBERT ,  a  Lite BERT for self-supervised learning  of language represntations , 2019.</a>
 
+<p> <u>Libraries and Resources used</u></p>
+<p>1. PreTrained Models i.e BertModel, DistilBertModel and AlbertModel from transformers library in Python<br />
+<p> <u>Author</u><br /> Hiranmai Sri Adibhatla <br />hiranmai.sri@research.iiit.ac.in</p>
+
+</div>
 
 <form action="{{ url_for('services.emb_call') }}" method="post">
 
@@ -31,29 +40,25 @@ Google’s BERT and recent transformer-based methods hav outperformed the state-
 
 <br>
 <form id="output">
-	<label for="text">Sentiment</label>
+	<label for="text">Text Representations</label>
   <textarea class="form-control" id="output_text" rows="3"> {{ output }}</textarea>
 </form>
-
 
 <hr>
 
 <div class="page-header">
-  <p><u>API Details</u></p>
-	<p>We have included three popular models for Text Representation here:</p>
+  <p ><u><b>API Details:</b></u></p>
+  <p style="text-indent: 2.5rem"><u>API end point</u></p>
+  <p style="text-indent: 5rem">http://localhost:5000/GenerateEmbeddings/ <br />
+  <p style="text-indent: 2.5rem"><u>Input JSON format</u></p>
+  <p style="text-indent: 5rem">JSON should consist of two arguments :</p>
+    <p style="text-indent: 5rem">key: "text" , value: text for which summary is to be generated.</p>
+    <p style="text-indent: 5rem">key: "model", value: the model using which the embeddings are to be generated. </p>
+  <p style="text-indent: 2.5rem"><u>Output JSON format</u></p>
+  <p style="text-indent: 5rem">Service return a JSON with </p>
+    <p style="text-indent: 5rem">key : "emneddings", value:  Embeddings of the sentence.</p>
+	<p style="text-indent: 5rem">key : "emneddings", value:  Error Msg , if Any.</p>
 
-	<p>BERT 		- Is a bi-directional transformer for pre-training over a lot of unlabeled textual data to learn a language representation that can be used to fine-tune for 	                   specific machine learning tasks.
-	</p>
-	<p>
-	DistilBert 	- Is a variant of Bert that improves on the inference speed. It has minor degradation on the performance but greatly reduces the training time.
-	</p>
-	<p>
-	AlBert 		- Is BERT’s successor, a much smaller/smarter Lite Bert called ALBERT. It's strength lies in the dramatic reduction in model/parameter size, thereby making them 					  light-weight, responsive and energy-efficient models.  
-	</p>
-	<p>
-    The API accepts the 'Text' for which representation is desired and the 'Model' name as inputs. It combines them into a dictionary and converts it into a .json file.
-	The .json file is received by the server , Text and Model details are extracted and the corresponding model is called for generating Embeddings. The Embeddings are again written to a .json file.</p>
 </div>
-
 
 {% endblock %}

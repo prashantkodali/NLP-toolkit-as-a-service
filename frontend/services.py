@@ -72,7 +72,7 @@ def ner_call():
         text = str(request.form["url_ip"])
         type = "url"
         td = {'text':text, 'type':type }
-        response = requests.post("http://38892c1c.ngrok.io/getNER", json = td)
+        response = requests.post("http://0aab87fb.ngrok.io/getNER", json = td)
 
     elif(str(request.form["txt_ip"])):
         text = str(request.form["txt_ip"])
@@ -81,13 +81,19 @@ def ner_call():
 
         print(td)
 
-        response = requests.post("http://38892c1c.ngrok.io/getNER", json = td)
+        response = requests.post("http://0aab87fb.ngrok.io/getNER", json = td)
 
-        print(response.json()['output_text'])
+    # print(response.json())
+    try:
+        if response.json()['error'] != None:
+            flash(response.json()['error'])
+            return render_template('pages/ner.html', input= text)
 
-    return render_template('pages/ner.html', tags= response.json()['output_text'])
+        return render_template('pages/ner.html', input= text, tags= response.json()['output_text'], annotatedTag = str(response.json()['annotated_tags']))
 
-
+    except :
+        flash("There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/ner.html', input= text, flash = "There seems to be a issue with the service. Please contact the admin.")
 ####################################################################################################
 #Routes for Text Representation service.
 
@@ -103,9 +109,15 @@ def emb_call():
 
     td = {'text':text, 'id':id}
 
-    response = requests.post("https://7a7645ae.ngrok.io/GenerateEmbeddings", json = td)
+    response = requests.post("http://19584b76.ngrok.io/GenerateEmbeddings", json = td)
 
+    print(response.json())
     print(response.json()['embeddings'])
+
+    if response.json()['error'] != 'None':
+        flash(response.json()['error'])
+        return render_template('pages/emb.html', input= response.json()['embeddings'],)
+
 
     return render_template('pages/emb.html', output= response.json()['embeddings'])
 
