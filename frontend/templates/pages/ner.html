@@ -30,7 +30,7 @@ $(function() {
 <p> <u>Description of the service:</u> </p>
 <p> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing. <br>
 <br>
-This online NER service for English uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL.
+This online NER service for English uses SpaCy's trained model to identify the named entities. Input can be either in text format or URL.
 <br>
 Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.</p>
 
@@ -125,6 +125,22 @@ Input Text: <textarea class="form-control" id="txtarea" rows="4" cols="50" name=
     <p style="text-indent: 5rem">key : "output_text",    value:  Output with annotated NER tags using Displacy.</p>
 	<p style="text-indent: 5rem">key : "annotated_tags", value:  Output with annotated NER tags</p>
 	<p style="text-indent: 5rem">key : "error",          value:  Error Message </p>
+
+</div>
+	
+<div class="page-header">
+  <p ><u><b>To Add New Enity Types:</b></u></p>
+  <p style="text-indent: 2.5rem">For more details on <a href="https://spacy.io/usage/training" >training</a> and updating the named entity recognizer, see the usage guides on training or check out the runnable training script on <a href="https://github.com/explosion/spaCy/blob/master/examples/training/train_ner.py">GitHub</a>.
+</p>
+  
+  
+  <p style="text-indent: 2.5rem"><b>Training Flow of Spacy Model:</b></p>
+  <img src = "https://camo.githubusercontent.com/a4a5c6c9c4c69b0d2946e78781cec282cc6fdba0/68747470733a2f2f73706163792e696f2f747261696e696e672d37333935306537316536623539363738373534613837643663663134383166392e737667" style="height: 200px">
+    <p style="text-indent: 5rem"><b>Training data:</b> Examples and their annotations. </p>
+    <p style="text-indent: 5rem"><b>Text: </b> The input text the model should predict a label for.</p>
+	<p style="text-indent: 5rem"><b>Label: </b> The label the model should predict.</p>
+	<p style="text-indent: 5rem"><b>Gradient: </b>Gradient of the loss function calculating the difference between input and expected output.
+</p>
 
 </div>
 

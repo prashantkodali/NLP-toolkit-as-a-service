@@ -38,6 +38,8 @@ To address this problem, our team set out on developing a platform which enables
     
     Please access these individual pages for more details on each of these pages.
 
+![alt text](img/ServerSWE.jpeg)
+
 ### System Architecture
 
 #### UML Class Diagram
