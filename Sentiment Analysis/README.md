@@ -48,6 +48,6 @@ For this text we built the Multilayer Perceptron model with word level TF-IDF ve
      - [IIITH dataset](https://github.com/drimpossible/Sub-word-LSTM/tree/master/Data)
      - [SentiMix dataset](https://competitions.codalab.org/competitions/20654)
   2. Papers
-     - [Code-Mixed Sentiment Analysis Using Machine Learning andNeural Network Approaches](https://arxiv.org/pdf/1808.03299.pdf)
+     - [Code-Mixed Sentiment Analysis Using Machine Learning and Neural Network Approaches](https://arxiv.org/pdf/1808.03299.pdf)
      - [Sentiment Analysis for Code-Mixed Indian Social Media Text With Distributed Representation](https://ieeexplore.ieee.org/document/8554835)
      - [SENTIMENT ANALYSIS OF MIXED CODE FOR THE TRANSLITERATED HINDI AND MARATHI TEXTS](https://aircconline.com/ijnlc/V7N2/7218ijnlc02.pdf)

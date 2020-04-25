@@ -32,7 +32,11 @@ $(document).ready(function () {
             // Specify the name of the file to be saved
             var fileNameToSaveAs = "myNewFile.txt";
 
+<<<<<<< HEAD
             // Optionally allow the user to choose a file name by providing
+=======
+            // Optionally allow the user to choose a file name by providing 
+>>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
             // an imput field in the HTML and using the collected data here
             // var fileNameToSaveAs = txtFileName.text;
 
@@ -76,7 +80,11 @@ $(document).ready(function () {
             e.preventDefault();
             saveTextAsFile();
         });
+<<<<<<< HEAD
  });
+=======
+ });  
+>>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
 
 </script>
 </head>
@@ -124,12 +132,20 @@ Input Text: <textarea class="form-control" id="txtarea" rows="4" cols="50" name=
   </br>
    <textarea class="form-control" id="content" rows="3"> {{ annotatedTag | safe }} </textarea>
    <input type="button" id="download" value="Download NER annotated text file" />
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
 </form>
 
 
 <form id="output">
+<<<<<<< HEAD
   <label for="text">NER Tagged Output:</label>
+=======
+  <label for="text">NER Tagged Output:</label>   
+>>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
   <div id="outputText" class="row">{{ tags | safe }}</div>
 </form>
 
@@ -137,6 +153,7 @@ Input Text: <textarea class="form-control" id="txtarea" rows="4" cols="50" name=
 <hr>
 New code for testing
 
+<<<<<<< HEAD
 <p>
 
             <textarea id="text">{{ annotatedTag | safe }} </textarea>
@@ -172,6 +189,43 @@ New code for testing
                     download(filename, text);
                 }, false);
             </script>
+=======
+<p> 
+  
+            <textarea id="text">{{ annotatedTag | safe }} </textarea> 
+            <br/> 
+            <input type="button" id="btn" value="Download" /> 
+  
+            <script> 
+                function download(file, text) { 
+  
+                    //creating an invisible element 
+                    var element = document.createElement('a'); 
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8, ' 
+                                         + encodeURIComponent(text)); 
+                    element.setAttribute('download', file); 
+  
+                    //the above code is equivalent to 
+                    // <a href="path of file" download="file name"> 
+  
+                    document.body.appendChild(element); 
+  
+                    //onClick property 
+                    element.click(); 
+  
+                    document.body.removeChild(element); 
+                } 
+  
+                // Start file download. 
+                document.getElementById("btn").addEventListener("click", function() { 
+                    // Generate download of hello.txt file with some content 
+                    var text = document.getElementById("text").value; 
+                    var filename = "ner.txt"; 
+  
+                    download(filename, text); 
+                }, false); 
+            </script> 
+>>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
 
 
 

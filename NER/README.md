@@ -7,34 +7,27 @@ To start server kindly use following command,
 ```bash
  python Server_Entry.py
 ```
-Small description of fields is given below,
-
-| Field  | Field Description                                                                                                                                    |
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ip     | ip Address which will be exposed as server. Default: 0.0.0.0                                                                                         |
-| port   | port used for handling translation request. Default: 5000                                                                                            |
 
 ### Prerequisite for Server
 	
 Spacy </br>
 ```bash
-    - pip install spacy </br>
-    - python -m spacy download en_core_web_sm </br>
+    - pip install spacy 
+    - python -m spacy download en_core_web_sm 
 ```
 Flask </br>
 ```bash
      -pip install Flask
 ```
-	
-
+Enchant </br>
+```bash
+     -pip install pyenchant 
+```
 ### Short Description of Service
 
 Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing.
 
-
-#### For Training Machine Translation system
-
-This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL.
+This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL. </br>
 Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.
 
 #### Trained Corpus 
@@ -95,7 +88,8 @@ Output : Json File (src, tgt, errorMessage)
 
 - Packages
 	- [Spacy](https://github.com/explosion/spacy-models/releases//tag/en_core_web_sm-2.2.5)
-  - [ngrok](https://ngrok.com/)
+	- [Enchant](http://pyenchant.github.io/pyenchant/)
+	- [ngrok](https://ngrok.com/)
 - Trained Corpus
 	- [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
 - Blogs

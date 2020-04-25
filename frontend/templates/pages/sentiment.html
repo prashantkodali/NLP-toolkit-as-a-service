@@ -4,27 +4,31 @@
 
 <div class="page-header">
   <h1>Sentiment Analysis</h1>
-  <p> <u>Description Of the service</u></p>
+  <p> <u>Description of Sentiment Analysis</u><p>
+  <p> Sentiment Analysis (SA) is the interpretation and classification of sentiment (positive, negative and neutral) within text data using text analysis techniques. Here, our sentiment analysis service detect polarity score within a given text, based on that polarity score assigns a sentiment label. And, In this toolkit we are building the SA model for normal English text and Hinglish (Hindi and English Code-Mixed data) text. To build the model for nomal English text used the open-source libraries TextBlob and NLTK's VADER (Valence Aware Dictionary and sEntiment Reasoner) and for Code-Mixed text used the MultiLayer Perceptron (MLP) with TFIDF vectors. </p>
+  <p> <u>References</u></p>
+  <p><a href="https://arxiv.org/pdf/1808.03299.pdf"> Pruthwik M., Prathyusha D., Pranav D. (2017). "Code-Mixed Sentiment Analysis Using Machine Learning andNeural Network Approaches." <i>ArXiv</i> abs/1808.03299 (2018): n. pag. </a>
+
+<p> <u>Libraries and Resources used</u></p>
+<p>1. TextBlob and NLTK's VADER<br />
+  2. Scikit-Learn and NLTK </p>
+<p> <u>Author</u><br /> Sunil Gundapu <br />sunil.g@research.iiit.ac.in</p>
+
 </div>
 
 <form id="transForm" method="post" action="{{ url_for('services.sentiment_call') }}">
 		<div class="form-group">
 			<label for="text">Input text here:</label>
-			<!--<input type="reset" name="clear" value="Clear" onclick="clear_text()"/>-->
 			<textarea id="src" class="form-control" rows="3" name="txt_ip">{{ input }}</textarea>
-      <label for="text">Select Model type :</label>
+      		<label for="text">Select Model type :</label>
 			<select style="margin-top:0.5cm" id="id" name="id">
 				<option value ="100" name ="pruned">English -> English Sentiment Analysis</option>
 				<option value ="101" name ="pruned">English -> Code-Mixed Sentiment Analysis</option>
-
 			</select>
 			<br>
 			<input style="margin-top:0.5cm" class="btn" id="translate"type="submit" value="Get Sentiment"/>
-
 		</div>
 	</form>
-
-
 
 <form id="output">
 	<label for="text">Sentiment</label>
@@ -34,7 +38,17 @@
 <hr>
 
 <div class="page-header">
-  <p><u>API Details:</u></p>
+	<p ><u><b>API Details:</b></u></p>
+	<p style="text-indent: 2.5rem"><u>API end point</u></p>
+	<p style="text-indent: 5rem">http://0.0.0.0:5000/ <br />
+	<p style="text-indent: 2.5rem"><u>Input JSON format</u></p>
+	<p style="text-indent: 5rem">JSON should consist of two arguments :</p>
+	<p style="text-indent: 5rem">key: "text" , value: User input text.</p>
+	<p style="text-indent: 5rem">key: "id", value: User have to choose either English Sentient Analysis System, or Code-Mixed System.  </p>
+	<p style="text-indent: 2.5rem"><u>Output JSON format</u></p>
+	<p style="text-indent: 5rem">Service return a JSON with only one key </p>
+	<p style="text-indent: 5rem">key : "label", value:  Sentiment label of the user input.</p>
+
 </div>
 
 

@@ -83,11 +83,17 @@ def ner_call():
 
         response = requests.post("http://0aab87fb.ngrok.io/getNER", json = td)
 
+<<<<<<< HEAD
     # print(response.json())
     try:
         if response.json()['error'] != None:
             flash(response.json()['error'])
             return render_template('pages/ner.html', input= text)
+=======
+        print(response.json()['output_text'])
+
+    return render_template('pages/ner.html', tags= response.json()['output_text'], annotatedTags = response.json()['annotated_tags'] )
+>>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
 
         return render_template('pages/ner.html', input= text, tags= response.json()['output_text'], annotatedTag = str(response.json()['annotated_tags']))
 
