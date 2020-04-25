@@ -28,7 +28,7 @@ Beautiful Soup </br>
 Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing.
 
 This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL. </br>
-Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.
+Note: In case of URL as input, output can be generated only if web-scrapping (using Beautiful Soup) is permitted for that particular URL.
 
 #### Trained Corpus 
 - [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
@@ -63,6 +63,12 @@ For more details on [training](https://spacy.io/usage/training) and updating the
 
 #### System Architectures Used
 
+![Flow](https://spacy.io/training-73950e71e6b59678754a87d6cf1481f9.svg)
+
+Training data: Examples and their annotations.
+Text: The input text the model should predict a label for.
+Label: The label the model should predict.
+Gradient: Gradient of the loss function calculating the difference between input and expected output.
 
 Example Usage:
 	
