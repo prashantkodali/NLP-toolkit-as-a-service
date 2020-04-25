@@ -113,6 +113,6 @@ Output : Json File (src, tgt, errorMessage)
 	- [Enchant](http://pyenchant.github.io/pyenchant/)
 	- [ngrok](https://ngrok.com/)
 - Trained Corpus
-	- [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
+	- [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19)
 - Blogs
 	- For Named Entity Recognition [blog](https://towardsdatascience.com/named-entity-recognition-with-nltk-and-spacy-8c4a7d88e7da) 
