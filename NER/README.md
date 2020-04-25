@@ -74,7 +74,18 @@ Example Usage:
 	
 	curl -i -H "Content-Type: application/json" -X POST -d "{\"type\":\"text\", \"text\":\"Amy is a good girl. She came to India yesterday. She works for google.\"}" 127.0.0.1:8080/getNER
 	127.0.0.1:8080 --> Local host server can be made publicly available using ngrok [https://ngrok.com/]
-  
+ 
+	JSON Output: 
+	
+	{
+ 	 "annotated_tags": "[(Amy, 'PERSON'), (is, ''), (a, ''), (good, ''), (girl, ''), (., ''), (She, ''), (came, ''), (to, ''), (India, 'GPE'), (yesterday, 'DATE'), (., ''), (She, ''), (works, ''), (for, ''), (google, ''), (., '')]",
+ 	 "error": null,
+ 	 "output_text": "<div class=\"entities\" style=\"line-height: 2.5\">\n<mark class=\"entity\" style=\"background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    Amy\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">PERSON</span>\n</mark>\n is a good girl. She came to \n<mark class=\"entity\" style=\"background: #feca74; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    India\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">GPE</span>\n</mark>\n \n<mark class=\"entity\" style=\"background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone\">\n    yesterday\n    <span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">DATE</span>\n</mark>\n. She works for google.</div>"
+	}
+	Visualising the JSON Output:
+	
+
+
 Input Parameters : Json (src,id)
 
 	| Field | Type    | Description                                                         |
