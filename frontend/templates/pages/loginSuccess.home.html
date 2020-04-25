@@ -25,127 +25,61 @@
 </div>
 
 <div class="container" style="margin-top:2cm">
-        <div class="row">
-          <div class="col-md-4">
-            <h2>Tokenization</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="{{ url_for('services.tokenizer_page') }}" role="button">Try it out  &raquo;</a></p>
-          </div>
-		  <div class="col-md-4">
-            <h2>Text Representation</h2>
-            <p>Word Embeddings are a distributed representation for text that allows words with similar meaning to have a similar representation.</p>
-            <p><a class="btn btn-secondary" href="{{ url_for('services.emb_page') }}" role="button">Try it out  &raquo;</a></p>
-          </div>
 
-          <div class="col-md-4">
-              <h2>Transliteration</h2>
-              <p>ISO 15919 "Transliteration of Devanagari and related Indic scripts into Latin characters" is a standard for romanization which uses diacritics to map the much larger set of consonants and vowels in Brahmic scripts to the Latin script. Transliteration is a common tool in any pipeline used for processing multilingual and code mixed language data. </p>
-              <p><a class="btn btn-secondary" href="/transliteration_page" role="button">Try it out  &raquo;</a></p>
-          </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Tokenization</h2>
+      <p>Tokenization is a very common task in NLP, it is basically a task of chopping a given string into pieces, called as token, and throwing away
+         the certain characters at the same time, like punctuation. Improper tokenisation can lead to subpar performance in downstream tasks. Here user
+          can try few models for tokenisation.</p>
+      <p><a class="btn btn-secondary" href="{{ url_for('services.tokenizer_page') }}" role="button">Try it out  &raquo;</a></p>
+  </div>
+  <div class="col-md-4">
+      <h2>Text Representation</h2>
+      <p>Word Embeddings are a distributed representation for text that allows words with similar meaning to have a similar representation. State of the art
+        embeddings like BERT, Albert, Distillibert, perform very well in NLP tasks. Here user can try to generate these embeddings for a sentence.</p>
+      <p><a class="btn btn-secondary" href="{{ url_for('services.emb_page') }}" role="button">Try it out  &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Transliteration</h2>
+        <p>ISO 15919 "Transliteration of Devanagari and related Indic scripts into Latin characters" is a standard for romanization which uses diacritics to map the much
+          larger set of consonants and vowels in Brahmic scripts to the Latin script. Transliteration is a common tool in any pipeline used for processing multilingual and code
+          mixed language data. </p>
+        <p><a class="btn btn-secondary" href="{{ url_for('services.emb_page') }}" role="button">Try it out  &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+      <h2>Named Entity Recognition</h2>
+      <p><b>NER</b> is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names
+        of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing.</p>
+      <p><a class="btn btn-secondary" href="{{ url_for('services.ner_page') }}" role="button">Try it out  &raquo;</a></p>
+    </div>
+  <div class="col-md-4">
+      <h2>Sentimental Analysis</h2>
+      <p>Sentiment Analysis for Indian Languages (SAIL)-Code Mixed tools contest aimed at identifying the sentence level sentiment polarity of the codemixed dataset of
+        Indian languages pairs. Here the user can try sentiment Analysis for pure english text and hindi-english code mix text. </p>
+      <p><a class="btn btn-secondary" href="{{ url_for('services.sentiment_page') }}" role="button">Try it out  &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Summarization</h2>
+      <p>Summarization system consists of reduction of a text document to generate a new form which conveys the key meaning of the contained text. Extractive summarization means
+        identifying important sections of the text and generating them verbatim producing a subset of the sentences from the original text. </p>
+      <p><a class="btn btn-secondary" href="{{ url_for('services.summarize_page') }}" role="button">Try it out  &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Machine Translation</h2>
+      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo,
+         tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p><a class="btn btn-secondary" href="{{ url_for('services.mt_page') }}" role="button">Try it out &raquo;</a></p>
 
 
-
-          <div class="col-md-4">
-            <h2>Named Entity Recognition</h2>
-            <p><b>NER</b> is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing.</p>
-            <p><a class="btn btn-secondary" href="{{ url_for('services.ner_page') }}" role="button">Try it out  &raquo;</a></p>
-          </div>
-		  <div class="col-md-4">
-            <h2>Sentimental Analysis</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="{{ url_for('services.sentiment_page') }}" role="button">Try it out  &raquo;</a></p>
-          </div>
-          <div class="col-md-4">
-            <h2>Summarization</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="{{ url_for('services.summarize_page') }}" role="button">Try it out  &raquo;</a></p>
-          </div>
-          <div class="col-md-4">
-            <h2>Machine Translation</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="{{ url_for('services.mt_page') }}" role="button">Try it out &raquo;</a></p>
           </div>
         </div>
 
         <hr>
 
       </div>
-
-<div class="container" style="margin-top:2cm">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div align="center" class="panel-heading" style="font-size:2rem"><b>Tokenization</b></div>
-        <div class="panel-body">The first step in any NLP pipeline: splitting a string into sentences and tokens.</div>
-        <div align = "center" class="panel-footer"><a href="/tokenizer_page">Try it!</a></div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div align="center" class="panel-heading" style="font-size:2rem">Text Representation</div>
-        <div class="panel-body">Converting text into meaningful and rich representations (vectors) that can be processed by any downstream ML algorithm
-        for a particular task. </div>
-        <div align = "center" class="panel-footer"><a href="/emb_page">Try it!</a></div>
-      </div>
-    </div>
-
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div align="center" class="panel-heading" style="font-size:2rem">Named Entity Recognition</div>
-        <div class="panel-body">NER is probably the first step towards information extraction that seeks to
-          locate and classify named entities in text into pre-defined categories such as the names of persons,
-          organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER
-          is used in many fields in Natural Language Processing.</div>
-        <div align = "center" class="panel-footer"><a href="/ner_page">Try it!</a></div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div align="center" class="panel-heading" style="font-size:2rem">Sentiment Analysis</div>
-        <div class="panel-body">Ascertaining the sentiment embedded in a particular piece of text, weather it be a customer
-        review, or a tweet. </div>
-        <div align = "center" class="panel-footer"><a href="/sentiment_page">Try it!</a></div>
-      </div>
-    </div>
-
-
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div align="center" class="panel-heading" style="font-size:2rem">Summarization</div>
-        <div class="panel-body">Clustering approach to Extractive summarization. Extrcating few sentences out of the given
-        document that capture the escense of the whole article. </div>
-        <div align = "center" class="panel-footer"><a href="/summarize_page">Try it!</a></div>
-      </div>
-    </div>
-
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div align="center" class="panel-heading" style="font-size:2rem">Machine Translation</div>
-        <div class="panel-body">Translating a piece of text from English to Hindi or Bhojpuri. </div>
-        <div align = "center" class="panel-footer"><a href="/mt_page">Try it!</a></div>
-      </div>
-    </div>
-
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div align="center" class="panel-heading" style="font-size:2rem">Transliteration</div>
-        <div class="panel-body">ISO 15919</div>
-        <div align = "center" class="panel-footer"><a href="/transliteration_page">Try it!</a></div>
-      </div>
-    </div>
-
-    </div>
-  </div>
-</div>
-
-
-
 
 
 {% endblock %}

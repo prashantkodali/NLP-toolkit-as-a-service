@@ -39,15 +39,19 @@ def tokenizer_page():
 def tokenize_call():
     text = request.form['text']
     id = request.form['id']
-    td = {'input_text':text, 'id':id }
+    td = {'txt_ip':text, 'id':id }
 
     service = Service.query.filter_by(service_service_call = '/tokenize_call').first()
     apiendpoint = service.service_api_endpoint
 
-    response = requests.post(apiendpoint, json = td)
+    try:
+        response = requests.post(apiendpoint, json = td)
+        print(response.json())
+        return render_template('pages/tokenize_ajaxtest.html',input = text, output= response.json()['output_text'], services = getservices())
 
-    return render_template('pages/tokenize_ajaxtest.html',input = text, output= response.json()['output_text'], services = getservices())
-
+    except :
+        flash("There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/tokenize_ajaxtest.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
 ####################################################################################################
 #Routes for Machine Translation service.
@@ -73,12 +77,15 @@ def mt_call():
     print("printing response:\n")
     print(response.json())
 
-    if response.json()['error'] != 'None':
-        flash(response.json()['error'])
-        return render_template('pages/mt.html', input= response.json()['src'],services = getservices())
+    try:
+        if response.json()['error'] != 'None':
+            flash(response.json()['error'])
+            return render_template('pages/mt.html', input= response.json()['src'],services = getservices())
 
-    return render_template('pages/mt.html', input= response.json()['src'], output=response.json()['tgt'], services = getservices())
-
+        return render_template('pages/mt.html', input= response.json()['src'], output=response.json()['tgt'], services = getservices())
+    except :
+        flash("There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/mt.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
 ####################################################################################################
 #Routes for Named Entity Recognition service.
@@ -145,12 +152,17 @@ def emb_call():
     print(response.json())
     print(response.json()['embeddings'])
 
-    if response.json()['error'] != 'None':
-        flash(response.json()['error'])
-        return render_template('pages/emb.html', input= response.json()['embeddings'],services = getservices())
+    try:
+        if response.json()['error'] != 'None':
+            flash(response.json()['error'])
+            return render_template('pages/emb.html', input= response.json()['embeddings'],services = getservices())
 
 
-    return render_template('pages/emb.html', output= response.json()['embeddings'],services = getservices())
+        return render_template('pages/emb.html', output= response.json()['embeddings'],services = getservices())
+
+    except :
+        flash("There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/emb.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
 
 ####################################################################################################
@@ -171,9 +183,13 @@ def sentiment_call():
     service = Service.query.filter_by(service_service_call = '/sentiment_call').first()
     apiendpoint = service.service_api_endpoint
 
-    response = requests.post(apiendpoint, json = td)
+    try:
+        response = requests.post(apiendpoint, json = td)
+        return render_template('pages/sentiment.html', input = text,output= response.json()['label'],services = getservices())
+    except :
+        flash("There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/sentiment.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
-    return render_template('pages/sentiment.html', input = text,output= response.json()['label'],services = getservices())
 
 ####################################################################################################
 #Routes for Summarization service.
@@ -193,9 +209,12 @@ def summarize_call():
     service = Service.query.filter_by(service_service_call = '/summarize_call').first()
     apiendpoint = service.service_api_endpoint
 
-    response = requests.post(apiendpoint, json = td)
-
-    return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'], services = getservices())
+    try:
+        response = requests.post(apiendpoint, json = td)
+        return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'], services = getservices())
+    except :
+        flash("There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/summarization.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
 
 ####################################################################################################
@@ -214,6 +233,10 @@ def transliteration_call():
     apiendpoint = service.service_api_endpoint
 
     td = {'text':text}
-    response = requests.post(apiendpoint, json = td)
 
-    return render_template('pages/transliteration.html', input = text, output= response.json()['transliterated_text'], services = getservices())
+    try:
+        response = requests.post(apiendpoint, json = td)
+        return render_template('pages/transliteration.html', input = text, output= response.json()['transliterated_text'], services = getservices())
+    except :
+        flash("There seems to be a issue with the service. Please contact the admin.")
+        return render_template('pages/transliteration.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
