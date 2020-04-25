@@ -31,7 +31,7 @@ This online NER service uses SpaCy’s trained model to identify the named entit
 Note: In case of URL as input, output can be generated only if web-scrapping (using Beautiful Soup) is permitted for that particular URL.
 
 #### Trained Corpus 
-- [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
+- [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19)
 
 #### Entity Types Supported by the Model
 
