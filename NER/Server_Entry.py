@@ -1,9 +1,17 @@
 # -*- coding: utf-8 -*-
 """
+******************************************************************************************************************
 @author: Ananya Mukherjee
-Name :
-Description : 
+Name: ner.py
+Description : This program is the entry point of NER Online Service Server. It accepts JSON input, preprocesses to validate and if no error then retrieves NER.
+Imports ner and preprocessor.
 
+Input : JSON Input from Client.
+Preprocess the input to check for errors.
+If no errors, then retrieves Named Entities (HTML snippet with annotated tags, Plain Text with annotated tags)
+Output : Returns the NER tagged annotated text marked by HTML (for display purpose in client's browser), Plain Annotated Text and Error Message.
+
+******************************************************************************************************************
 """
 
 
@@ -11,6 +19,7 @@ import requests
 import re
 from flask import Flask, jsonify, request,render_template,redirect, url_for
 import requests
+
 from ner import *
 from preprocessor import *
 

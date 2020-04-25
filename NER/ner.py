@@ -4,6 +4,12 @@
 @author: Ananya Mukherjee
 Name: ner.py
 Description : This program retrieves the named entity tags using SpaCy's Model trained on OntoNotes5.
+
+Input : Input Type and Input Text. 
+If the input provided is URL then extracts the webpage by webscrapping and further Named Entity Recognition is applied.
+If the input is in text form then Named Entity Recognition is applied on the sentences.
+Output : Returns the NER tagged annotated text marked by HTML (for display purpose in client's browser) and Plain Annotated Text.
+
 ******************************************************************************************************************
 """
 from bs4 import BeautifulSoup
