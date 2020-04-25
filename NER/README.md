@@ -19,9 +19,9 @@ Flask </br>
 ```bash
      -pip install Flask
 ```
-Enchant </br>
+Beautiful Soup </br>
 ```bash
-     -pip install pyenchant 
+     -pip install beautifulsoup4
 ```
 ### Short Description of Service
 
@@ -56,6 +56,10 @@ Note: In case of URL as input, output can be generated only if web-scrapping is 
 |QUANTITY	         |Measurements, as of weight or distance.	       	               |
 |ORDINAL	         |“first”, “second”, etc.	                     	                 |
 |CARDINAL          |Numerals that do not fall under another type.		               |
+
+#### To Add New Enity Types
+For more details on [training](https://spacy.io/usage/training) and updating the named entity recognizer, see the usage guides on training or check out the runnable [training script] (https://github.com/explosion/spaCy/blob/master/examples/training/train_ner.py) on GitHub.
+
 
 #### System Architectures Used
 
