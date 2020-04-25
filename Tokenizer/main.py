@@ -30,11 +30,11 @@ def form():
     inputt = inputjson['txt_ip']
     value = int(inputjson['id'])
     tokens = 1
-    if(value==100):
-        tokens = HuggingFace(str(input))
     if(value==101):
+        tokens = HuggingFace(str(input))
+    if(value==201):
         tokens = SplitText(str(input))
-    if(value==102):
+    if(value==101):
         tokens = nltkt(str(input))
     return jsonify({'output_text':tokens})
 
