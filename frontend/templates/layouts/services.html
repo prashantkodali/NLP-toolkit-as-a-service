@@ -48,20 +48,18 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
 
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">NLP Services <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">NLP Services_dbtest <b class="caret"></b></a>
+          <ul class="dropdown-menu">
 
-                <li><a href="/tokenizer_page">Tokenization</a></li>
-                <li><a href="/emb_page">Text Representations</a></li>
-                <li><a href="/ner_page">Named Entity Recognition</a></li>
-                <li><a href="/sentiment_page">Sentimental Analysis</a></li>
-                <li><a href="/summarize_page">Summarization</a></li>
-                <li><a href="/mt_page">Machine Translation</a></li>
-            </ul>
-          </li>
-        </ul>
+            {% for row in services %}
+              <li><a href = " {{ row[0] }} " > {{ row[1] }}</a</li>
+            {% endfor %}
 
+          </ul>
+        </li>
+
+  </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
         </ul>
@@ -76,7 +74,7 @@
       {% with messages = get_flashed_messages() %}
         {% if messages %}
           {% for message in messages %}
-            <div class="alert alert-block alert-error fade in">
+            <div class="alert alert-block alert-error fade in" align="center" style="font-size:2rem; color:#FF0000; text-decoration: underline;">
               <a class="close" data-dismiss="alert">&times;</a>
               {{ message }}
             </div>

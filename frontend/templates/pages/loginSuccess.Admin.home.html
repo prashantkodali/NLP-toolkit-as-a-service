@@ -1,4 +1,4 @@
-{% extends 'layouts/welcome.html' %}
+{% extends 'layouts/welcome_admin.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
 
@@ -30,8 +30,8 @@
             <h2>Tokenization</h2>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p><a class="btn btn-secondary" href="{{ url_for('services.tokenizer_page') }}" role="button">Try it out  &raquo;</a></p>
-          </div>
-		  <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
             <h2>Text Representation</h2>
             <p>Word Embeddings are a distributed representation for text that allows words with similar meaning to have a similar representation.</p>
             <p><a class="btn btn-secondary" href="{{ url_for('services.emb_page') }}" role="button">Try it out  &raquo;</a></p>
@@ -40,10 +40,8 @@
           <div class="col-md-4">
               <h2>Transliteration</h2>
               <p>ISO 15919 "Transliteration of Devanagari and related Indic scripts into Latin characters" is a standard for romanization which uses diacritics to map the much larger set of consonants and vowels in Brahmic scripts to the Latin script. Transliteration is a common tool in any pipeline used for processing multilingual and code mixed language data. </p>
-              <p><a class="btn btn-secondary" href="/transliteration_page" role="button">Try it out  &raquo;</a></p>
+              <p><a class="btn btn-secondary" href="{{ url_for('services.emb_page') }}" role="button">Try it out  &raquo;</a></p>
           </div>
-
-
 
           <div class="col-md-4">
             <h2>Named Entity Recognition</h2>

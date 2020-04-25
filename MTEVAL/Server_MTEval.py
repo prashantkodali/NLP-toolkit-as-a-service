@@ -20,32 +20,32 @@ import re
 from flask import Flask, jsonify, request,render_template,redirect, url_for
 import requests
 
-from ner import *
+from mteval import *
 from preprocessor import *
 
 app = Flask(__name__)
 
 	
-@app.route("/getNER", methods=['POST','GET'])
-def getNamedEntities():
+@app.route("/getMTEval", methods=['POST','GET'])
+def getMTEvaluation():
     JsonInput = request.get_json(force=True)
-    inpTyp = JsonInput['type']
-    input = JsonInput['text']
+    hyp = JsonInput['hyp']
+    ref = JsonInput['ref']
+	
+    msg,hyplist,reflist = processInput(hyp,ref)
+    return output(hyplist,reflist,msg)
 
-    msg = processInput(inpTyp,input)
-    return output(inpTyp,input,msg)
-
-def processInput(inpTyp,input):
-    p = PreProcess(inpTyp,input)	
+def processInput(hyp,ref):
+    p = PreProcess(hyp,ref)	
     return p.validateInput()
 
-def output(inpTyp,input,msg):  
+def output(hyplist,reflist,msg):  
 	if(msg == True):
-		ner_obj    = RetrieveNER(inpTyp,input)
-		HTMLTags, AnnotatedTags = ner_obj.RetrieveNER()
-		#print(AnnotatedTags)
-		return jsonify({'output_text':HTMLTags,'annotated_tags':AnnotatedTags,'error':None})		
+		mteval_obj    = MTEvaluation(hyplist,reflist,)
+		bScore, nScore = mteval_obj.MTEvaluation()
+	
+		return jsonify({'bleu':bScore,'nist':nScore,'error':None})		
 	else:
-		return jsonify({'output_text':None,'annotated_tags':None,'error':msg})
+		return jsonify({'bleu':None,'nist':None,'error':msg})
 
-app.run(host='0.0.0.0', port = 8080, debug=True)
+app.run(host='0.0.0.0', port = 8000, debug=True)

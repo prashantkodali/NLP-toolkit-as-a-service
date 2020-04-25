@@ -9,6 +9,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords 
 import pickle as pkl
 from textblob import TextBlob
+from enchant.checker import SpellChecker
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
@@ -27,9 +28,9 @@ def generate():
 	iD = paragraphInput['id']
 	#text = request.form['txt_ip']
 	#iD = request.form['id']
-	#print(text,iD)
+	print(text,iD)
 	generatedSentiment = getSentimentLabel(text, int(iD))
-	#print(generatedSentiment)
+	print(generatedSentiment)
 	return jsonify(generatedSentiment)
 
 def loadPicklesItems():
@@ -60,6 +61,17 @@ def dataPreprocess(data):
             preprocessedSentence.append(newTokens)
     return preprocessedSentence
 
+def findInputLanguage(text):
+	maxErrorCount = 3
+	englishWordsDictionary = SpellChecker("en_US")
+	englishWordsDictionary.set_text(text)
+	errors = [err.word for err in englishWordsDictionary]
+	print(len(text.split()))
+	if ((len(errors) > maxErrorCount)):
+		return("Input text is not English!")
+	else:
+		return("None")
+
 def findTextblobLabel(text):
 	textObject = TextBlob(text)
 	score = textObject.sentiment.polarity
@@ -85,19 +97,29 @@ def findVaderLabel(text):
 		label='Neutral'
 	return label
 
-def getSentimentLabel(marked_text,SystemID):
+def getSentimentLabel(markedText,SystemID):
 	sentimentLabelDictionary={}
-	listAcronyms, acronyms, tfidfFeatureVector, mlpCodeMixedModel = loadPicklesItems()
-	preprocessedWords = dataPreprocess([marked_text])
-	preprocessedSentence = [' '.join(i) for i in preprocessedWords]
-	if SystemID==100:
-		textblobLabel =findTextblobLabel(preprocessedSentence[0])
-		vaderLabel = findVaderLabel(preprocessedSentence[0])
-		sentimentLabelDictionary['label']=max([textblobLabel, vaderLabel])
-	elif  SystemID == 101:
-		inputTfidfVector = tfidfFeatureVector.transform(preprocessedSentence).toarray()
-		predictedLabel = mlpCodeMixedModel.predict(inputTfidfVector)
-		sentimentLabelDictionary['label']=predictedLabel[0]
+	if(len(markedText.strip())==0):
+		sentimentLabelDictionary['label']='None'
+		sentimentLabelDictionary['error']='Please enter valid input!'
+	else:
+		listAcronyms, acronyms, tfidfFeatureVector, mlpCodeMixedModel = loadPicklesItems()
+		preprocessedWords = dataPreprocess([markedText])
+		preprocessedSentence = [' '.join(i) for i in preprocessedWords]
+		if SystemID==100:
+			error = findInputLanguage(preprocessedSentence[0])
+			textblobLabel =findTextblobLabel(preprocessedSentence[0])
+			vaderLabel = findVaderLabel(preprocessedSentence[0])
+			outputLabel=max([textblobLabel, vaderLabel])
+			if(error!='None'):
+				outputLabel='None'
+		elif  SystemID == 101:
+			error = 'None'
+			inputTfidfVector = tfidfFeatureVector.transform(preprocessedSentence).toarray()
+			predictedLabel = mlpCodeMixedModel.predict(inputTfidfVector)
+			outputLabel =predictedLabel[0]
+		sentimentLabelDictionary['label'] = outputLabel		
+		sentimentLabelDictionary['error']=error
 	return sentimentLabelDictionary
 	
 app.run(host='0.0.0.0', port = 5000, debug=True)

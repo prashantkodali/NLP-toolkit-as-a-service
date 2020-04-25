@@ -6,6 +6,16 @@
 <div class="page-header">
   <h1>Transliteration</h1>
   <p> <u>Description Of Our Tokenizer</u></p>
+  <p> This transliteration service is for hindi in Devanagari script to romanized hindi that employs ISO 15919 standard for romanization. This service uses a
+    character to diacritics map to compute the romanized character for a given character in Devanagari script. </p>
+
+  <p> <u>References</u></p>
+  <p><a href="https://en.wikipedia.org/wiki/ISO_15919/"> ISO-15919 standard wikipedia page</a>
+
+    <p> <u>Libraries and Resources used</u></p>
+    <p>Code base is is Python. No special libraries or packages are used.<br />
+    <p> <u>Author</u><br /> Prashant Kodali <br />prashant.kodali@research.iiit.ac.in</p>
+
 </div>
 
 <form method="POST" action = "{{ url_for('services.transliteration_call') }}" id="input">
@@ -29,6 +39,16 @@
 
 <div class="page-header">
   <p><u>API Details:</u></p>
+  <p style="text-indent: 2.5rem"><u>API end point</u></p>
+  <p style="text-indent: 5rem">http://localhost:7000/transliterate<br />
+  <p style="text-indent: 2.5rem"><u>Input JSON format</u></p>
+  <p style="text-indent: 5rem">JSON should consist of only one argument:</p>
+    <p style="text-indent: 5rem">key: "text" , value: Devanagari script for which romanized text is to be generated.</p>
+  <p style="text-indent: 2.5rem"><u>Output JSON format</u></p>
+  <p style="text-indent: 5rem">Service return a JSON with two keys </p>
+    <p style="text-indent: 5rem">key : "transliterated_text", value:  Summary of the sentence.</p>
+    <p style="text-indent: 5rem">key : "error", value: 'None' if no error, else Error Description.</p>
+
 </div>
 
 {% endblock %}

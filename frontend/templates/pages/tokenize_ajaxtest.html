@@ -7,6 +7,14 @@
 <div class="page-header">
   <h1>Tokenization</h1>
   <p> <u>Description Of Our Tokenizer</u></p>
+  <p>A tokenizer is in charge of preparing the inputs for a model. This tokenization service provides three options - 1. Word Tokenization using NLTK (python library) 2. Word Tokenization using Transformers with BERT Model and 3. Sentense Tokenization. </p>
+  <p> <u>References</u></p>
+  <p> HuggingFace's Transformers: State-of-the-art Natural Language Processing, https://arxiv.org/abs/1910.03771 </p>
+  <!-- <p> <u>Library and Resources used</u></p>
+  <p> 1. </p> -->
+  <p> <u>Author</u></p>
+  <p> Neha Motlani</p>
+  <p> neha.motlani@research.iiit.ac.in</p>
 </div>
 
 <form method="POST" action = "{{ url_for('services.tokenize_call') }}" id="input">
@@ -35,6 +43,16 @@
 
 <div class="page-header">
   <p><u>API Details:</u></p>
+  <p><u>API end point</u></p>
+  <p>http://localhost:8080/gettokenizer</p>
+  <p><u>Input JSON format</u></p>
+  <p>JSON should consist of one argument :<br>
+     key: "text" , value: text for which tokens need to be generated
+  </p>
+  <p><u>Output JSON format</u></p>
+  <p>Service returns a JSOn with one key<br>
+     key: "outputtext" , value: Tokens of the sentences
+  </p>
 </div>
 
 {% endblock %}

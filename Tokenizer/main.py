@@ -9,7 +9,9 @@ import requests
 from tokenizers import ByteLevelBPETokenizer, SentencePieceBPETokenizer, BertWordPieceTokenizer
 import re
 from nltk.tokenize import word_tokenize
-
+import nltk
+nltk.download('punkt')
+from nltk.tokenize import sent_tokenize
 
 # nlp = en_core_web_sm.load()
 app = Flask(__name__)
@@ -27,15 +29,16 @@ def tokens():
 def form():
     inputjson = request.get_json()
     print(inputjson)
-    inputt = inputjson['txt_ip']
+    input_text = inputjson['txt_ip']
     value = int(inputjson['id'])
-    tokens = 1
+    # tokens = 1
     if(value==100):
-        tokens = HuggingFace(str(input))
-    if(value==101):
-        tokens = SplitText(str(input))
-    if(value==102):
-        tokens = nltkt(str(input))
+        tokens = HuggingFace(str(input_text))
+    elif(value==201):
+        tokens = SplitText(str(input_text))
+    elif(value==101):
+        tokens = nltkt(str(input_text))
+    print(tokens)
     return jsonify({'output_text':tokens})
 
 def HuggingFace(inputText): 
@@ -46,11 +49,12 @@ def HuggingFace(inputText):
 
 def SplitText(inputText): 
     sentence = inputText
-    tokens = sentence.split()
+    tokens = sent_tokenize(sentence)
     return tokens
 
 def nltkt(inputText):
     tokens = word_tokenize(inputText)
+    print(tokens)
     return tokens
 
 # Bert vocabularies

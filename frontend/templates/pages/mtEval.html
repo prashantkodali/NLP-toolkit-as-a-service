@@ -1,0 +1,72 @@
+{% extends 'layouts/services.html' %}
+{% block title %}Machine Translation Evaluation{% endblock %}
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+</script>
+</head>
+<body>
+
+<div>
+<h1>Machine Translation Evaluation</h1>
+<p> <u>Description of the service:</u> </p>
+<p> This online MT Evaluation service requires Reference/Gold Sentence and Translated/Candidate/Hypothesis Sentence as input. It returns BLEU Score and NIST Score. <br>
+
+<br>
+</p>
+
+<p> <u>Libraries and Resources used</u></p>
+<p>SpaCy’s Named Entity Recognition model trained on  <a href="https://catalog.ldc.upenn.edu/LDC2013T19"> OntoNotes5</a>.<br/>
+<p> <u>Author</u><br /> Ananya Mukherjee <br />ananya.mukherjee@research.iiit.ac.in</p>
+
+<hr>
+</div>
+
+
+<form action="{{ url_for('services.mt_eval') }}" method="post" id="ner">
+
+<div id="textboxes">
+Reference Sentence: <textarea class="form-control" id="txtarea_ref" rows="4" cols="50" name="ref_ip"> </textarea>
+</div>
+
+<div id="textboxes1">
+Hypothesis Sentence: <textarea class="form-control" id="txtarea_hyp" rows="4" cols="50" name="hyp_ip"> </textarea>
+</div>
+
+<input type="submit" class="btn btn-outline-info" value="Get MT Score"/>
+</form>
+
+
+<hr>
+<form id="output">
+  <label for="text">Automatic Machine Translation Scores</label> </br>   
+  BLEU Score: <textarea class="form-control" rows="3" id="text">{{ bscore | safe }} </textarea>  </br>
+  NIST Score: <textarea class="form-control" rows="3" id="text">{{ nscore | safe }} </textarea> 
+ 
+ <hr>
+  <label for="text">Automatic Machine Translation Scores</label> </br>   
+  BLEU Score: {{ bscore | safe }} </br>
+  NIST Score: {{ nscore | safe }} 
+  
+</form>
+
+<hr>
+
+<div class="page-header">
+  <p ><u><b>API Details:</b></u></p>
+  <p style="text-indent: 2.5rem"><u>API end point</u></p>
+  <p style="text-indent: 5rem">http://localhost:8000/getMTEval/ <br />
+  <p style="text-indent: 2.5rem"><u>Input JSON format</u></p>
+  <p style="text-indent: 5rem">JSON should consist of two arguments :</p>
+    <p style="text-indent: 5rem">key: "hyp", value: Hypothesis Sentences </p>
+    <p style="text-indent: 5rem">key: "ref", value: Reference Sentences </p>
+  <p style="text-indent: 2.5rem"><u>Output JSON format</u></p>
+  <p style="text-indent: 5rem">Service return a JSON with only one key </p>
+    <p style="text-indent: 5rem">key : "bscore", value:  BLEU Score</p>
+	<p style="text-indent: 5rem">key : "nscore", value:  NIST Score</p>
+	<p style="text-indent: 5rem">key : "error",  value:  Error Message </p>
+
+</div>
+
+{% endblock %}

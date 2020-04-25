@@ -19,65 +19,113 @@ $(function() {
     }
   });
 
-});
+});  
 
 </script>
 </head>
 <body>
 
 <div>
-<form action="{{ url_for('services.ner_call') }}" method="post" id="ner">
-<div>
 <h1>Named Entity Recognition</h1>
-<p> <u>Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing. <br>
+<p> <u>Description of the service:</u> </p>
+<p> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing. <br>
 <br>
-This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL.
+This online NER service for English uses SpaCy's trained model to identify the named entities. Input can be either in text format or URL.
 <br>
 Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.</p>
-<p> <u>Model:</u> SpaCy’s named entity recognition model is trained on OntoNotes5 corpus.</p>
-<p> <u>Service Architecture:</u> </p>
-<h3> Choose your input</h3>
-   <input type="radio" name="type" value="txt"> Enter Text
+
+<p> <u>Libraries and Resources used</u></p>
+<p>SpaCy’s Named Entity Recognition model trained on  <a href="https://catalog.ldc.upenn.edu/LDC2013T19"> OntoNotes5</a>.<br/>
+<p> <u>Author</u><br /> Ananya Mukherjee <br />ananya.mukherjee@research.iiit.ac.in</p>
+
+<hr>
+<h3> Choose your input: </h3>
+<div class = "custom-control custom-radio custom-control-inline">
+   <input type="radio" name="type" value="txt"> Enter Text 
    <input type="radio" name="type" value="url"> Enter URL
+</div>
 </div>
 
 
-<div id="textboxes" style="display: none">
-Input URL: <input type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/>
+<form action="{{ url_for('services.ner_call') }}" method="post" id="ner">
 
+<div id="textboxes" style="display: none">
+Input URL: <input class="form-control" type="url" name="url_ip" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"/>
 </div>
 
 <div id="textboxes1" style="display: none">
-Input Text: <textarea id="txtarea" rows="4" cols="50" name="txt_ip">
-
-</textarea>
+Input Text: <textarea class="form-control" id="txtarea" rows="4" cols="50" name="txt_ip"> </textarea>
 </div>
 
-    <input type="submit" value="Get NER"/>
+<input type="submit" class="btn btn-outline-info" value="Get NER"/>
 </form>
+
 <br>
-<div class="wrapper" id="output">
-               		<div id="translated" style="display: block;">
-               			<div class="row desc">
-               				<span id="outputLang">Output:</span>
 
-               			</div><br/>
-                      		<div class="row">
-                	            	<div id="outputText" class="row">
+<hr>
 
-                                  {{ tags | safe }}
-									</div>
-				</div>
-			</div>
-            	</div>
-        </div>
-
+<div>
+<label for="text">Output Annotated Text:</label>
+<p> 
+            <textarea class="form-control" rows="3" id="text">{{ annotatedTag | safe }} </textarea> 
+            <br/> 
+            <input type="button" class="btn btn-outline-info" id="btn" value="Download NER annotated text file" /> 
+  
+            <script> 
+                function download(file, text) { 
+  
+                    //creating an invisible element 
+                    var element = document.createElement('a'); 
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8, ' 
+                                         + encodeURIComponent(text)); 
+                    element.setAttribute('download', file); 
+  
+                    //the above code is equivalent to 
+                    // <a href="path of file" download="file name"> 
+  
+                    document.body.appendChild(element); 
+  
+                    //onClick property 
+                    element.click(); 
+  
+                    document.body.removeChild(element); 
+                } 
+  
+                // Start file download. 
+                document.getElementById("btn").addEventListener("click", function() { 
+                    
+                    var text = document.getElementById("text").value; 
+                    var filename = "NER_annotated.txt"; 
+  
+                    download(filename, text); 
+                }, false); 
+            </script> 
 </div>
+
+
+
+<hr>
+<form id="output">
+  <label for="text">NER Tagged Output:</label>    
+  <div id="outputText" class="row">{{ tags | safe }}</div>
+</form>
+
 <hr>
 
 <div class="page-header">
-  <p><u>API Details:</u></p>
-</div>
+  <p ><u><b>API Details:</b></u></p>
+  <p style="text-indent: 2.5rem"><u>API end point</u></p>
+  <p style="text-indent: 5rem">http://localhost:8080/getNER/ <br />
+  <p style="text-indent: 2.5rem"><u>Input JSON format</u></p>
+  <p style="text-indent: 5rem">JSON should consist of two arguments :</p>
+    <p style="text-indent: 5rem">key: "text" , value: text for which NER is to be generated.</p>
+    <p style="text-indent: 5rem">key: "type", value: number of sentences the user wants in the summary </p>
+  <p style="text-indent: 2.5rem"><u>Output JSON format</u></p>
+  <p style="text-indent: 5rem">Service return a JSON with only one key </p>
+    <p style="text-indent: 5rem">key : "output_text",    value:  Output with annotated NER tags using Displacy.</p>
+	<p style="text-indent: 5rem">key : "annotated_tags", value:  Output with annotated NER tags</p>
+	<p style="text-indent: 5rem">key : "error",          value:  Error Message </p>
 
+</div>
 
 {% endblock %}

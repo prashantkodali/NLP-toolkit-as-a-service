@@ -11,6 +11,8 @@ Creates the base flask app,
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -19,11 +21,12 @@ login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
-
+    migrate = Migrate(app, db)
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
     db.init_app(app)
+
 
 
     login_manager.init_app(app)
