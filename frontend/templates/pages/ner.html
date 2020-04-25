@@ -19,72 +19,7 @@ $(function() {
     }
   });
 
-});
-
-
-$(document).ready(function () {
-
-        function saveTextAsFile() {
-            // grab the content of the form field and place it into a variable
-            var textToWrite = document.getElementById("content").value;
-            //  create a new Blob (html5 magic) that conatins the data from your form feild
-            var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
-            // Specify the name of the file to be saved
-            var fileNameToSaveAs = "myNewFile.txt";
-
-<<<<<<< HEAD
-            // Optionally allow the user to choose a file name by providing
-=======
-            // Optionally allow the user to choose a file name by providing 
->>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
-            // an imput field in the HTML and using the collected data here
-            // var fileNameToSaveAs = txtFileName.text;
-
-            // create a link for our script to 'click'
-            var downloadLink = document.createElement("a");
-            //  supply the name of the file (from the var above).
-            // you could create the name here but using a var
-            // allows more flexability later.
-            downloadLink.download = fileNameToSaveAs;
-            // provide text for the link. This will be hidden so you
-            // can actually use anything you want.
-            downloadLink.innerHTML = "My Hidden Link";
-
-            // allow our code to work in webkit & Gecko based browsers
-            // without the need for a if / else block.
-            window.URL = window.URL || window.webkitURL;
-
-            // Create the link Object.
-            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-            // when link is clicked call a function to remove it from
-            // the DOM in case user wants to save a second file.
-            downloadLink.onclick = destroyClickedElement;
-            // make sure the link is hidden.
-            downloadLink.style.display = "none";
-            // add the link to the DOM
-            document.body.appendChild(downloadLink);
-
-            // click the new link
-            downloadLink.click();
-        }
-
-        function destroyClickedElement(event) {
-            // remove the link from the DOM
-            document.body.removeChild(event.target);
-        }
-
-
-
-        $("#download").click(function (e) {
-
-            e.preventDefault();
-            saveTextAsFile();
-        });
-<<<<<<< HEAD
- });
-=======
- });  
->>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
+});  
 
 </script>
 </head>
@@ -104,9 +39,11 @@ Note: In case of URL as input, output can be generated only if web-scrapping is 
 <p> <u>Author</u><br /> Ananya Mukherjee <br />ananya.mukherjee@research.iiit.ac.in</p>
 
 <hr>
-<h3> Choose your input</h3>
-   <input type="radio" name="type" value="txt"> Enter Text
+<h3> Choose your input: </h3>
+<div class = "custom-control custom-radio custom-control-inline">
+   <input type="radio" name="type" value="txt"> Enter Text 
    <input type="radio" name="type" value="url"> Enter URL
+</div>
 </div>
 
 
@@ -120,81 +57,19 @@ Input URL: <input class="form-control" type="url" name="url_ip" pattern="^(http:
 Input Text: <textarea class="form-control" id="txtarea" rows="4" cols="50" name="txt_ip"> </textarea>
 </div>
 
-<input type="submit" value="Get NER"/>
+<input type="submit" class="btn btn-outline-info" value="Get NER"/>
 </form>
 
 <br>
 
 <hr>
 
-<form id="output">
-  <label for="text">Output Annotated Text:</label>
-  </br>
-   <textarea class="form-control" id="content" rows="3"> {{ annotatedTag | safe }} </textarea>
-   <input type="button" id="download" value="Download NER annotated text file" />
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
-</form>
-
-
-<form id="output">
-<<<<<<< HEAD
-  <label for="text">NER Tagged Output:</label>
-=======
-  <label for="text">NER Tagged Output:</label>   
->>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
-  <div id="outputText" class="row">{{ tags | safe }}</div>
-</form>
-
-*******************************************************************************************
-<hr>
-New code for testing
-
-<<<<<<< HEAD
-<p>
-
-            <textarea id="text">{{ annotatedTag | safe }} </textarea>
-            <br/>
-            <input type="button" id="btn" value="Download" />
-
-            <script>
-                function download(file, text) {
-
-                    //creating an invisible element
-                    var element = document.createElement('a');
-                    element.setAttribute('href', 'data:text/plain;charset=utf-8, '
-                                         + encodeURIComponent(text));
-                    element.setAttribute('download', file);
-
-                    //the above code is equivalent to
-                    // <a href="path of file" download="file name">
-
-                    document.body.appendChild(element);
-
-                    //onClick property
-                    element.click();
-
-                    document.body.removeChild(element);
-                }
-
-                // Start file download.
-                document.getElementById("btn").addEventListener("click", function() {
-                    // Generate download of hello.txt file with some content
-                    var text = document.getElementById("text").value;
-                    var filename = "ner.txt";
-
-                    download(filename, text);
-                }, false);
-            </script>
-=======
+<div>
+<label for="text">Output Annotated Text:</label>
 <p> 
-  
-            <textarea id="text">{{ annotatedTag | safe }} </textarea> 
+            <textarea class="form-control" rows="3" id="text">{{ annotatedTag | safe }} </textarea> 
             <br/> 
-            <input type="button" id="btn" value="Download" /> 
+            <input type="button" class="btn btn-outline-info" id="btn" value="Download NER annotated text file" /> 
   
             <script> 
                 function download(file, text) { 
@@ -218,18 +93,22 @@ New code for testing
   
                 // Start file download. 
                 document.getElementById("btn").addEventListener("click", function() { 
-                    // Generate download of hello.txt file with some content 
+                    
                     var text = document.getElementById("text").value; 
-                    var filename = "ner.txt"; 
+                    var filename = "NER_annotated.txt"; 
   
                     download(filename, text); 
                 }, false); 
             </script> 
->>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
+</div>
 
 
 
-******************************************************************************************
+<hr>
+<form id="output">
+  <label for="text">NER Tagged Output:</label>    
+  <div id="outputText" class="row">{{ tags | safe }}</div>
+</form>
 
 <hr>
 
@@ -245,7 +124,7 @@ New code for testing
   <p style="text-indent: 5rem">Service return a JSON with only one key </p>
     <p style="text-indent: 5rem">key : "output_text",    value:  Output with annotated NER tags using Displacy.</p>
 	<p style="text-indent: 5rem">key : "annotated_tags", value:  Output with annotated NER tags</p>
-	<p style="text-indent: 5rem">key : "error",          value:  Error </p>
+	<p style="text-indent: 5rem">key : "error",          value:  Error Message </p>
 
 </div>
 

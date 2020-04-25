@@ -19,16 +19,16 @@ Flask </br>
 ```bash
      -pip install Flask
 ```
-Enchant </br>
+Beautiful Soup </br>
 ```bash
-     -pip install pyenchant 
+     -pip install beautifulsoup4
 ```
 ### Short Description of Service
 
 Description of the service:</u> NER is probably the first step towards information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. NER is used in many fields in Natural Language Processing.
 
 This online NER service uses SpaCy’s trained model to identify the named entities. Input can be either in text format or URL. </br>
-Note: In case of URL as input, output can be generated only if web-scrapping is permitted for that particular URL.
+Note: In case of URL as input, output can be generated only if web-scrapping (using Beautiful Soup) is permitted for that particular URL.
 
 #### Trained Corpus 
 - [OntoNotes Release 5.0] (https://catalog.ldc.upenn.edu/LDC2013T19)
@@ -57,8 +57,18 @@ Note: In case of URL as input, output can be generated only if web-scrapping is 
 |ORDINAL	         |“first”, “second”, etc.	                     	                 |
 |CARDINAL          |Numerals that do not fall under another type.		               |
 
+#### To Add New Enity Types
+For more details on [training](https://spacy.io/usage/training) and updating the named entity recognizer, see the usage guides on training or check out the runnable [training script](https://github.com/explosion/spaCy/blob/master/examples/training/train_ner.py) on GitHub.
+
+
 #### System Architectures Used
 
+![Flow](https://spacy.io/training-73950e71e6b59678754a87d6cf1481f9.svg)
+
+<b>Training data: </b> Examples and their annotations. </br>
+<b>Text: </b>The input text the model should predict a label for. </br>
+<b>Label: </b>The label the model should predict. </br>
+<b>Gradient: </b> Gradient of the loss function calculating the difference between input and expected output. </br>
 
 Example Usage:
 	
