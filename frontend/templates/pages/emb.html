@@ -2,7 +2,7 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <div class="page-header">
   <h1>Text Representations</h1>
@@ -40,15 +40,43 @@
 
 <br>
 <form id="output">
-<<<<<<< HEAD
-	<label for="text">Text Representations</label>
-=======
-	<label for="text">Sentiment</label>
->>>>>>> 0cd2e711acf1cf227db85df55edb0e975f38772d
-  <textarea class="form-control" id="output_text" rows="3"> {{ output }}</textarea>
+	<label for="text">Embeddings</label>
+  <textarea class="form-control" id="text" rows="3"> {{ output }}</textarea>
 </form>
 
 <hr>
+
+<input type="button" class="btn btn-outline-info" id="btn" value="Download embeddings text file" /> 
+  
+            <script> 
+                function download(file, text) { 
+  
+                    //creating an invisible element 
+                    var element = document.createElement('a'); 
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8, ' 
+                                         + encodeURIComponent(text)); 
+                    element.setAttribute('download', file); 
+  
+                    //the above code is equivalent to 
+                    // <a href="path of file" download="file name"> 
+  
+                    document.body.appendChild(element); 
+  
+                    //onClick property 
+                    element.click(); 
+  
+                    document.body.removeChild(element); 
+                } 
+  
+                // Start file download. 
+                document.getElementById("btn").addEventListener("click", function() { 
+                    
+                    var text = document.getElementById("text").value; 
+                    var filename = "sentence_embeddings.txt"; 
+  
+                    download(filename, text); 
+                }, false); 
+            </script> 
 
 <div class="page-header">
   <p ><u><b>API Details:</b></u></p>
