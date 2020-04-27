@@ -24,10 +24,12 @@ To address this problem, our team set out on developing a platform which enables
   - for developers to try a particular service
   - A place to gather details of the APIs that developer can hit to access these services, if he/she intends to use these services in their application.
   - Allows developers to publish their applications/services.
+  - Flask, a python based web framework, is used for implementing the frontend, and for acessing each of the implemented service. 
 
 - Individual services:
   - developed and published by developers.
   - individual services are run and hosted by the individuals. the frontend doesn't involve hosting a service.
+  - Flask is used to exposing APIs of each of the services listed below. However, that is not a limitation, as long as the service implemnted can take input as json and send a json as a response. 
   - Following services have been implemented and integrated with frontend by our Team
     - [Tokenization](Tokenizer/)
     - [Text Representations](TextEmbeddings/)
