@@ -87,7 +87,7 @@ Visualising the JSON Output:
 ![Flow](https://github.com/prashantkodali/NLP-toolkit-as-a-service/blob/master/NER/img/visualizeJSONOutput.png)	
 
 
-Input Parameters : Json (src,id)
+Input Parameters : Json (type,text)
 
 	| Field | Type    | Description                                                         |
 	|-------|---------|---------------------------------------------------------------------|
@@ -95,14 +95,14 @@ Input Parameters : Json (src,id)
 	| text  | String  | Input text / Input Url                                              |
 	|-------|---------|---------------------------------------------------------------------|
 
-Output : Json File (src, tgt, errorMessage)
+Output : Json File (output_text, annotated_tags, errorMessage)
 
-	| Field        | Type   | Description                                                                     |
-	|--------------|--------|---------------------------------------------------------------------------------|
-	| Output Tags  | String | Output with entities marked in html                                             |
-	| tags         | String | Output with entities annotated.                                                 |
-	| errorMessage | String | Contains error message, if any.                                                 |
-	|--------------|--------|---------------------------------------------------------------------------------|
+	| Field          | Type   | Description                                                                     |
+	|----------------|--------|---------------------------------------------------------------------------------|
+	| output_text    | String | Output with entities marked in html                                             |
+	| annotated_tags | String | Output with entities annotated.                                                 |
+	| errorMessage   | String | Contains error message, if any.                                                 |
+	|----------------|--------|---------------------------------------------------------------------------------|
 
 
 
@@ -112,7 +112,10 @@ Output : Json File (src, tgt, errorMessage)
 	- [Spacy](https://github.com/explosion/spacy-models/releases//tag/en_core_web_sm-2.2.5)
 	- [Enchant](http://pyenchant.github.io/pyenchant/)
 	- [ngrok](https://ngrok.com/)
+
 - Trained Corpus
 	- [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19)
 - Blogs
-	- For Named Entity Recognition [blog](https://towardsdatascience.com/named-entity-recognition-with-nltk-and-spacy-8c4a7d88e7da) 
+	- [Named Entity Recognition](https://towardsdatascience.com/named-entity-recognition-with-nltk-and-spacy-8c4a7d88e7da) 
+	- [BeautifulSoup](https://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python)
+	- [Flask](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask)
