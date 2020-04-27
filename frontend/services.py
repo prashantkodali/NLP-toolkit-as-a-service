@@ -39,17 +39,22 @@ def tokenizer_page():
 def tokenize_call():
     text = request.form['text']
     id = request.form['id']
-    td = {'txt_ip':text, 'id':id }
+    td = {'input_text':text, 'id':id }
 
     service = Service.query.filter_by(service_service_call = '/tokenize_call').first()
     apiendpoint = service.service_api_endpoint
 
     try:
         response = requests.post(apiendpoint, json = td)
-        print(response.json())
+
+        if response.json()['error'] != 'None':
+            flash(response.json()['error'])
+            return render_template('pages/tokenize_ajaxtest.html', input= text,services = getservices())
+        print('after if loop')
         return render_template('pages/tokenize_ajaxtest.html',input = text, output= response.json()['output_text'], services = getservices())
 
-    except :
+    except Exception as e:
+        print(e)
         flash("There seems to be a issue with the service. Please contact the admin.")
         return render_template('pages/tokenize_ajaxtest.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
@@ -144,16 +149,10 @@ def emb_call():
 
     td = {'text':text, 'id':id}
 
-    print(td)
     service = Service.query.filter_by(service_service_call = '/emb_call').first()
     apiendpoint = service.service_api_endpoint
 
-    print(apiendpoint)
-
     response = requests.post(apiendpoint, json = td)
-
-    print(response.json())
-    print(response.json()['embeddings'])
 
     try:
         if response.json()['error'] != 'None':
