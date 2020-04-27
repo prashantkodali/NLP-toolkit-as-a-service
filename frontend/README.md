@@ -16,7 +16,7 @@ Broadly, our frontend has following Components:
  $export FLASK_DEBUG=1
  $flask run
  ```
- 
+
 ### Each component is detailed in the following section.
 #### 1. Flask
   - Used here primarily to manage the routes and routing within the application.
