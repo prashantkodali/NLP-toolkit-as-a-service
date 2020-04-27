@@ -2,14 +2,14 @@
 """
 ******************************************************************************************************************
 @author: Ananya Mukherjee
-Name: ner.py
-Description : This program is the entry point of NER Online Service Server. It accepts JSON input, preprocesses to validate and if no error then retrieves NER.
-Imports ner and preprocessor.
+Name: serverMTEval.py
+Description : This program is the entry point of Automatic MT Evaluation Online Service Server. It accepts JSON input, preprocesses to validate and if no error then retrieves Translation Score.
+Imports mteval and preprocessor.
 
-Input : JSON Input from Client.
+Input : JSON Input from Client. (containing hypothesis and reference senentences)
 Preprocess the input to check for errors.
-If no errors, then retrieves Named Entities (HTML snippet with annotated tags, Plain Text with annotated tags)
-Output : Returns the NER tagged annotated text marked by HTML (for display purpose in client's browser), Plain Annotated Text and Error Message.
+If no errors, then retrieves Machine Translation Score (BLEU Score and NIST Score)
+Output : Returns BLEU Score, NIST Score, Error Message (Error Message is None if no error is found.)
 
 ******************************************************************************************************************
 """
