@@ -2,7 +2,7 @@
 """
 ******************************************************************************************************************
 @author: Ananya Mukherjee
-Name: ner.py
+Name: serverEntry.py
 Description : This program is the entry point of NER Online Service Server. It accepts JSON input, preprocesses to validate and if no error then retrieves NER.
 Imports ner and preprocessor.
 

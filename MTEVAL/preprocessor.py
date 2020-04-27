@@ -2,14 +2,20 @@
 """
 ******************************************************************************************************************
 @author: Ananya Mukherjee
-Name: ner.py
+Name: preprocessor.py
 Description : This program preprocess the input and checks validation.
 
 Input : Input Type and Input Text. 
+Tokenizes the JSON input into sentences.
 Checks if entered input is empty or not.
-Checks if entered input is in English or not.
+Checks if each hypothesis has a reference sentence or not.
 
-Output : Returns 'Error Message' if an error is encountered else returns 'True'.
+Output : 
+If No Error : 
+Returns True, List of Hypothesis Sentences, List of Reference Sentences 
+If Error :
+Return ErrorMessage, [],[]
+
 
 ******************************************************************************************************************
 
