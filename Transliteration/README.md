@@ -1,25 +1,27 @@
 <p align="center">
-  <b>### Extractive Summarization</b><br>
+  <b>Transliteration</b><br>
 </p>
 
-In this service we have deployed a k-means bases summarization using FastText word embeddings for getting sentence Representations.
+In this service we have deployed a ISO 15919 standard for converting Devnagri script to Roman characters. Transliteration is of crucial importance when we are dealing with multilingual setup or code mix setup. 
 
 The service takes following inputs, in a JSON format:
-- Input text, for which summary is to be generated.
-- Number of sentences in summary
+- Input text, in devnagri script, for which transliteration is to be generated.
 
 The service outputs the following:
-- Summary of the input text in the number of sentences as mentioned in the inputText
+- Transliteration of the input text as mentioned in the inputText
 
+Following is the brief summary of the method used for generating the summary:
 
-Following is the brief summary of the algorithm used for generating the summary:
+1. A map is written to map devnagri charaters to roman characters.
+2. Check the script information of the string based on unicode character ranges.
+3. Based on the input character it is mapped to roman characters. 
+4. These characters are stitched together and the output is generated. 
 
-1. Sentence tokenize the input text, using a simple regular expression pattern.
-2. Generate sentence Representations for each sentence using pretrained FastText embeddings.
-  - for each word in a sentence query the embeddings from pretrained FastText embeddings
-  - sum up the embeddings of all words in a sentence to get the sentence embeddings.
-3. Run a k-means clustring algorithm to extract n clusters, where n is number of sentences in summary, which is taken as input.
-4. Centroids of each cluster are Representative of summary.
-5. Pick the nearest sentence to each of the Centroids. String these sentences together to get summary.
+No additional packages or libraries were used to generate the transliteration. This can be extended to all the other scripts. 
 
-The code base for this service uses [Pymagnitue](https://github.com/plasticityai/magnitude) for handling the pretrained word embedding file. This ensures that query time for each word is very less and main memory footprint for these word embeddings is very less. 
+Error handling is built into the system. 
+
+Two error cases are handled:
+a) If the input is not in native script. 
+b) if the input is empty. 
+In both these cases we generate a json with error key as "error". If there is no error, then the value of "error" key in returned json will be "None".
