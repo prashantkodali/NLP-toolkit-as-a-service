@@ -1,5 +1,7 @@
 # Automatic Machine Translation Output Evaluation.
 
+This service can be added by using 'Add Service' option with admin rights. 
+
 ### To start the server 
 
 To start server kindly use following command, 
@@ -66,7 +68,7 @@ Output : Json File (bleu, nist, errorMessage)
 
 - Packages
 	- [BLEU SCORE](https://www.nltk.org/_modules/nltk/translate/bleu_score.html)
-	- [NIST SCORE]https://www.nltk.org/_modules/nltk/translate/nist_score.html)
+	- [NIST SCORE](https://www.nltk.org/_modules/nltk/translate/nist_score.html)
 	- [ngrok](https://ngrok.com/)
 - Reference Papers
 	- [BLEU: a Method for Automatic Evaluation of Machine Translation](https://www.aclweb.org/anthology/P02-1040.pdf) 
