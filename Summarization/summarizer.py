@@ -60,7 +60,7 @@ class Summarizer:
         return sentence_vectors
 
     def get_clusters(self, sentence_vectors, num_clusters):
-        kmeans = KMeans(n_clusters=num_clusters, random_state=0, verbose = 5, init = 'random').fit(sentence_vectors)
+        kmeans = KMeans(n_clusters=num_clusters, random_state=0, verbose = 0, init = 'random').fit(sentence_vectors)
         return kmeans.cluster_centers_
 
     def get_cluster_sent_ids(self, sentence_vectors, clusters):

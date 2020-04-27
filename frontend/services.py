@@ -209,7 +209,13 @@ def summarize_page():
 def summarize_call():
 
     text = request.form['text']
-    num = int(request.form['num'])
+
+    try:
+        num = int(request.form['num'])
+    except Exception as e:
+        flash("Please enter number of sentences.")
+        return render_template('pages/summarization.html', input = text, sen_num = "None", output= "None", services = getservices())
+
 
     td = {'text':text, 'num':num}
 
@@ -218,6 +224,11 @@ def summarize_call():
 
     try:
         response = requests.post(apiendpoint, json = td)
+
+        if response.json()['error'] != 'None':
+            flash(response.json()['error'])
+            return render_template('pages/summarization.html', input = text, sen_num = num, output= "None", services = getservices())
+
         return render_template('pages/summarization.html', input = text, sen_num = num, output= response.json()['outputtext'], services = getservices())
     except :
         flash("There seems to be a issue with the service. Please contact the admin.")
@@ -243,6 +254,11 @@ def transliteration_call():
 
     try:
         response = requests.post(apiendpoint, json = td)
+        print(response.json())
+        if response.json()['error'] != 'None':
+            flash(response.json()['error'])
+            return render_template('pages/transliteration.html', input = text, output= "None", services = getservices())
+
         return render_template('pages/transliteration.html', input = text, output= response.json()['transliterated_text'], services = getservices())
     except :
         flash("There seems to be a issue with the service. Please contact the admin.")

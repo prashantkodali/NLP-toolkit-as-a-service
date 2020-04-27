@@ -7,7 +7,12 @@ Uses classes detailed in summarizer.py for summarization methods.
 
 from flask import Flask, render_template, request, flash, url_for, jsonify
 from summarizer import *
+from errorCheck import *
 
+
+def errorDetect(text):
+    ec = errorCheck(text)
+    return ec.CheckInput()
 
 app = Flask(__name__)
 
@@ -22,11 +27,15 @@ def summarize():
     text = req_data['text']
     number_of_sentences = req_data['num']
 
-    summarized_text = ".\n".join(s.summarize(text, number_of_sentences)) #stitching the returned sentences together.
+    errorStatus = errorDetect(text)
+    print(errorStatus)
 
-    td = {'outputtext' : summarized_text} 
-
-    return jsonify(td)
+    if errorStatus == False:
+        summarized_text = ".\n".join(s.summarize(text, number_of_sentences)) #stitching the returned sentences together.
+        td = {'outputtext' : summarized_text, 'error': "None"}
+        return jsonify(td)
+    else:
+        return jsonify({'outputtext':'None','error':errorStatus})
 
 
 if __name__ == '__main__':
