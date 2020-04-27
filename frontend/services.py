@@ -50,11 +50,9 @@ def tokenize_call():
         if response.json()['error'] != 'None':
             flash(response.json()['error'])
             return render_template('pages/tokenize_ajaxtest.html', input= text,services = getservices())
-        print('after if loop')
         return render_template('pages/tokenize_ajaxtest.html',input = text, output= response.json()['output_text'], services = getservices())
 
     except Exception as e:
-        print(e)
         flash("There seems to be a issue with the service. Please contact the admin.")
         return render_template('pages/tokenize_ajaxtest.html', input= text, services = getservices(), flash = "There seems to be a issue with the service. Please contact the admin.")
 
@@ -75,12 +73,9 @@ def mt_call():
     service = Service.query.filter_by(service_service_call = '/mt_call').first()
     apiendpoint = service.service_api_endpoint
 
-    print(apiendpoint)
 
     response = requests.post(apiendpoint, json = td)
 
-    print("printing response:\n")
-    print(response.json())
 
     try:
         if response.json()['error'] != 'None':
@@ -116,8 +111,6 @@ def ner_call():
         type = "text"
         td = {"text":text, "type":type }
 
-        print(td)
-
         response = requests.post(apiendpoint, json = td)
 
     # print(response.json())
@@ -125,7 +118,6 @@ def ner_call():
         if response.json()['error'] != None:
             flash(response.json()['error'])
             return render_template('pages/ner.html', input= text, services = getservices())
-        print(response.json()['output_text'])
 
         return render_template('pages/ner.html',services = getservices(), tags= response.json()['output_text'], annotatedTag = response.json()['annotated_tags'])
 
@@ -184,14 +176,11 @@ def sentiment_call():
 
     service = Service.query.filter_by(service_service_call = '/sentiment_call').first()
     apiendpoint = service.service_api_endpoint
-    print(apiendpoint)
 
     response = requests.post(apiendpoint, json = td)
-    print(response.json())
 
     try:
         response = requests.post(apiendpoint, json = td)
-        print(response.json())
         return render_template('pages/sentiment.html', input = text,output= response.json()['label'],services = getservices())
     except :
         flash("There seems to be a issue with the service. Please contact the admin.")
@@ -254,7 +243,6 @@ def transliteration_call():
 
     try:
         response = requests.post(apiendpoint, json = td)
-        print(response.json())
         if response.json()['error'] != 'None':
             flash(response.json()['error'])
             return render_template('pages/transliteration.html', input = text, output= "None", services = getservices())

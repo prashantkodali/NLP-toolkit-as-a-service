@@ -38,9 +38,6 @@ def login_post():
 
         return redirect(url_for('auth.login'))
 
-    print(user.fullname)
-
-
     login_user(user)
 
 
