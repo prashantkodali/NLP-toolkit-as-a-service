@@ -33,6 +33,7 @@ To address this problem, our team set out on developing a platform which enables
   - Following services have been implemented and integrated with frontend by our Team
     - [Tokenization](Tokenizer/)
     - [Text Representations](TextEmbeddings/)
+    - [Transliteration](Transliteration/)
     - [Named Entity Recongniation](NER/)
     - [Sentiment Analysis](Sentiment%20Analysis/)
     - [Summarization](Summarization/)
