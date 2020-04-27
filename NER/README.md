@@ -5,7 +5,7 @@
 To start server kindly use following command, 
 
 ```bash
- python Server_Entry.py
+ python serverEntry.py
 ```
 
 ### Prerequisite for Server
