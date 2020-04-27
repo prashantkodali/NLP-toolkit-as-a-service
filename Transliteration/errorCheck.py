@@ -1,9 +1,18 @@
+'''
+This class is implemented for basic input validation, to check if the input is
+not as expected.
+Currently implements two cases:
+1. isEnglish: True if input is in english. Transliteration is from native script to roman and not other way round.
+2. isEmpty: if no input is given. 
+'''
+
+
 class errorCheck:
 
     def __init__(self,input):
         self.input  = str(input)
 
-    def isNotEnglish(self):
+    def isEnglish(self):
         input = self.input
         try:
             input.encode('ascii')
@@ -24,7 +33,7 @@ class errorCheck:
     def CheckInput(self):
         if(self.isEmpty()):
             return "Please provide input."
-        elif(self.isNotEnglish()):
+        elif(self.isEnglish()):
             return "Please do not provide input in English."
         else:
             return False

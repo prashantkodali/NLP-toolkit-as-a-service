@@ -1,11 +1,15 @@
 from charmap import charmap
 import string
 
+
+#unicode ranges for each indian script.
 lang_bases = {
     'en_US': 0, 'en_IN': 0, 'hi_IN': 0x0901, 'bn_IN': 0x0981,
     'pa_IN': 0x0A01, 'gu_IN': 0x0A81, 'or_IN': 0x0B01, 'ta_IN': 0x0B81,
     'te_IN': 0x0C01, 'kn_IN': 0x0C81, 'ml_IN': 0x0D01
 }
+
+
 
 class isotrans:
 
@@ -72,6 +76,10 @@ class isotrans:
         return result_dict
 
     def transliterate_iso15919( self, word, src_language):
+
+        '''
+        User charmap to map a native script character to its roman equivalent.
+        '''
         tx_str = ""
         index = 0
         word_length = len(word)
@@ -89,39 +97,33 @@ class isotrans:
                                        or src_language == "bn_IN"):
                 if word_length == index and word_length > 1:  # if last letter
                     tx_str = tx_str[:-1]  # remove the last 'a'
-        return tx_str#.decode("utf-8")
+        return tx_str
 
     def tokenize(self, text):
+
+        '''
+        For tokenizing he input string. Attaching script ID to each token. 
+        '''
         words = text.split(" ")
-        #print(words)
         nSent=""
         for x in words:
-            #print x
-            #chars=split(x)
+
             nWord=""
             first=True
             bet=False
             for c in x:
-                #print c
-                #print detect_lang(c)
-                #print c.isalpha()
-                #print(hex(ord(c)))
                 if(len(detect_lang(c))==0 and first):
                     nWord=nWord+c+" "
-                    #print "1"
                 else:
                     if(len(detect_lang(c))==0):
                         nWord=nWord+" "+c
-                        #print "2"
                         bet=True
                     else:
                         if (bet):
                             nWord=nWord+" "+c
-                            #print "3"
                             bet=False
                         else:
                             nWord=nWord+c
-                            #print "4"
                 first=False
             nSent=nSent+" "+nWord
         return nSent
