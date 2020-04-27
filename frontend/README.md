@@ -43,7 +43,7 @@ Broadly, our frontend has following Components:
 
 
 ### How to add services to the page
-Pleaes refer this [document](Adding_a_service_Readme.md) for adding new service to this page.
+Pleaes refer this [document](Adding_a_service_Readme.md) for adding new service to the frontend.
 
 
 ### Futher improvements:
