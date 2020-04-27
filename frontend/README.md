@@ -31,9 +31,21 @@ Broadly, our frontend has following Components:
   - SQLite is used as the datbase for storing user details for authentication purposes
   - SQLAlchemy is the Python SQL toolkit and Object Relational Mapper, enabliing SQL functionality within python.
   - [models_db.py](models_db.py) is used for defining class for each database table that we intend to use in the application.
+  - models_db.py implements classes for User schema and Service Schema. Users schema is used to store the user relaed data for login and authentication purposes. Service schema is used for storing details reagarding services. These details are used for storng data about services like API details, route detils. These are used for populating content in webpages. This ensures that we don't have to change individual HTMLs every time a new service is added.
+  - Flask-migrate package is used for handling the changes in the database schemas. This packages handles changes easily while keeping the data from older schemas intact and usable in new schema. This keeps application open for extension and easy to implement changes.
 
 #### 3. Templates:
   - Flask plugins are used for genarting forms for login and register pages in the application.
   - Flask support Jinja template engine which allows inheritence from a particular layout. For ex: all service pages will inherit from the service.html layout and change the body as needed for that service.
   - HTML and Bootstrap CSS is used to generating the static pages. Links and some other contents in hese pages are populated by using Jinjga syntax, by sending data from python API/function calls.
   - [templates](templates) is used for storing HTMLs of all pages within the application, which in turn use the contents of [static](static) as resources like CSS stylesheets, images etc.
+
+
+### How to add services to the page
+Pleaes refer this [document](/Adding_a_service_Readme.md) for adding new service to this page.
+
+
+### Futher improvements:
+1. Dockerizing the application, so that user of the forntend do not have to go through the excercise of installing all dependencies.
+2. Changng SQLite to a more scalable database.
+3. A more thorogh automatic updation of individual HTMLs and service pages. 

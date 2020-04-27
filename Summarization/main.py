@@ -16,6 +16,7 @@ def errorDetect(text):
 
 app = Flask(__name__)
 
+#change the file path to path of embedding file. 
 word_vector_file = '/home/pk/Downloads/crawl-300d-2M.magnitude'
 
 s = Summarizer(word_vector_file)
@@ -39,4 +40,4 @@ def summarize():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port = 6000, debug=True)
+	app.run(host='0.0.0.0', port = 6000, debug=True) #change the port number here if a different port is to be used for running thie service.
