@@ -212,7 +212,7 @@ def summarize_call():
 
     try:
         num = int(request.form['num'])
-    except Exception as e:
+    except Exception as e: #for handling case when the input is either not a number or empty.
         flash("Please enter number of sentences.")
         return render_template('pages/summarization.html', input = text, sen_num = "None", output= "None", services = getservices())
 
