@@ -3,6 +3,9 @@
   <a>Spring 2020</a><br>
   <a>IIIT Hyderabad</a><br><br>
   <b><u>Course Project: NLP toolkit as a service</u></b></a>
+  
+  <b><u>GNU General Purpose License v3.0</u></b></a>
+  
   <br><br>
   <b>Team 8</b><br>
   <a>Saumitra Yadav | </a><a>Neha Motlani | </a><a>Sunil Gundapu</a><br>
